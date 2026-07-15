@@ -16,7 +16,8 @@ namespace Core.Utilities.Pool_Spawner.Spawner
         protected abstract void InternalStart();
         protected virtual void OnSpawnDone(T spawnObject){}
 
-        protected SpawnPoint CurrentSpawnPoint() => _spawnPoints[_spawnPointIndex];
+        protected int GetSpawnPointCount() => _spawnPoints.Length;
+        protected SpawnPoint GetCurrentSpawnPoint() => _spawnPoints[_spawnPointIndex];
         protected SpawnPoint[] AllSpawnPoints() => _spawnPoints;
         
         protected virtual void Awake()
@@ -48,7 +49,7 @@ namespace Core.Utilities.Pool_Spawner.Spawner
             }
         }
         
-        private IEnumerator SpawnEnumerator(int count, float delay)
+        protected IEnumerator SpawnEnumerator(int count, float delay)
         {
             for (int i = 0; i < count; i++)
             {

@@ -55,13 +55,13 @@ namespace Core.Utilities.Pool_Spawner.PoolLogics
             else
             {
                 OnEnterPool(member);
-                Object.DestroyImmediate(member.gameObject);
+                Object.Destroy(member.gameObject);
             }
         }
         
         public override void ClearPool()
         {
-            _objectStack.ForEach(o => Object.DestroyImmediate(o.gameObject));
+            _objectStack.ForEach(o => Object.Destroy(o.gameObject));
             _objectStack.Clear();
         }
     }

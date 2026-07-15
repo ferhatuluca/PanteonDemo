@@ -68,27 +68,6 @@ namespace Core.Utilities.Pool_Spawner
             simplePoolObjects = null;
             typedPoolObjects = null;
         }
-        
-        public MonoBehaviorPool<T> GetMyPoolSimple<T>() where T : MonoBehaviour, IPoolMemberSimple
-        {
-            var pool = (MonoBehaviorPool<T>) _monoSimplePoolDictionary[typeof(T)];
-            if(pool == null)
-                Debug.LogError("Pool Not Exist");
-            
-            return pool;
-        }
-        
-        public MonoBehaviorPool<T> GetMyPoolTyped<T, TLogic>(TLogic tLogic) where T : MonoBehaviour, IPoolMemberWithType<TLogic>
-        {
-            var typedPoolsDictionary = GetMyPoolsOfTyped<T, TLogic>();
-            return typedPoolsDictionary[tLogic];
-        }
-        
-        public Dictionary<TLogic, MonoBehaviorPool<T>> GetMyPoolsOfTyped<T, TLogic>() where T : MonoBehaviour, IPoolMemberWithType<TLogic>
-        {
-            var typedPoolsDictionary = (TypedPoolsDictionary<TLogic, T>)_monoTypedPoolDictionary[typeof(TLogic)];
-            return typedPoolsDictionary.GetAllTypedPools();
-        }
 
 #if UNITY_EDITOR
         [Button("Fetch All Pool Objects")]
@@ -223,6 +202,27 @@ namespace Core.Utilities.Pool_Spawner
                     return component;
             }
             return null;
+        }
+
+        public MonoBehaviorPool<T> GetMyPoolSimple<T>() where T : MonoBehaviour, IPoolMemberSimple
+        {
+            var pool = (MonoBehaviorPool<T>) _monoSimplePoolDictionary[typeof(T)];
+            if(pool == null)
+                Debug.LogError("Pool Not Exist");
+            
+            return pool;
+        }
+
+        public MonoBehaviorPool<T> GetMyPoolTyped<T, TLogic>(TLogic tLogic) where T : MonoBehaviour, IPoolMemberWithType<TLogic>
+        {
+            var typedPoolsDictionary = GetMyPoolsOfTyped<T, TLogic>();
+            return typedPoolsDictionary[tLogic];
+        }
+        
+        public Dictionary<TLogic, MonoBehaviorPool<T>> GetMyPoolsOfTyped<T, TLogic>() where T : MonoBehaviour, IPoolMemberWithType<TLogic>
+        {
+            var typedPoolsDictionary = (TypedPoolsDictionary<TLogic, T>)_monoTypedPoolDictionary[typeof(TLogic)];
+            return typedPoolsDictionary.GetAllTypedPools();
         }
     }
 }

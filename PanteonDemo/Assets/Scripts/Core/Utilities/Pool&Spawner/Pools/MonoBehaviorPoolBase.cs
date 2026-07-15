@@ -39,7 +39,6 @@ namespace Core.Utilities.Pool_Spawner.Pools
             var monoObject = Object.Instantiate(SpawnPrefab);
             Object.DontDestroyOnLoad(monoObject.gameObject);
             monoObject.name += _objectCount++;
-            monoObject.OnCreate();
             EnterPool(monoObject);
             return monoObject;
         }
