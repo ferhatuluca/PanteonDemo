@@ -18,7 +18,7 @@ namespace Core.GameUnits.Buildings
 
 		public BuildingType GetTypeForPool()
 		{
-			throw new System.NotImplementedException();
+			return BuildingType;
 		}
 
 		public void OnEnterPool()
