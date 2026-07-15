@@ -10,10 +10,10 @@ namespace Core.Utilities.Pool_Spawner.Spawner
         private SpawnPoint[] _spawnPoints;
         private int _spawnPointIndex;
         
-        protected abstract T GetObject();
+        protected abstract T GetObjectFromPool();
         
-        protected abstract void InternalAwake();
-        protected abstract void InternalStart();
+        protected virtual void InternalAwake(){}
+        protected virtual void InternalStart(){}
         protected virtual void OnSpawnDone(T spawnObject){}
 
         protected int GetSpawnPointCount() => _spawnPoints.Length;
@@ -22,18 +22,13 @@ namespace Core.Utilities.Pool_Spawner.Spawner
         
         protected virtual void Awake()
         {
-            SetSpawnPoints();
+            _spawnPoints = GetComponentsInChildren<SpawnPoint>();
             InternalAwake();
         }
         
         protected virtual void Start()
         {
             InternalStart();
-        }
-
-        private void SetSpawnPoints()
-        {
-            _spawnPoints = GetComponentsInChildren<SpawnPoint>();
         }
 
         protected void SpawnLoop(int count, float delay)
@@ -67,19 +62,18 @@ namespace Core.Utilities.Pool_Spawner.Spawner
             }
         }
 
-        protected abstract GameObject AdjustValues(T spawnObject);
+        protected abstract GameObject GetGameObject(T spawnObject);
 
         public void Spawn(Action<T> onSpawnDone = null)
         {
-            if(_spawnPoints.Length == 0)
-                SetSpawnPoints();
-
-            var spawnedObject = GetObject();
-            var gameObjectOfSpawn = AdjustValues(spawnedObject);
-            var spawnPoint = _spawnPoints[_spawnPointIndex];
-            
-            spawnPoint.spawnObject = gameObjectOfSpawn;
-            gameObjectOfSpawn.transform.position = _spawnPoints[_spawnPointIndex].transform.position;
+            var spawnedObject = GetObjectFromPool();
+            var gameObjectOfSpawn = GetGameObject(spawnedObject);
+            if (_spawnPoints.Length > 0)
+            {
+                var spawnPoint = _spawnPoints[_spawnPointIndex];
+                spawnPoint.spawnObject = gameObjectOfSpawn;
+                gameObjectOfSpawn.transform.position = _spawnPoints[_spawnPointIndex].transform.position;
+            }
             
             OnSpawnDone(spawnedObject);
             onSpawnDone?.Invoke(spawnedObject);

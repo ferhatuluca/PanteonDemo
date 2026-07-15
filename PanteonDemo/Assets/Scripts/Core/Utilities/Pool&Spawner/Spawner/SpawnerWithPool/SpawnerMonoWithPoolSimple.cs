@@ -19,7 +19,7 @@ namespace Core.Utilities.Pool_Spawner.Spawner.SpawnerWithPool
             base.Start();
         }
 
-        protected override T GetObject()
+        protected override T GetObjectFromPool()
         {
             return MonoBehaviorPool.Pull();
         }

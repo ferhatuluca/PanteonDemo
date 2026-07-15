@@ -1,10 +1,11 @@
-﻿using Core.Types;
+﻿using Core.GameUnits.Soldiers;
+using Core.Types;
 using UnityEngine;
 
 namespace Core.Scriptables
 {
 	[CreateAssetMenu(fileName = "Soldier", menuName = "GameUnit/Units/Soldier", order = 1)]
-	public class SoldierSO : GameUnitSO
+	public class SoldierData : GameUnitData
 	{
 		[field: SerializeField] public SoldierType SoldierType { private set; get; }
 		[field: SerializeField] public Soldier SoldierPrefab { private set; get; }

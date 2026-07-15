@@ -30,7 +30,7 @@ namespace Core.Utilities.Pool_Spawner.Spawner.SpawnerWithPool
             _currentSpawnType = type;
         }
         
-        protected override T GetObject()
+        protected override T GetObjectFromPool()
         {
             return _monoBehaviorPoolWithType[_currentSpawnType].Pull();
         }

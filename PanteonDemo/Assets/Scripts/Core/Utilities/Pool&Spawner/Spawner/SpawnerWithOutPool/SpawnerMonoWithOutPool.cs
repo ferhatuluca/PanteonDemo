@@ -6,7 +6,7 @@ namespace Core.Utilities.Pool_Spawner.Spawner.SpawnerWithOutPool
     {
         [SerializeField] private T spawnObject;
 
-        protected override T GetObject()
+        protected override T GetObjectFromPool()
         {
             return Instantiate(spawnObject);
         }

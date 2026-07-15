@@ -2,7 +2,7 @@
 using Pathfinding;
 using UnityEngine;
 
-namespace Core
+namespace Core.GameUnits.Soldiers
 {
 	[RequireComponent(typeof(AIPath))]
 	[RequireComponent(typeof(Collider2D))]
