@@ -8,5 +8,6 @@ namespace Core.Scriptables
 	{
 		[field: SerializeField] public Texture2D Cursor { private set; get; }
 		[field: SerializeField] public SoldierTeamData SoldierTeamData { private set; get; }
+		[field: SerializeField] public BuildingTeamData BuildingTeamData { private set; get; }
 	}
 }
