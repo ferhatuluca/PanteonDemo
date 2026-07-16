@@ -1,6 +1,6 @@
 ﻿namespace Core.Types
 {
-	public enum SoldierAnim
+	public enum SoldierAnimState
 	{
 		Idle,
 		Run,
