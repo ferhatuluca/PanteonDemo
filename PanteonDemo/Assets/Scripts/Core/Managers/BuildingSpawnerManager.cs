@@ -1,7 +1,7 @@
 ﻿using System;
+using Core.Enums;
 using Core.GameUnits.Buildings;
 using Core.Scriptables;
-using Core.Types;
 using Core.Utilities.Singleton;
 using UI;
 using UnityEngine;

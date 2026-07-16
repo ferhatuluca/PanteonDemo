@@ -1,9 +1,9 @@
-﻿namespace Core.Types
+﻿namespace Core.Enums
 {
 	public enum SoldierAnimState
 	{
 		Idle,
 		Run,
-		Fight,
+		Attack,
 	}
 }

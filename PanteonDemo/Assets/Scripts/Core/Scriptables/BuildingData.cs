@@ -1,4 +1,4 @@
-﻿using Core.Types;
+﻿using Core.Enums;
 using UnityEngine;
 
 namespace Core.Scriptables

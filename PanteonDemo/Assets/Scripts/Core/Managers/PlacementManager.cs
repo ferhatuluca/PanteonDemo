@@ -13,7 +13,7 @@ namespace Core.Managers
         private Building _spawnedBuilding = null;
         private Vector3 _tileBottomLeft;
         
-        public Vector3 GridCellWorldPos { private set; get; }
+        public Vector3 CurrentHoveredGridCellWorldPos { private set; get; }
         
         private void Update()
         {
@@ -45,9 +45,9 @@ namespace Core.Managers
             Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Vector3Int gridCellPos = _clickableAreaTilemap.WorldToCell(mouseWorldPos);
 
-            GridCellWorldPos = _clickableAreaTilemap.GetCellCenterWorld(gridCellPos);
+            CurrentHoveredGridCellWorldPos = _clickableAreaTilemap.GetCellCenterWorld(gridCellPos);
             
-            MoveCursorOrBuilding(GridCellWorldPos);
+            MoveCursorOrBuilding(CurrentHoveredGridCellWorldPos);
 
             if (_spawnedBuilding && Input.GetMouseButtonDown(0))
             {

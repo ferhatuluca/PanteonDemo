@@ -1,5 +1,5 @@
-﻿using Core.GameUnits.Soldiers;
-using Core.Types;
+﻿using Core.Enums;
+using Core.GameUnits.Soldiers;
 using UnityEngine;
 
 namespace Core.Scriptables

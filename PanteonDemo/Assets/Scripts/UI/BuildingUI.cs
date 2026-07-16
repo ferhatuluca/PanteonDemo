@@ -1,6 +1,6 @@
 ﻿using System;
+using Core.Enums;
 using Core.Scriptables;
-using Core.Types;
 using UnityEngine;
 
 namespace UI

@@ -1,4 +1,4 @@
-﻿namespace Core.Types
+﻿namespace Core.Enums
 {
 	public enum BuildingType
 	{

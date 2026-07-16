@@ -1,15 +1,18 @@
-﻿using Core.Scriptables;
-using Core.Types;
+﻿using System;
+using Core.Enums;
+using Core.Scriptables;
 using Core.Utilities.Pool_Spawner.Interfaces;
 using UnityEngine;
 
 namespace Core.GameUnits.Soldiers
 {
 	[RequireComponent(typeof(Rigidbody2D))]
-	[RequireComponent(typeof(SoldierPathFinder))]
+	[RequireComponent(typeof(SoldierInteractionController))]
+	[RequireComponent(typeof(SoldierAnimController))]
 	public class Soldier : MonoBehaviour, IClickableGameUnit, IPoolMemberWithType<SoldierType>
 	{
-		private SoldierPathFinder _soldierPathFinder;
+		public SoldierAnimController SoldierAnimController { private set; get; }
+		public SoldierInteractionController SoldierInteractionController { private set; get; }
 		
 		public SoldierType SoldierType { private set; get; }
 		public TeamType TeamType { private set; get; }
@@ -17,14 +20,25 @@ namespace Core.GameUnits.Soldiers
 
 		private void Awake()
 		{
-			_soldierPathFinder.Init(this);
+			SoldierInteractionController.Init(this);
 		}
 
-		public void SetData(SoldierData soldierData, TeamType teamType)
+		public bool IsAlive() => true; // will be implemented
+		public SoldierType GetTypeForPool() => SoldierType;
+		public TeamType GetTeamType() => TeamType;
+		public Transform GetTransform() => transform;
+
+		public void Init(SoldierData soldierData, TeamType teamType)
 		{
 			SoldierType = soldierData.SoldierType;
 			TeamType = teamType;
 			GridSize = soldierData.GridSize;
+
+			SoldierInteractionController = GetComponent<SoldierInteractionController>();
+			SoldierInteractionController.Init(this);
+
+			SoldierAnimController = GetComponentInChildren<SoldierAnimController>();
+			SoldierAnimController.Init(this);
 		}
 		
 		public void OnSelect()
@@ -32,14 +46,15 @@ namespace Core.GameUnits.Soldiers
 			throw new System.NotImplementedException();
 		}
 
-		public SoldierType GetTypeForPool()
+		private void OnTriggerEnter2D(Collider2D other)
 		{
-			return SoldierType;
+			throw new NotImplementedException();
 		}
+
 
 		public void OnEnterPool()
 		{
-			_soldierPathFinder.ResetForPool();
+			SoldierInteractionController.ResetForPool();
 		}
 
 		public void OnExitPool()

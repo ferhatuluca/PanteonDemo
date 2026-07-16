@@ -1,6 +1,7 @@
 ﻿using System;
+using Core.Enums;
+using Core.GameUnits;
 using Core.GameUnits.Soldiers;
-using Core.Types;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -10,6 +11,7 @@ namespace Core.Managers
 	{
 		public static event Action<GameUnitClickType> OnGameUnitClicked;
 		
+		[SerializeField] private Transform _nonTargetDestination;
 		[SerializeField] private LayerMask _clickLayerMask;
 		
 		private Camera _mainCam;
@@ -31,35 +33,67 @@ namespace Core.Managers
 				return;
 			
 			if (Input.GetMouseButtonDown(0))
-			{
-				Vector3 clickPosition = Input.mousePosition;
-				clickPosition.z = _mainCam.transform.position.z;
-				Vector2 worldClickPosition = _mainCam.ScreenToWorldPoint(clickPosition);
-
-				RaycastHit2D hit = Physics2D.Raycast(worldClickPosition, Vector2.zero, 
-					Mathf.Infinity, _clickLayerMask);
-
-				if (hit.collider != null)
-				{
-					IClickableGameUnit unit = hit.collider.GetComponent<IClickableGameUnit>();
-					if (unit != null)
-					{
-						unit.OnSelect();
-					}
-					else // Clicked on other object
-					{
-						OnGameUnitClicked?.Invoke(GameUnitClickType.Empty);
-					}
-				}
-				else //Clicked on empty
-				{
-					OnGameUnitClicked?.Invoke(GameUnitClickType.Empty);
-				}
-			}
+				LeftClick();				
 			else if (_clickedSoldier && Input.GetMouseButtonDown(1))
+				RightClick();
+		}
+
+		private void LeftClick()
+		{
+			Vector3 clickPosition = Input.mousePosition;
+			clickPosition.z = _mainCam.transform.position.z;
+			Vector2 worldClickPosition = _mainCam.ScreenToWorldPoint(clickPosition);
+
+			RaycastHit2D hit = Physics2D.Raycast(worldClickPosition, Vector2.zero, 
+				Mathf.Infinity, _clickLayerMask);
+
+			if (hit.collider == null)
 			{
-				
+				OnGameUnitClicked?.Invoke(GameUnitClickType.Empty);
+				return;
 			}
+			
+			IClickableGameUnit unit = hit.collider.GetComponent<IClickableGameUnit>();
+			if (unit == null)
+			{
+				OnGameUnitClicked?.Invoke(GameUnitClickType.Empty);
+				return;
+			}
+			
+			if (unit is Soldier soldier)
+				_clickedSoldier = soldier;
+				
+			unit.OnSelect();
+		}
+
+		private void RightClick()
+		{
+			Vector2 clickPosition = PlacementManager.Instance.CurrentHoveredGridCellWorldPos;
+			RaycastHit2D hit = Physics2D.Raycast(clickPosition, Vector2.zero, Mathf.Infinity, _clickLayerMask);
+
+			if (hit.collider == null)
+			{
+				MoveToEmpty(clickPosition);
+				return;
+			}
+
+			IClickableGameUnit gameUnit = hit.collider.GetComponent<IClickableGameUnit>();
+			if (gameUnit == null)
+			{
+				MoveToEmpty(clickPosition);
+				return;
+			}
+			
+			if(gameUnit.GetTeamType() == _clickedSoldier.GetTeamType())
+				return;
+			
+			_clickedSoldier.SoldierInteractionController.SetTargetUnit(gameUnit);
+		}
+
+		private void MoveToEmpty(Vector2 clickPos)
+		{
+			_nonTargetDestination.transform.position = clickPos;
+			_clickedSoldier.SoldierInteractionController.SetDestinationEmptyArea(_nonTargetDestination);
 		}
 	}
 }

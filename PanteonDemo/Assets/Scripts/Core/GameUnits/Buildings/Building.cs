@@ -1,5 +1,5 @@
-﻿using Core.Scriptables;
-using Core.Types;
+﻿using Core.Enums;
+using Core.Scriptables;
 using Core.Utilities.Pool_Spawner.Interfaces;
 using UnityEngine;
 
@@ -15,11 +15,11 @@ namespace Core.GameUnits.Buildings
 		{
 			throw new System.NotImplementedException();
 		}
-
-		public BuildingType GetTypeForPool()
-		{
-			return BuildingType;
-		}
+		
+		public bool IsAlive() => true; // will be implemented
+		public BuildingType GetTypeForPool() => BuildingType;
+		public TeamType GetTeamType() => TeamType;
+		public Transform GetTransform() => transform;
 
 		public void OnEnterPool()
 		{
@@ -31,7 +31,7 @@ namespace Core.GameUnits.Buildings
 			throw new System.NotImplementedException();
 		}
 
-		public void SetData(BuildingData buildingData, TeamType teamType)
+		public void Init(BuildingData buildingData, TeamType teamType)
 		{
 			BuildingType = buildingData.BuildingType;
 			TeamType = teamType;
