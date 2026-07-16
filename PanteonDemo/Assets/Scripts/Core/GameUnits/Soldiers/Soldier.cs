@@ -28,7 +28,7 @@ namespace Core.GameUnits.Soldiers
 		public TeamType GetTeamType() => TeamType;
 		public Transform GetTransform() => transform;
 
-		public void Init(SoldierData soldierData, TeamType teamType)
+		public void Init(SoldierData soldierData, TeamType teamType, TeamData teamData)
 		{
 			SoldierType = soldierData.SoldierType;
 			TeamType = teamType;
@@ -38,7 +38,7 @@ namespace Core.GameUnits.Soldiers
 			SoldierInteractionController.Init(this);
 
 			SoldierAnimController = GetComponentInChildren<SoldierAnimController>();
-			SoldierAnimController.Init(this);
+			SoldierAnimController.Init(this, teamData);
 		}
 		
 		public void OnSelect()

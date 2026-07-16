@@ -27,13 +27,14 @@ namespace Core.GameUnits.Buildings
 			SoldierUI.OnSoldierUIClicked -= OnSoldierUIClicked;
 		}
 
-		private void OnSoldierUIClicked(SoldierData soldierData)
+		private void OnSoldierUIClicked(SoldierData soldierData, TeamType teamType)
 		{
 			SetSpawnType(soldierData.SoldierType);
 			
 			//It gets object from pool, if there is no object poolmanager spawns it, if there is then pops it
 			Soldier newSoldier = GetObjectFromPool();
-			newSoldier.Init(soldierData, _building.TeamType);
+			TeamData teamData = GeneralData.Instance.SoldierTeamData.GetTeamDataWithType(teamType);
+			newSoldier.Init(soldierData, _building.TeamType, teamData);
 		}
 	}
 }

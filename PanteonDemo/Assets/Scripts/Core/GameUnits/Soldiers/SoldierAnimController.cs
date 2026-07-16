@@ -1,4 +1,5 @@
 ﻿using Core.Enums;
+using Core.Scriptables;
 using UnityEngine;
 
 namespace Core.GameUnits.Soldiers
@@ -20,11 +21,13 @@ namespace Core.GameUnits.Soldiers
 		private static readonly int AttackTrigger = Animator.StringToHash("AttackTrigger");
 		private static readonly int IdleTrigger = Animator.StringToHash("IdleTrigger");
 
-		public void Init(Soldier soldier)
+		public void Init(Soldier soldier, TeamData teamData)
 		{
 			_soldier = soldier;
-			_animator = GetComponent<Animator>();
 			_spriteRenderer = GetComponent<SpriteRenderer>();
+			
+			_animator = GetComponent<Animator>();
+			_animator.runtimeAnimatorController = teamData.Controller;
 		}
 
 		private void Update()

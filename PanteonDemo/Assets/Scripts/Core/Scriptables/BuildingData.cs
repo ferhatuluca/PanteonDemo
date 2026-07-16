@@ -7,5 +7,6 @@ namespace Core.Scriptables
 	public class BuildingData : GameUnitData
 	{
 		[field: SerializeField] public BuildingType BuildingType { private set; get; }
+		[field: SerializeField] public Sprite Sprite { private set; get; }
 	}
 }

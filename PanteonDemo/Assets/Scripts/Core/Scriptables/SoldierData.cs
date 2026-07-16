@@ -11,7 +11,5 @@ namespace Core.Scriptables
 		[field: SerializeField] public Soldier SoldierPrefab { private set; get; }
 		[field: SerializeField] public int Health { private set; get; } = 10;
 		[field: SerializeField] public int Damage { private set; get; } = 5;
-		
-		
 	}
 }

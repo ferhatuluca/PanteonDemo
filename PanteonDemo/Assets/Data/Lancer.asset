@@ -13,10 +13,8 @@ MonoBehaviour:
   m_Name: Lancer
   m_EditorClassIdentifier: 
   <Name>k__BackingField: Unit
-  <Sprite>k__BackingField: {fileID: 0}
   <GridSize>k__BackingField: {x: 0, y: 0}
   <SoldierType>k__BackingField: 0
   <SoldierPrefab>k__BackingField: {fileID: 0}
-  <Name>k__BackingField: Soldier
   <Health>k__BackingField: 10
   <Damage>k__BackingField: 5

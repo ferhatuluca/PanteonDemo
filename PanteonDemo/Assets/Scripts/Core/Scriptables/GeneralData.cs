@@ -7,6 +7,6 @@ namespace Core.Scriptables
 	public class GeneralData : SingletonScriptableObject<GeneralData>
 	{
 		[field: SerializeField] public Texture2D Cursor { private set; get; }
-		
+		[field: SerializeField] public SoldierTeamData SoldierTeamData { private set; get; }
 	}
 }
