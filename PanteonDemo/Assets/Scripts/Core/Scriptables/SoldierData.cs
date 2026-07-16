@@ -9,8 +9,9 @@ namespace Core.Scriptables
 	{
 		[field: SerializeField] public SoldierType SoldierType { private set; get; }
 		[field: SerializeField] public Soldier SoldierPrefab { private set; get; }
-		[field: SerializeField] public string Name { private set; get; } = "Soldier";
 		[field: SerializeField] public int Health { private set; get; } = 10;
 		[field: SerializeField] public int Damage { private set; get; } = 5;
+		
+		
 	}
 }
