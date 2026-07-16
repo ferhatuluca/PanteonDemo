@@ -1,5 +1,4 @@
-﻿using System;
-using Core.Enums;
+﻿using Core.Enums;
 using Core.Scriptables;
 using Core.Utilities.Pool_Spawner.Interfaces;
 using UnityEngine;
@@ -17,11 +16,6 @@ namespace Core.GameUnits.Soldiers
 		public SoldierType SoldierType { private set; get; }
 		public TeamType TeamType { private set; get; }
 		public Vector2 GridSize { private set; get; }
-
-		private void Awake()
-		{
-			SoldierInteractionController.Init(this);
-		}
 
 		public bool IsAlive() => true; // will be implemented
 		public SoldierType GetTypeForPool() => SoldierType;
@@ -45,12 +39,6 @@ namespace Core.GameUnits.Soldiers
 		{
 			throw new System.NotImplementedException();
 		}
-
-		private void OnTriggerEnter2D(Collider2D other)
-		{
-			throw new NotImplementedException();
-		}
-
 
 		public void OnEnterPool()
 		{

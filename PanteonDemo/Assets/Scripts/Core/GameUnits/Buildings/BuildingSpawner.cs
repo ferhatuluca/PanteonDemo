@@ -17,7 +17,8 @@ namespace Core.GameUnits.Buildings
 			
 			//It gets object from pool, if there is no object poolmanager spawns it, if there is then pops it
 			Building newBuilding = GetObjectFromPool();
-			newBuilding.Init(buildingData, teamType);
+			BuildingTypeData typeData = GeneralData.Instance.BuildingTeamData.GetBuildingTypeData(teamType, buildingData.BuildingType);
+			newBuilding.Init(buildingData, teamType, typeData);
 			return newBuilding;
 		}
 	}

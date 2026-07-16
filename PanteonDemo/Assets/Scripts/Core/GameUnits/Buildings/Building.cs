@@ -7,20 +7,37 @@ namespace Core.GameUnits.Buildings
 {
 	public class Building : MonoBehaviour, IClickableGameUnit, IPoolMemberWithType<BuildingType>
 	{
+		[SerializeField] private SpriteRenderer _modelSprite;
+		
 		public BuildingType BuildingType { private set; get; }
 		public TeamType TeamType { private set; get; }
 		public Vector2 GridSize { private set; get; }
-
-		public void OnSelect()
-		{
-			throw new System.NotImplementedException();
-		}
 		
 		public bool IsAlive() => true; // will be implemented
 		public BuildingType GetTypeForPool() => BuildingType;
 		public TeamType GetTeamType() => TeamType;
 		public Transform GetTransform() => transform;
+		
+		public void Init(BuildingData buildingData, TeamType teamType, BuildingTypeData typeData)
+		{
+			BuildingType = buildingData.BuildingType;
+			TeamType = teamType;
+			GridSize = buildingData.GridSize;
 
+			_modelSprite.sprite = typeData.Icon;
+
+			if (buildingData is UnitProducingBuildingData unitProducingBuildingData)
+			{
+				SoldierSpawner soldierSpawner = gameObject.AddComponent<SoldierSpawner>();
+				soldierSpawner.Init(this, unitProducingBuildingData);
+			}
+		}
+		
+		public void OnSelect()
+		{
+			throw new System.NotImplementedException();
+		}
+		
 		public void OnEnterPool()
 		{
 			throw new System.NotImplementedException();
@@ -29,19 +46,6 @@ namespace Core.GameUnits.Buildings
 		public void OnExitPool()
 		{
 			throw new System.NotImplementedException();
-		}
-
-		public void Init(BuildingData buildingData, TeamType teamType)
-		{
-			BuildingType = buildingData.BuildingType;
-			TeamType = teamType;
-			GridSize = buildingData.GridSize;
-
-			if (buildingData is UnitProducingBuildingData unitProducingBuildingData)
-			{
-				SoldierSpawner soldierSpawner = gameObject.AddComponent<SoldierSpawner>();
-				soldierSpawner.Init(this, unitProducingBuildingData);
-			}
 		}
 
 		public bool IsUnitProducingBuilding()
