@@ -5,10 +5,10 @@ namespace Core.GameUnits.Soldiers
 {
 	public class SoldierAnimController : MonoBehaviour
 	{
-		[SerializeField] private Animator _animator;
 		[SerializeField] private float _directionSetInterval = 0.2f;
 		
 		private Soldier _soldier;
+		private Animator _animator;
 		private SpriteRenderer _spriteRenderer;
 			
 		private SoldierAnimState _currentSoldierAnimState = SoldierAnimState.Idle;
@@ -23,6 +23,7 @@ namespace Core.GameUnits.Soldiers
 		public void Init(Soldier soldier)
 		{
 			_soldier = soldier;
+			_animator = GetComponent<Animator>();
 			_spriteRenderer = GetComponent<SpriteRenderer>();
 		}
 

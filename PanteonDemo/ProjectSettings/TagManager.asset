@@ -41,3 +41,21 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: GameArea
+    uniqueID: 1966561735
+    locked: 0
+  - name: OtherArea
+    uniqueID: 913339843
+    locked: 0
+  - name: PlacementCursor
+    uniqueID: 2505894861
+    locked: 0
+  - name: Soldier
+    uniqueID: 3427086923
+    locked: 0
+  - name: Building
+    uniqueID: 2522537749
+    locked: 0
+  - name: HealthBar
+    uniqueID: 4222877177
+    locked: 0

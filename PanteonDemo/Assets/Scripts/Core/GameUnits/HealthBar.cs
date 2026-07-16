@@ -6,7 +6,6 @@ namespace Core.GameUnits
 	public class HealthBar : MonoBehaviour
 	{
 		[SerializeField] private Slider _slider;
-		[SerializeField] private Image _fill;
 
 		public void SetMaxHealth(int health)
 		{

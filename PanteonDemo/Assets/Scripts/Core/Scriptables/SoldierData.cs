@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Core.Scriptables
 {
-	[CreateAssetMenu(fileName = "Soldier", menuName = "GameUnit/Units/Soldier", order = 1)]
+	[CreateAssetMenu(fileName = "Soldier", menuName = "GameUnit/Soldier", order = 1)]
 	public class SoldierData : GameUnitData
 	{
 		[field: SerializeField] public SoldierType SoldierType { private set; get; }
