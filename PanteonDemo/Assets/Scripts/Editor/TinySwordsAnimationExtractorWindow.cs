@@ -3,13 +3,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using UnityEditor;
-using UnityEditor.Animations;
 using UnityEngine;
 
 public sealed class TinySwordsAnimationExtractorWindow : EditorWindow
 {
     private const string UnitsPath = "Assets/ThirdParty/Tiny Swords (Free Pack)/Units";
-    private const string AnimationsPath = "Assets/Animations";
+    private const string AnimationsPath = "Assets/Animations/Soldier";
 
     [Serializable]
     private sealed class UnitSelection
@@ -162,12 +161,6 @@ public sealed class TinySwordsAnimationExtractorWindow : EditorWindow
     private void ExtractAnimations()
     {
         EnsureFolder(AnimationsPath);
-        string baseFolder = Path.Combine(AnimationsPath, "_Base").Replace('\\', '/');
-        EnsureFolder(baseFolder);
-        string baseControllerPath = Path.Combine(AnimationsPath, "unit_animator.controller").Replace('\\', '/');
-        AnimatorController baseController = AssetDatabase.LoadAssetAtPath<AnimatorController>(baseControllerPath)
-            ?? AnimatorController.CreateAnimatorControllerAtPath(baseControllerPath);
-
         int created = 0;
         foreach (string color in selectedColors)
         {
@@ -175,17 +168,7 @@ public sealed class TinySwordsAnimationExtractorWindow : EditorWindow
             string assetColorName = ToAssetName(colorName);
             string colorFolder = Path.Combine(AnimationsPath, colorName).Replace('\\', '/');
             EnsureFolder(colorFolder);
-            string overridePath = Path.Combine(colorFolder, $"{assetColorName}_animator.overrideController").Replace('\\', '/');
-            var overrideController = AssetDatabase.LoadAssetAtPath<AnimatorOverrideController>(overridePath);
-            if (overrideController == null)
-            {
-                overrideController = new AnimatorOverrideController(baseController);
-                AssetDatabase.CreateAsset(overrideController, overridePath);
-            }
-            else
-            {
-                overrideController.runtimeAnimatorController = baseController;
-            }
+            DeletePreviouslyGeneratedClips(colorFolder, assetColorName);
 
             foreach (UnitSelection selection in selections)
             {
@@ -200,19 +183,12 @@ public sealed class TinySwordsAnimationExtractorWindow : EditorWindow
 
                     string animationKey = GetAnimationKey(selection.unitType, sheet);
                     string colorClipPath = Path.Combine(colorFolder, $"{assetColorName}_{animationKey}.anim").Replace('\\', '/');
-                    string baseClipPath = Path.Combine(baseFolder, $"{animationKey}.anim").Replace('\\', '/');
-                    AnimationClip colorClip = CreateOrUpdateClip(colorClipPath, sprites);
-                    AnimationClip baseClip = CreateOrUpdateClip(baseClipPath, sprites);
-                    EnsureState(baseController, animationKey, baseClip);
-                    overrideController[baseClip] = colorClip;
+                    CreateOrUpdateClip(colorClipPath, sprites);
                     created++;
                 }
             }
-
-            EditorUtility.SetDirty(overrideController);
         }
 
-        EditorUtility.SetDirty(baseController);
         AssetDatabase.SaveAssets();
         AssetDatabase.Refresh();
         EditorUtility.DisplayDialog("Animation extraction complete", $"Created or updated {created} animation clip(s) for {selectedColors.Count} color(s).", "OK");
@@ -240,15 +216,17 @@ public sealed class TinySwordsAnimationExtractorWindow : EditorWindow
         return clip;
     }
 
-    private static void EnsureState(AnimatorController controller, string stateName, AnimationClip motion)
+    private static void DeletePreviouslyGeneratedClips(string colorFolder, string colorName)
     {
-        AnimatorStateMachine stateMachine = controller.layers[0].stateMachine;
-        AnimatorState state = stateMachine.states.Select(child => child.state).FirstOrDefault(candidate => candidate.name == stateName);
-        if (state == null)
+        foreach (string guid in AssetDatabase.FindAssets("t:AnimationClip", new[] { colorFolder }))
         {
-            state = stateMachine.AddState(stateName);
+            string path = AssetDatabase.GUIDToAssetPath(guid);
+            string fileName = Path.GetFileNameWithoutExtension(path);
+            if (fileName.StartsWith(colorName + "_", StringComparison.OrdinalIgnoreCase))
+            {
+                AssetDatabase.DeleteAsset(path);
+            }
         }
-        state.motion = motion;
     }
 
     private static List<Sprite> LoadSprites(string color, string unitType, string sheet)
