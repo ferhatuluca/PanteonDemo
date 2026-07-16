@@ -129,22 +129,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 6176391205625471850, guid: 0db6011e341420341ac24cf2ca62a58b, type: 3}
-      propertyPath: m_Size.x
-      value: 1.9199998
-      objectReference: {fileID: 0}
-    - target: {fileID: 6176391205625471850, guid: 0db6011e341420341ac24cf2ca62a58b, type: 3}
-      propertyPath: m_Size.y
-      value: 1.9199998
-      objectReference: {fileID: 0}
-    - target: {fileID: 6176391205625471850, guid: 0db6011e341420341ac24cf2ca62a58b, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: bed7d71d7cfc27846a69c37d85df467f, type: 2}
-    - target: {fileID: 6176391205625471850, guid: 0db6011e341420341ac24cf2ca62a58b, type: 3}
-      propertyPath: m_WasSpriteAssigned
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 7178067434581092378, guid: 0db6011e341420341ac24cf2ca62a58b, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -479,6 +463,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f167cffbcf2145ec8474b0ee25d9e2cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _nonTargetDestination: {fileID: 0}
   _clickLayerMask:
     serializedVersion: 2
     m_Bits: 768
