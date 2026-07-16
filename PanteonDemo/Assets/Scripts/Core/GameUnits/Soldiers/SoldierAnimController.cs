@@ -21,13 +21,13 @@ namespace Core.GameUnits.Soldiers
 		private static readonly int AttackTrigger = Animator.StringToHash("AttackTrigger");
 		private static readonly int IdleTrigger = Animator.StringToHash("IdleTrigger");
 
-		public void Init(Soldier soldier, TeamData teamData)
+		public void Init(Soldier soldier, SoldierTypeData soldierTypeData)
 		{
 			_soldier = soldier;
 			_spriteRenderer = GetComponent<SpriteRenderer>();
 			
 			_animator = GetComponent<Animator>();
-			_animator.runtimeAnimatorController = teamData.Controller;
+			_animator.runtimeAnimatorController = soldierTypeData.Controller;
 		}
 
 		private void Update()

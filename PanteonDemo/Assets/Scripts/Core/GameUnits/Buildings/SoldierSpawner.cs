@@ -33,8 +33,8 @@ namespace Core.GameUnits.Buildings
 			
 			//It gets object from pool, if there is no object poolmanager spawns it, if there is then pops it
 			Soldier newSoldier = GetObjectFromPool();
-			TeamData teamData = GeneralData.Instance.SoldierTeamData.GetTeamDataWithType(teamType);
-			newSoldier.Init(soldierData, _building.TeamType, teamData);
+			SoldierTypeData soldierTypeData = GeneralData.Instance.SoldierTeamData.GetSoldierTypeData(teamType, soldierData.SoldierType);
+			newSoldier.Init(soldierData, _building.TeamType, soldierTypeData);
 		}
 	}
 }

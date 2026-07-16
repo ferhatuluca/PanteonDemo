@@ -9,15 +9,24 @@ namespace Core.Scriptables
 
 	public class SoldierTeamData : ScriptableObject
 	{
-		[SerializeField] private List<TeamData> _teamData;
+		[SerializeField] private List<TeamTypeData> _teamData;
 
-		public TeamData GetTeamDataWithType(TeamType type) => _teamData.FirstOrDefault(t => t.TeamType == type);
+		public SoldierTypeData GetSoldierTypeData(TeamType teamType, SoldierType soldierType) =>
+			_teamData.FirstOrDefault(t => t.TeamType == teamType)?
+			         .SoldierTypeDataList.FirstOrDefault(s => s.SoldierType == soldierType);
 	}
 	
 	[System.Serializable]
-	public class TeamData
+	public class TeamTypeData
 	{
 		[field: SerializeField] public TeamType TeamType { private set; get; }
+		[field: SerializeField] public List<SoldierTypeData> SoldierTypeDataList { private set; get; }
+	}
+
+	[System.Serializable]
+	public class SoldierTypeData
+	{
+		[field: SerializeField] public SoldierType SoldierType { private set; get; }
 		[field: SerializeField] public Sprite Icon { private set; get; }
 		[field: SerializeField] public AnimatorOverrideController Controller { private set; get; }
 	}

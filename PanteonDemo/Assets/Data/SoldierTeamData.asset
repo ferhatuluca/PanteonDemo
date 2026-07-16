@@ -14,11 +14,35 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _teamData:
   - <TeamType>k__BackingField: 0
-    <Icon>k__BackingField: {fileID: 0}
-    <Controller>k__BackingField: {fileID: 0}
+    <SoldierTypeDataList>k__BackingField:
+    - <SoldierType>k__BackingField: 0
+      <Icon>k__BackingField: {fileID: -1267550136445687439, guid: 15b1670a1147e1e489060fcf141181d1, type: 3}
+      <Controller>k__BackingField: {fileID: 22100000, guid: a1b201d18ba246848bc306c004fb0fc5, type: 2}
+    - <SoldierType>k__BackingField: 1
+      <Icon>k__BackingField: {fileID: 7384290322352760091, guid: 0defec9fbc3e77544bd5f7c7d0df3cbb, type: 3}
+      <Controller>k__BackingField: {fileID: 22100000, guid: 3072fb3a0439e954ca89d88a4aa9f833, type: 2}
+    - <SoldierType>k__BackingField: 2
+      <Icon>k__BackingField: {fileID: -963206460, guid: 0d07f9d1e0f28764ca2d5c8106de3282, type: 3}
+      <Controller>k__BackingField: {fileID: 22100000, guid: f2a6896a8f818c14bacf18e0550594ee, type: 2}
   - <TeamType>k__BackingField: 1
-    <Icon>k__BackingField: {fileID: 0}
-    <Controller>k__BackingField: {fileID: 0}
+    <SoldierTypeDataList>k__BackingField:
+    - <SoldierType>k__BackingField: 0
+      <Icon>k__BackingField: {fileID: -1267550136445687439, guid: 0bedcf3ade69b9b4d94f9bf05f4aa26e, type: 3}
+      <Controller>k__BackingField: {fileID: 22100000, guid: 8c2378631f7f3234daca1c4eb5a71ec0, type: 2}
+    - <SoldierType>k__BackingField: 1
+      <Icon>k__BackingField: {fileID: 7384290322352760091, guid: 0151f2a4ba3b4014dad150c57fd23f1b, type: 3}
+      <Controller>k__BackingField: {fileID: 22100000, guid: 8cfb96ae9c59d2e48aafdf0f703cba1c, type: 2}
+    - <SoldierType>k__BackingField: 2
+      <Icon>k__BackingField: {fileID: -504170105, guid: 56dfe2ff432b1d441b02d5acf1c8eb17, type: 3}
+      <Controller>k__BackingField: {fileID: 22100000, guid: 6cd7eb8a08e5ea449bacca6abe5c266a, type: 2}
   - <TeamType>k__BackingField: 2
-    <Icon>k__BackingField: {fileID: 0}
-    <Controller>k__BackingField: {fileID: 0}
+    <SoldierTypeDataList>k__BackingField:
+    - <SoldierType>k__BackingField: 0
+      <Icon>k__BackingField: {fileID: -1267550136445687439, guid: 5824f26ed989d4743be1235a9ac100aa, type: 3}
+      <Controller>k__BackingField: {fileID: 22100000, guid: d0bbae15961ded24a98744f10b0c86d3, type: 2}
+    - <SoldierType>k__BackingField: 1
+      <Icon>k__BackingField: {fileID: 7384290322352760091, guid: 324039558626dc84e92018ce64a774c6, type: 3}
+      <Controller>k__BackingField: {fileID: 22100000, guid: c006cfecbb6310b4db5e96ae16465642, type: 2}
+    - <SoldierType>k__BackingField: 2
+      <Icon>k__BackingField: {fileID: 202901547, guid: 685a5038d82d6294ba8316b56930f4c0, type: 3}
+      <Controller>k__BackingField: {fileID: 22100000, guid: 636e8eb8dd85d8846909e8088f3363c2, type: 2}
