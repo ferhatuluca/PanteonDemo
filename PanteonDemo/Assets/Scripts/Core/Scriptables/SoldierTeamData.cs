@@ -6,7 +6,6 @@ using UnityEngine;
 namespace Core.Scriptables
 {
 	[CreateAssetMenu(fileName = "SoldierTeamData", menuName = "GameUnit/SoldierTeamData", order = 1)]
-
 	public class SoldierTeamData : ScriptableObject
 	{
 		[SerializeField] private List<TeamTypeData> _teamData;
