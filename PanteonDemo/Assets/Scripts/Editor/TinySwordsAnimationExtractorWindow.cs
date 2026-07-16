@@ -160,6 +160,7 @@ public sealed class TinySwordsAnimationExtractorWindow : EditorWindow
 
     private void ExtractAnimations()
     {
+        RuntimeAnimatorController soldierAnimator = FindSoldierAnimator();
         EnsureFolder(AnimationsPath);
         int created = 0;
         foreach (string color in selectedColors)
@@ -169,6 +170,7 @@ public sealed class TinySwordsAnimationExtractorWindow : EditorWindow
             string colorFolder = Path.Combine(AnimationsPath, colorName).Replace('\\', '/');
             EnsureFolder(colorFolder);
             DeletePreviouslyGeneratedClips(colorFolder, assetColorName);
+            CreateOverrideController(colorFolder, assetColorName, soldierAnimator);
 
             foreach (UnitSelection selection in selections)
             {
@@ -227,6 +229,40 @@ public sealed class TinySwordsAnimationExtractorWindow : EditorWindow
                 AssetDatabase.DeleteAsset(path);
             }
         }
+    }
+
+    private static void CreateOverrideController(string colorFolder, string colorName, RuntimeAnimatorController soldierAnimator)
+    {
+        string overridePath = Path.Combine(colorFolder, $"{colorName}_animator.overrideController").Replace('\\', '/');
+        var existingOverride = AssetDatabase.LoadAssetAtPath<AnimatorOverrideController>(overridePath);
+        if (existingOverride != null)
+        {
+            if (soldierAnimator != null && existingOverride.runtimeAnimatorController == null)
+            {
+                existingOverride.runtimeAnimatorController = soldierAnimator;
+                EditorUtility.SetDirty(existingOverride);
+            }
+            return;
+        }
+
+        var overrideController = soldierAnimator == null
+            ? new AnimatorOverrideController()
+            : new AnimatorOverrideController(soldierAnimator);
+        AssetDatabase.CreateAsset(overrideController, overridePath);
+    }
+
+    private static RuntimeAnimatorController FindSoldierAnimator()
+    {
+        foreach (string guid in AssetDatabase.FindAssets("t:AnimatorController", new[] { AnimationsPath }))
+        {
+            string path = AssetDatabase.GUIDToAssetPath(guid);
+            if (string.Equals(Path.GetFileNameWithoutExtension(path), "SoldierAnimator", StringComparison.OrdinalIgnoreCase))
+            {
+                return AssetDatabase.LoadAssetAtPath<RuntimeAnimatorController>(path);
+            }
+        }
+
+        return null;
     }
 
     private static List<Sprite> LoadSprites(string color, string unitType, string sheet)
@@ -303,11 +339,11 @@ public sealed class TinySwordsAnimationExtractorWindow : EditorWindow
     private static void SetLooping(AnimationClip clip, bool loop)
     {
         var serializedClip = new SerializedObject(clip);
-        SerializedProperty settings = serializedClip.FindProperty("m_AnimationClipSettings");
-        if (settings != null)
+        serializedClip.Update();
+        SerializedProperty loopTime = serializedClip.FindProperty("m_AnimationClipSettings.m_LoopTime");
+        if (loopTime != null)
         {
-            SerializedProperty loopTime = settings.FindPropertyRelative("m_LoopTime");
-            if (loopTime != null) loopTime.boolValue = loop;
+            loopTime.boolValue = loop;
             serializedClip.ApplyModifiedProperties();
         }
     }
