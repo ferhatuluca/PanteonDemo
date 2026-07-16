@@ -11,7 +11,7 @@ public static class TinySwordsUnitSpriteSlicer
 {
     private const string UnitsPath = "Assets/ThirdParty/Tiny Swords (Free Pack)/Units";
 
-    [MenuItem("Tools/Tiny Swords/Slice All Unit Spritesheets")]
+    [MenuItem("Tools/Slice All Units In TinySword")]
     public static void SliceAllUnitSpritesheets()
     {
         string absoluteUnitsPath = Path.Combine(Directory.GetCurrentDirectory(), UnitsPath);
