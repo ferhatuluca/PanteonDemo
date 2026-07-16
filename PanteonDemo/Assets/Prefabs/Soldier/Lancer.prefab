@@ -7,9 +7,25 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2931552222621328207, guid: a36d2d80162c6924f894f9768eb47ddf, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 22100000, guid: f2a6896a8f818c14bacf18e0550594ee, type: 2}
+    - target: {fileID: 4845846046266677746, guid: a36d2d80162c6924f894f9768eb47ddf, type: 3}
+      propertyPath: m_Size.x
+      value: 3.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4845846046266677746, guid: a36d2d80162c6924f894f9768eb47ddf, type: 3}
+      propertyPath: m_Size.y
+      value: 3.20625
+      objectReference: {fileID: 0}
+    - target: {fileID: 4845846046266677746, guid: a36d2d80162c6924f894f9768eb47ddf, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 64235aef14cb35b438fd74381760b55d, type: 2}
     - target: {fileID: 4995392702246523892, guid: a36d2d80162c6924f894f9768eb47ddf, type: 3}
       propertyPath: m_Radius
-      value: 0.50307894
+      value: 0.8006491
       objectReference: {fileID: 0}
     - target: {fileID: 8436519815624168066, guid: a36d2d80162c6924f894f9768eb47ddf, type: 3}
       propertyPath: m_RootOrder
@@ -57,7 +73,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8436519815624168067, guid: a36d2d80162c6924f894f9768eb47ddf, type: 3}
       propertyPath: m_Name
-      value: Pawn
+      value: Lancer
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a36d2d80162c6924f894f9768eb47ddf, type: 3}

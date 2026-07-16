@@ -7,9 +7,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2931552222621328207, guid: a36d2d80162c6924f894f9768eb47ddf, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 22100000, guid: 3072fb3a0439e954ca89d88a4aa9f833, type: 2}
+    - target: {fileID: 4845846046266677746, guid: a36d2d80162c6924f894f9768eb47ddf, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: d5aabd7b31e871f42bd86961e5cd0588, type: 2}
     - target: {fileID: 4995392702246523892, guid: a36d2d80162c6924f894f9768eb47ddf, type: 3}
       propertyPath: m_Radius
-      value: 0.50307894
+      value: 0.626721
       objectReference: {fileID: 0}
     - target: {fileID: 8436519815624168066, guid: a36d2d80162c6924f894f9768eb47ddf, type: 3}
       propertyPath: m_RootOrder
@@ -57,7 +65,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8436519815624168067, guid: a36d2d80162c6924f894f9768eb47ddf, type: 3}
       propertyPath: m_Name
-      value: Pawn
+      value: Warrior
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a36d2d80162c6924f894f9768eb47ddf, type: 3}

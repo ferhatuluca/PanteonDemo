@@ -8,4 +8,10 @@ AnimatorOverrideController:
   m_PrefabAsset: {fileID: 0}
   m_Name: black_lancer_animator
   m_Controller: {fileID: 9100000, guid: 14aec45158a7c824d86b27c3ce19c381, type: 2}
-  m_Clips: []
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 09546377338dfb64187aab5aacf18b33, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 59356e463c2a2444aa575ef6cd2c953d, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 6787605448d8ce44c9af0d624f584370, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 688454e5be1004e429c6d56059968c90, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 31f9afb94a922ec459f2c897e4691d64, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 9ab4211e61b2b4348b5e3f6400f6cd0e, type: 2}
