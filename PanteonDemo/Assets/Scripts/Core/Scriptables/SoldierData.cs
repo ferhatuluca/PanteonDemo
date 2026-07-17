@@ -1,5 +1,4 @@
 ﻿using Core.Enums;
-using Core.GameUnits.Soldiers;
 using UnityEngine;
 
 namespace Core.Scriptables
@@ -8,7 +7,6 @@ namespace Core.Scriptables
 	public class SoldierData : GameUnitData
 	{
 		[field: SerializeField] public SoldierType SoldierType { private set; get; }
-		[field: SerializeField] public Soldier SoldierPrefab { private set; get; }
 		[field: SerializeField] public int Damage { private set; get; } = 5;
 	}
 }

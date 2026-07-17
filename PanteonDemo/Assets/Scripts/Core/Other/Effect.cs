@@ -1,5 +1,4 @@
-﻿using System;
-using Core.Enums;
+﻿using Core.Enums;
 using Core.Utilities.Animation;
 using Core.Utilities.Extensions;
 using Core.Utilities.Pool_Spawner;
@@ -17,6 +16,7 @@ namespace Core.Other
 		
 		private Animator _animator;
 		private float _getAnimationTime = -1f;
+		private static readonly int Run = Animator.StringToHash("Run");
 
 		private void Awake()
 		{
@@ -35,6 +35,7 @@ namespace Core.Other
 
 		public void OnExitPool()
 		{
+			_animator.SetTrigger(Run);
 			this.StartDelayedActionCoroutine(_getAnimationTime, () =>
 			{
 				_myPool.Push(this);

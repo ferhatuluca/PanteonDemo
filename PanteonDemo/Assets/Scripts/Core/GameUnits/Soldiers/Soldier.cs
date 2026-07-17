@@ -1,6 +1,6 @@
-﻿using System;
-using Core.Enums;
+﻿using Core.Enums;
 using Core.Managers;
+using Core.Other;
 using Core.Scriptables;
 using Core.Utilities.Pool_Spawner;
 using Core.Utilities.Pool_Spawner.Interfaces;
@@ -54,7 +54,8 @@ namespace Core.GameUnits.Soldiers
 
 		public void Death()
 		{
-			EffectSpawnerManager.Instance.SpawnEffect(EffectType.SoldierDeath);
+			Effect effect = EffectSpawnerManager.Instance.SpawnEffect(EffectType.SoldierDeath);
+			effect.transform.position = transform.position;
 			_myPool.Push(this);
 		}
 

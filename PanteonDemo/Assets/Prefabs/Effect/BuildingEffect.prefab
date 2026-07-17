@@ -35,6 +35,10 @@ PrefabInstance:
       propertyPath: _effectType
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5305792915181170963, guid: d5db8337c07cb9e44a5efa2e36fe574d, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: e3af344a034ee7a45906d974ae56994a, type: 2}
     - target: {fileID: 6275020812764378724, guid: d5db8337c07cb9e44a5efa2e36fe574d, type: 3}
       propertyPath: m_RootOrder
       value: 0

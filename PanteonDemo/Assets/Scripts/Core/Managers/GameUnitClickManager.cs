@@ -62,8 +62,6 @@ namespace Core.Managers
 			
 			if (unit.GameUnitObject is Soldier soldier)
 				_clickedSoldier = soldier;
-				
-			unit.OnSelect();
 		}
 
 		private void RightClick()

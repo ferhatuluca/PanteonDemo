@@ -415,7 +415,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4853546264813622791}
   - component: {fileID: 4853546264813622786}
-  - component: {fileID: 4853546264813622785}
+  - component: {fileID: 5838212239359130461}
+  - component: {fileID: 4399344112657843401}
   - component: {fileID: 4853546264813622784}
   m_Layer: 0
   m_Name: BuildingBase
@@ -454,28 +455,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc9f4555177b449bb550ecf7204d1202, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <BuildingType>k__BackingField: 0
   _modelSprite: {fileID: 4853546265054437833}
---- !u!50 &4853546264813622785
-Rigidbody2D:
-  serializedVersion: 4
+--- !u!114 &5838212239359130461
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4853546264813622790}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b16d85b8a064bb1ac7e17c3b7d2b5eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4399344112657843401
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4853546264813622790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32e39131cd3347c1a625b23da7d5bcae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!61 &4853546264813622784
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System;
+using Sirenix.OdinInspector;
+using UnityEngine;
 
 namespace Core.GameUnits.Health_Damage
 {
@@ -12,17 +14,22 @@ namespace Core.GameUnits.Health_Damage
 		
 		public bool IsDead { private set; get; }
 
+		private void Awake()
+		{
+			_healthBar = GetComponentInChildren<HealthBar>();
+		}
+
 		public void Init(GameUnit gameUnit, int hp)
 		{
 			_gameUnit = gameUnit;
 			_maxHp = hp;
 			_currentHealth = _maxHp;
 			
-			_healthBar = GetComponent<HealthBar>();
 			_healthBar.SetActivate(true);
 			_healthBar.SetMaxHealth(_maxHp);
 		}
 
+		[Button]
 		public void TakeDamage(int damage)
 		{
 			_currentHealth -= damage;

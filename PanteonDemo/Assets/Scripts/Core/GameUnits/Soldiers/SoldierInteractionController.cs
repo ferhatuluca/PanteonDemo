@@ -12,6 +12,7 @@ namespace Core.GameUnits.Soldiers
 		private Soldier _soldier;
 		private bool _isFighting;
 
+		private Rigidbody2D _rigidbody2D;
 		private Collider2D _collider2D;
 		private Transform _destination;
 		
@@ -20,6 +21,7 @@ namespace Core.GameUnits.Soldiers
 
 		private void Awake()
 		{
+			_rigidbody2D = GetComponent<Rigidbody2D>();
 			_collider2D = GetComponent<Collider2D>();
 			AiPath = GetComponent<AIPath>();
 		}
@@ -102,6 +104,10 @@ namespace Core.GameUnits.Soldiers
 		public void ResetForPool()
 		{
 			ClearInteracts();
+			_rigidbody2D.velocity = Vector2.zero;
+			_rigidbody2D.angularVelocity = 0f;
+			_rigidbody2D.position = Vector2.zero;
+			
 			_collider2D.enabled = false;
 			_destination = null;
 			AiPath.canMove = false;

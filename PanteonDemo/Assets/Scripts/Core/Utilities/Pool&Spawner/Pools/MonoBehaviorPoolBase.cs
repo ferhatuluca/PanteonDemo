@@ -15,12 +15,6 @@ namespace Core.Utilities.Pool_Spawner.Pools
             _objectParent = objectParent;
         }
 
-        private void EnterPool(T member)
-        {
-            member.gameObject.SetActive(false);
-            member.transform.SetParent(_objectParent);
-        }
-
         protected sealed override void OnEnterPool(T member)
         {
             member.OnEnterPool();
@@ -41,6 +35,12 @@ namespace Core.Utilities.Pool_Spawner.Pools
             monoObject.name += _objectCount++;
             EnterPool(monoObject);
             return monoObject;
+        }
+        
+        private void EnterPool(T member)
+        {
+            member.gameObject.SetActive(false);
+            member.transform.SetParent(_objectParent);
         }
     }
 }

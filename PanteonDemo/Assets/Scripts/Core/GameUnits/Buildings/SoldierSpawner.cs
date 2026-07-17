@@ -3,6 +3,7 @@ using Core.GameUnits.Soldiers;
 using Core.Managers;
 using Core.Scriptables;
 using Core.Utilities.Pool_Spawner.Spawner.SpawnerWithPool;
+using Sirenix.OdinInspector;
 using UI;
 
 namespace Core.GameUnits.Buildings
@@ -28,14 +29,17 @@ namespace Core.GameUnits.Buildings
 			SoldierUI.OnSoldierUIClicked -= OnSoldierUIClicked;
 		}
 
+		[Button]
 		private void OnSoldierUIClicked(SoldierData soldierData, TeamType teamType)
 		{
 			SetSpawnType(soldierData.SoldierType);
 			
-			//It gets object from pool, if there is no object then poolmanager spawns it, if there is then pops it
-			Soldier newSoldier = GetObjectFromPool();
-			SoldierTypeData typeData = GameManager.Instance.SoldierTeamData.GetSoldierTypeData(teamType, soldierData.SoldierType);
-			newSoldier.Init(soldierData, _building.GameUnit.TeamType, typeData);
+			Spawn(newSoldier =>
+			{
+				//It gets object from pool, if there is no object then poolmanager spawns it, if there is then pops it
+				SoldierTypeData typeData = GameManager.Instance.SoldierTeamData.GetSoldierTypeData(teamType, soldierData.SoldierType);
+				newSoldier.Init(soldierData, _building.GameUnit.TeamType, typeData);
+			});
 		}
 	}
 }

@@ -1,5 +1,6 @@
 ﻿using Core.Enums;
 using Core.Scriptables;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Core.GameUnits.Soldiers
@@ -20,12 +21,15 @@ namespace Core.GameUnits.Soldiers
 		private static readonly int AttackTrigger = Animator.StringToHash("AttackTrigger");
 		private static readonly int IdleTrigger = Animator.StringToHash("IdleTrigger");
 
+		private void Awake()
+		{
+			_animator = GetComponentInChildren<Animator>();
+			_spriteRenderer = _animator.GetComponent<SpriteRenderer>();
+		}
+
 		public void Init(Soldier soldier, SoldierTypeData soldierTypeData)
 		{
 			_soldier = soldier;
-			_spriteRenderer = GetComponent<SpriteRenderer>();
-			
-			_animator = GetComponent<Animator>();
 			_animator.runtimeAnimatorController = soldierTypeData.Controller;
 		}
 
@@ -48,6 +52,7 @@ namespace Core.GameUnits.Soldiers
 			_directionSetTimer = 0f;
 		}
 
+		[Button]
 		public void SetAnim(SoldierAnimState soldierAnimState)
 		{
 			SoldierAnimState prevState = _currentSoldierAnimState;

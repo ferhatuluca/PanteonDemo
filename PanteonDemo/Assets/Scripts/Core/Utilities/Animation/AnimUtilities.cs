@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace Core.Utilities.Animation
 {
@@ -9,14 +10,14 @@ namespace Core.Utilities.Animation
             AnimationClip first = null;
             foreach (AnimationClip ac in animator.runtimeAnimatorController.animationClips)
             {
-                if (ac.name == animName)
+                if (String.Compare(ac.name, animName, StringComparison.Ordinal) == 0)
                 {
                     first = ac;
                     break;
                 }
             }
 
-            if (first)
+            if (first == null)
             {
                 Debug.LogError($"Animation could not be found: {animName}");
                 return 0;

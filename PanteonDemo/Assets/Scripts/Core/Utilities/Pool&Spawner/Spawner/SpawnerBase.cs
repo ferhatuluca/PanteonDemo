@@ -14,7 +14,6 @@ namespace Core.Utilities.Pool_Spawner.Spawner
         
         protected virtual void InternalAwake(){}
         protected virtual void InternalStart(){}
-        protected virtual void OnSpawnDone(T spawnObject){}
 
         protected int GetSpawnPointCount() => _spawnPoints.Length;
         protected SpawnPoint GetCurrentSpawnPoint() => _spawnPoints[_spawnPointIndex];
@@ -64,7 +63,7 @@ namespace Core.Utilities.Pool_Spawner.Spawner
 
         protected abstract GameObject GetGameObject(T spawnObject);
 
-        public void Spawn(Action<T> onSpawnDone = null)
+        protected void Spawn(Action<T> onSpawnDone = null)
         {
             var spawnedObject = GetObjectFromPool();
             var gameObjectOfSpawn = GetGameObject(spawnedObject);
@@ -75,7 +74,6 @@ namespace Core.Utilities.Pool_Spawner.Spawner
                 gameObjectOfSpawn.transform.position = _spawnPoints[_spawnPointIndex].transform.position;
             }
             
-            OnSpawnDone(spawnedObject);
             onSpawnDone?.Invoke(spawnedObject);
             IncreaseIndex();
         }

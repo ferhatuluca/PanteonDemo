@@ -12,11 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3a9db1ccec7455ca650a1106349f131, type: 3}
   m_Name: Pawn
   m_EditorClassIdentifier: 
-  <Name>k__BackingField: Unit
-  <Sprite>k__BackingField: {fileID: 0}
-  <GridSize>k__BackingField: {x: 0, y: 0}
+  <Name>k__BackingField: Pawn
+  <Health>k__BackingField: 10
+  <GridSize>k__BackingField: {x: 1, y: 1}
   <SoldierType>k__BackingField: 0
   <SoldierPrefab>k__BackingField: {fileID: 0}
-  <Name>k__BackingField: Soldier
-  <Health>k__BackingField: 10
   <Damage>k__BackingField: 5
