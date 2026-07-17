@@ -1,19 +1,23 @@
 ﻿using Core.Enums;
 using Core.Other;
-using Core.Utilities.Pool_Spawner.Spawner.SpawnerWithPool;
+using Core.Utilities.Singleton;
+using UnityEngine;
 
 namespace Core.Managers
 {
-	public class EffectSpawnerManager : SpawnerMonoWithPoolWithType<Effect, EffectType>
+	[RequireComponent(typeof(EffectSpawner))]
+	public class EffectSpawnerManager : SingletonMonoBehaviour<EffectSpawnerManager>
 	{
+		private EffectSpawner _effectSpawner;
+
+		protected override void InternalAwake()
+		{
+			_effectSpawner = GetComponent<EffectSpawner>();
+		}
+
 		public Effect SpawnEffect(EffectType effectType)
 		{
-			SetSpawnType(effectType);
-			
-			//It gets object from pool, if there is no object poolmanager spawns it, if there is then pops it
-			Effect effect = GetObjectFromPool();
-			
-			return effect;
+			return _effectSpawner.SpawnEffect(effectType);
 		}
 	}
 }

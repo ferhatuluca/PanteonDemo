@@ -1,5 +1,7 @@
 ﻿using System.Collections;
 using Core.Enums;
+using Core.Managers;
+using Core.Other;
 using Core.Scriptables;
 using Core.Utilities.Pool_Spawner;
 using Core.Utilities.Pool_Spawner.Interfaces;
@@ -13,6 +15,8 @@ namespace Core.GameUnits.Soldiers
 	[RequireComponent(typeof(SoldierAnimController))]
 	public class Soldier : MonoBehaviour, IGameUnitObject, IPoolMemberWithType<SoldierType>
 	{
+		private MonoBehaviorPool<Soldier> _myPool;
+
 		public SoldierType SoldierType { private set; get; }
 		public GameUnit GameUnit { private set; get; }
 		public SoldierAnimController SoldierAnimController { private set; get; }
@@ -24,6 +28,11 @@ namespace Core.GameUnits.Soldiers
 			SoldierInteractionController = GetComponent<SoldierInteractionController>();
 			SoldierAnimController = GetComponentInChildren<SoldierAnimController>();
 		}
+		
+		private void Start()
+		{
+			_myPool = PoolsManager.Instance.GetMyPoolTyped<Soldier, SoldierType>(SoldierType);
+		}
 
 		public void Init(SoldierData soldierData, TeamType teamType, SoldierTypeData soldierTypeData)
 		{
@@ -32,11 +41,6 @@ namespace Core.GameUnits.Soldiers
 			GameUnit.Init(this, teamType, soldierData);
 			SoldierInteractionController.Init(this);
 			SoldierAnimController.Init(this, soldierTypeData);
-		}
-		
-		public void OnSelect()
-		{
-			throw new System.NotImplementedException();
 		}
 
 		public void OnEnterPool()
@@ -47,20 +51,12 @@ namespace Core.GameUnits.Soldiers
 
 		public void OnExitPool()
 		{
-			
 		}
 
 		public void Death()
 		{
-			StartCoroutine(DeathEnumerator());
-		}
-		
-		private IEnumerator DeathEnumerator()
-		{
-			// death effect
-			MonoBehaviorPool<Soldier> pool = PoolsManager.Instance.GetMyPoolTyped<Soldier, SoldierType>(SoldierType);
-			pool.Push(this);
-			yield return null;
+			EffectSpawnerManager.Instance.SpawnEffect(EffectType.SoldierDeath);
+			_myPool.Push(this);
 		}
 
 		//interface short methods

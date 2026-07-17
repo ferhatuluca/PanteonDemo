@@ -1,4 +1,5 @@
 ﻿using Core.Enums;
+using Core.Managers;
 using Core.Scriptables;
 using Core.Utilities.Pool_Spawner;
 using Core.Utilities.Pool_Spawner.Interfaces;
@@ -12,6 +13,7 @@ namespace Core.GameUnits.Buildings
 		[SerializeField] private SpriteRenderer _modelSprite;
 
 		private SoldierSpawner _soldierSpawner;
+		private MonoBehaviorPool<Building> _myPool;
 		
 		public BuildingType BuildingType { private set; get; }
 		public GameUnit GameUnit { private set; get; }
@@ -20,6 +22,11 @@ namespace Core.GameUnits.Buildings
 		{
 			GameUnit = GetComponent<GameUnit>();
 			_soldierSpawner = GetComponent<SoldierSpawner>();
+		}
+
+		private void Start()
+		{
+			_myPool = PoolsManager.Instance.GetMyPoolTyped<Building, BuildingType>(BuildingType);
 		}
 
 		public void Init(BuildingData buildingData, TeamType teamType, BuildingTypeData typeData)
@@ -40,31 +47,23 @@ namespace Core.GameUnits.Buildings
 			}
 		}
 		
-		public void OnSelect()
-		{
-			throw new System.NotImplementedException();
-		}
-		
 		public void OnEnterPool()
 		{
-			throw new System.NotImplementedException();
 		}
 
 		public void OnExitPool()
 		{
-			throw new System.NotImplementedException();
 		}
 
 		public void Death()
 		{
-			// destruction effect
+			EffectSpawnerManager.Instance.SpawnEffect(EffectType.BuildingDestruction);
 			GoToPool();
 		}
 
 		public void GoToPool()
 		{
-			MonoBehaviorPool<Building> pool = PoolsManager.Instance.GetMyPoolTyped<Building, BuildingType>(BuildingType);
-			pool.Push(this);
+			_myPool.Push(this);
 		}
 
 		public bool IsUnitProducingBuilding()
