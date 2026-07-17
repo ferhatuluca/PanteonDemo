@@ -5395,7 +5395,7 @@ GameObject:
   - component: {fileID: 1828521518}
   - component: {fileID: 1828521517}
   - component: {fileID: 1828521516}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: OuterArea
   m_TagString: Untagged
   m_Icon: {fileID: 0}
