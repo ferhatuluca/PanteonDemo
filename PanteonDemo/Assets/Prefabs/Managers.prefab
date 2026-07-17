@@ -44,6 +44,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a08bb48371fc400f87bbf9679b8c9e56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <GeneralData>k__BackingField: {fileID: 11400000, guid: 7b3010e2e15499b4c8df305b596ababb, type: 2}
+  <SoldierTeamData>k__BackingField: {fileID: 11400000, guid: dc2e93eaea27943469173e8ad0d2066b, type: 2}
+  <BuildingTeamData>k__BackingField: {fileID: 11400000, guid: bdc1360082297f44fb667f1822cfaa8b, type: 2}
 --- !u!1 &7566003436654838737
 GameObject:
   m_ObjectHideFlags: 0
@@ -137,7 +140,43 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   simplePoolObjects: []
-  typedPoolObjects: []
+  typedPoolObjects:
+  - typeOfUnityObject: Core.GameUnits.Soldiers.Soldier, Assembly-CSharp, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+    unityObject: {fileID: 11500000, guid: 31c57abe34764712a35a4655d065dd0f, type: 3}
+    typedObjects:
+    - maxNumberOfObjects: 999
+      initSpawnCount: 5
+      gameObject: {fileID: 7178067434581092379, guid: 6ef7e824f826a154ea1d36a5c8f062f9, type: 3}
+    - maxNumberOfObjects: 999
+      initSpawnCount: 5
+      gameObject: {fileID: 7178067434581092379, guid: 0db6011e341420341ac24cf2ca62a58b, type: 3}
+    - maxNumberOfObjects: 999
+      initSpawnCount: 5
+      gameObject: {fileID: 7178067434581092379, guid: e04c1dedb84350b4e80f1d85e44b7eb8, type: 3}
+  - typeOfUnityObject: Core.GameUnits.Buildings.Building, Assembly-CSharp, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+    unityObject: {fileID: 11500000, guid: fc9f4555177b449bb550ecf7204d1202, type: 3}
+    typedObjects:
+    - maxNumberOfObjects: 999
+      initSpawnCount: 3
+      gameObject: {fileID: 3852871369686343247, guid: 1c9668afc82397d4fbf5da8336694555, type: 3}
+    - maxNumberOfObjects: 999
+      initSpawnCount: 3
+      gameObject: {fileID: 3852871369686343247, guid: 27976a57651bef54a8e9cde25c3e8df4, type: 3}
+    - maxNumberOfObjects: 999
+      initSpawnCount: 3
+      gameObject: {fileID: 3852871369686343247, guid: c8487bfba62c7c94e9993e1753d82528, type: 3}
+  - typeOfUnityObject: Core.Other.Effect, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+    unityObject: {fileID: 11500000, guid: 025719f26c9c4b7a9ba74720bf871fc2, type: 3}
+    typedObjects:
+    - maxNumberOfObjects: 999
+      initSpawnCount: 3
+      gameObject: {fileID: 3698727076527613096, guid: 0a1309bb6a066b44a8e439657a118e60, type: 3}
+    - maxNumberOfObjects: 999
+      initSpawnCount: 5
+      gameObject: {fileID: 3698727076527613096, guid: 757a6f5c15fc82442b653ce37e189867, type: 3}
 --- !u!1 &7566003436990870511
 GameObject:
   m_ObjectHideFlags: 0
