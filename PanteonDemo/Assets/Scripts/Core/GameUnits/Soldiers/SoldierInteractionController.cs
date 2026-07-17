@@ -84,7 +84,7 @@ namespace Core.GameUnits.Soldiers
 				return;
 
 			// We have target, we were fighting, but he is running away now
-			if (TargetUnit.IsAlive())
+			if (!TargetUnit.IsDead())
 			{
 				ContinueChase();
 				return;

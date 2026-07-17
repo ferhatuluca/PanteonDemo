@@ -32,6 +32,9 @@ namespace Core.GameUnits.Buildings
 		[Button]
 		private void OnSoldierUIClicked(SoldierData soldierData, TeamType teamType)
 		{
+			if(_building.GameUnit.TeamType != teamType)
+				return;
+			
 			SetSpawnType(soldierData.SoldierType);
 			
 			Spawn(newSoldier =>

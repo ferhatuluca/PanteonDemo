@@ -36,7 +36,7 @@ namespace Core.GameUnits
 			HealthController.TakeDamage(damage);	
 		}
 		
-		public bool IsAlive()
+		public bool IsDead()
 		{
 			return HealthController.IsDead;
 		}

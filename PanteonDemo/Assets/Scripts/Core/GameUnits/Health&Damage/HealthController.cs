@@ -21,6 +21,7 @@ namespace Core.GameUnits.Health_Damage
 
 		public void Init(GameUnit gameUnit, int hp)
 		{
+			IsDead = false;
 			_gameUnit = gameUnit;
 			_maxHp = hp;
 			_currentHealth = _maxHp;
@@ -28,7 +29,7 @@ namespace Core.GameUnits.Health_Damage
 			_healthBar.SetActivate(true);
 			_healthBar.SetMaxHealth(_maxHp);
 		}
-
+		
 		[Button]
 		public void TakeDamage(int damage)
 		{
