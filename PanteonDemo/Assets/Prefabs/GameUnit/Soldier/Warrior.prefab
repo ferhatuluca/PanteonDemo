@@ -19,13 +19,17 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 22100000, guid: 3072fb3a0439e954ca89d88a4aa9f833, type: 2}
+    - target: {fileID: 4672889182107204930, guid: a36d2d80162c6924f894f9768eb47ddf, type: 3}
+      propertyPath: _hitObjectLayerMask.m_Bits
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4845846046266677746, guid: a36d2d80162c6924f894f9768eb47ddf, type: 3}
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 7384290322352760091, guid: 0defec9fbc3e77544bd5f7c7d0df3cbb, type: 3}
     - target: {fileID: 4995392702246523892, guid: a36d2d80162c6924f894f9768eb47ddf, type: 3}
       propertyPath: m_Radius
-      value: 0.626721
+      value: 0.27809814
       objectReference: {fileID: 0}
     - target: {fileID: 5630356629447895681, guid: a36d2d80162c6924f894f9768eb47ddf, type: 3}
       propertyPath: <SoldierType>k__BackingField
@@ -45,11 +49,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8436519815624168066, guid: a36d2d80162c6924f894f9768eb47ddf, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 1.9696798
       objectReference: {fileID: 0}
     - target: {fileID: 8436519815624168066, guid: a36d2d80162c6924f894f9768eb47ddf, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.835
+      value: -0.023106217
       objectReference: {fileID: 0}
     - target: {fileID: 8436519815624168066, guid: a36d2d80162c6924f894f9768eb47ddf, type: 3}
       propertyPath: m_LocalPosition.z
