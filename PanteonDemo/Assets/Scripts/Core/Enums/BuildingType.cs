@@ -3,6 +3,7 @@
 	public enum BuildingType
 	{
 		Barrack,
-		PowerPlant
+		Castle,
+		House
 	}
 }

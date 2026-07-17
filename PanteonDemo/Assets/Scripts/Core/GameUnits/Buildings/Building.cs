@@ -28,7 +28,12 @@ namespace Core.GameUnits.Buildings
 
 			if (buildingData is UnitProducingBuildingData unitProducingBuildingData)
 			{
-				SoldierSpawner soldierSpawner = gameObject.AddComponent<SoldierSpawner>();
+				SoldierSpawner soldierSpawner = gameObject.GetComponent<SoldierSpawner>();
+				if (soldierSpawner == null)
+				{
+					Debug.LogError("Soldier spawner doesn't exist on this building", gameObject);
+					return;
+				}
 				soldierSpawner.Init(this, unitProducingBuildingData);
 			}
 		}

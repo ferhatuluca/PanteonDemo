@@ -16,12 +16,24 @@ MonoBehaviour:
   - <TeamType>k__BackingField: 0
     <BuildingTypeDataList>k__BackingField:
     - <BuildingType>k__BackingField: 0
-      <Icon>k__BackingField: {fileID: 0}
+      <Icon>k__BackingField: {fileID: 21300000, guid: 849b4b03d95c40d45a2bcce48cc4fe7e, type: 3}
+    - <BuildingType>k__BackingField: 1
+      <Icon>k__BackingField: {fileID: 21300000, guid: 1390cb3603c939d49b4aa019f46f0028, type: 3}
+    - <BuildingType>k__BackingField: 2
+      <Icon>k__BackingField: {fileID: 21300000, guid: 37094cdf5c9512f47987f0886a4e81b3, type: 3}
   - <TeamType>k__BackingField: 1
     <BuildingTypeDataList>k__BackingField:
     - <BuildingType>k__BackingField: 0
-      <Icon>k__BackingField: {fileID: 0}
+      <Icon>k__BackingField: {fileID: 21300000, guid: 20fa763d1d1b5d84d82ee80c40eae7bf, type: 3}
+    - <BuildingType>k__BackingField: 1
+      <Icon>k__BackingField: {fileID: 21300000, guid: e1b484f5bd7a47042875e5eae373a8f4, type: 3}
+    - <BuildingType>k__BackingField: 2
+      <Icon>k__BackingField: {fileID: 21300000, guid: 661135192d2d2aa4aa7eb60b071f2190, type: 3}
   - <TeamType>k__BackingField: 2
     <BuildingTypeDataList>k__BackingField:
     - <BuildingType>k__BackingField: 0
-      <Icon>k__BackingField: {fileID: 0}
+      <Icon>k__BackingField: {fileID: 21300000, guid: 3de2a38cf2b8e354fb6730afca17d972, type: 3}
+    - <BuildingType>k__BackingField: 1
+      <Icon>k__BackingField: {fileID: 21300000, guid: 792397bc5eeef2843a33e3fbf831345b, type: 3}
+    - <BuildingType>k__BackingField: 2
+      <Icon>k__BackingField: {fileID: 21300000, guid: 4b2677a612012b24f863c915e68403aa, type: 3}
