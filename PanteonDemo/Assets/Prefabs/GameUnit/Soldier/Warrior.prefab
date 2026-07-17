@@ -31,6 +31,10 @@ PrefabInstance:
       propertyPath: m_Radius
       value: 0.626721
       objectReference: {fileID: 0}
+    - target: {fileID: 5630356629447895681, guid: a36d2d80162c6924f894f9768eb47ddf, type: 3}
+      propertyPath: <SoldierType>k__BackingField
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8436519815624168066, guid: a36d2d80162c6924f894f9768eb47ddf, type: 3}
       propertyPath: m_RootOrder
       value: 0

@@ -1,4 +1,5 @@
-﻿using Core.Enums;
+﻿using System;
+using Core.Enums;
 using Core.Managers;
 using Core.Scriptables;
 using Core.Utilities.Pool_Spawner;
@@ -10,12 +11,12 @@ namespace Core.GameUnits.Buildings
 {
 	public class Building : MonoBehaviour, IGameUnitObject, IPoolMemberWithType<BuildingType>
 	{
+		[field: SerializeField] public BuildingType BuildingType { private set; get; }
 		[SerializeField] private SpriteRenderer _modelSprite;
 
 		private SoldierSpawner _soldierSpawner;
 		private MonoBehaviorPool<Building> _myPool;
 		
-		public BuildingType BuildingType { private set; get; }
 		public GameUnit GameUnit { private set; get; }
 
 		private void Awake()
@@ -26,13 +27,13 @@ namespace Core.GameUnits.Buildings
 
 		private void Start()
 		{
+			// this should be in start because we need to get the pool after poolsmanager finishs its jobs
 			_myPool = PoolsManager.Instance.GetMyPoolTyped<Building, BuildingType>(BuildingType);
 		}
 
 		public void Init(BuildingData buildingData, TeamType teamType, BuildingTypeData typeData)
 		{
 			_modelSprite.sprite = typeData.Icon;
-			BuildingType = buildingData.BuildingType;
 			
 			GameUnit.Init(this, teamType, buildingData);
 

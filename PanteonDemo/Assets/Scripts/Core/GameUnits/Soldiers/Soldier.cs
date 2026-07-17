@@ -1,7 +1,6 @@
-﻿using System.Collections;
+﻿using System;
 using Core.Enums;
 using Core.Managers;
-using Core.Other;
 using Core.Scriptables;
 using Core.Utilities.Pool_Spawner;
 using Core.Utilities.Pool_Spawner.Interfaces;
@@ -15,9 +14,10 @@ namespace Core.GameUnits.Soldiers
 	[RequireComponent(typeof(SoldierAnimController))]
 	public class Soldier : MonoBehaviour, IGameUnitObject, IPoolMemberWithType<SoldierType>
 	{
+		[field: SerializeField] public SoldierType SoldierType { private set; get; }
+		
 		private MonoBehaviorPool<Soldier> _myPool;
 
-		public SoldierType SoldierType { private set; get; }
 		public GameUnit GameUnit { private set; get; }
 		public SoldierAnimController SoldierAnimController { private set; get; }
 		public SoldierInteractionController SoldierInteractionController { private set; get; }
@@ -28,16 +28,15 @@ namespace Core.GameUnits.Soldiers
 			SoldierInteractionController = GetComponent<SoldierInteractionController>();
 			SoldierAnimController = GetComponentInChildren<SoldierAnimController>();
 		}
-		
+
 		private void Start()
 		{
+			// this should be in start because we need to get the pool after poolsmanager finishs its jobs
 			_myPool = PoolsManager.Instance.GetMyPoolTyped<Soldier, SoldierType>(SoldierType);
 		}
 
 		public void Init(SoldierData soldierData, TeamType teamType, SoldierTypeData soldierTypeData)
 		{
-			SoldierType = soldierData.SoldierType;
-			
 			GameUnit.Init(this, teamType, soldierData);
 			SoldierInteractionController.Init(this);
 			SoldierAnimController.Init(this, soldierTypeData);

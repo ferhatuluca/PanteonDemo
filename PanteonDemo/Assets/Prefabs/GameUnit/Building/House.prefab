@@ -31,6 +31,10 @@ PrefabInstance:
       propertyPath: m_Offset.y
       value: -0.061166048
       objectReference: {fileID: 0}
+    - target: {fileID: 4853546264813622786, guid: 1f2983320a98d42418c3401617e78bfa, type: 3}
+      propertyPath: <BuildingType>k__BackingField
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4853546264813622790, guid: 1f2983320a98d42418c3401617e78bfa, type: 3}
       propertyPath: m_Name
       value: House
