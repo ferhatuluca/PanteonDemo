@@ -7,13 +7,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4672889182107204930, guid: a36d2d80162c6924f894f9768eb47ddf, type: 3}
-      propertyPath: _hitObjectLayerMask.m_Bits
-      value: 0
+    - target: {fileID: 4141725293277060495, guid: a36d2d80162c6924f894f9768eb47ddf, type: 3}
+      propertyPath: height
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 4141725293277060495, guid: a36d2d80162c6924f894f9768eb47ddf, type: 3}
+      propertyPath: radius
+      value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: 4995392702246523892, guid: a36d2d80162c6924f894f9768eb47ddf, type: 3}
       propertyPath: m_Radius
-      value: 0.2471767
+      value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: 6511934082867867160, guid: a36d2d80162c6924f894f9768eb47ddf, type: 3}
       propertyPath: m_AnchorMax.x

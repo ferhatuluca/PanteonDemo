@@ -19,9 +19,13 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 22100000, guid: f2a6896a8f818c14bacf18e0550594ee, type: 2}
-    - target: {fileID: 4672889182107204930, guid: a36d2d80162c6924f894f9768eb47ddf, type: 3}
-      propertyPath: _hitObjectLayerMask.m_Bits
-      value: 0
+    - target: {fileID: 4141725293277060495, guid: a36d2d80162c6924f894f9768eb47ddf, type: 3}
+      propertyPath: height
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 4141725293277060495, guid: a36d2d80162c6924f894f9768eb47ddf, type: 3}
+      propertyPath: radius
+      value: 0.45
       objectReference: {fileID: 0}
     - target: {fileID: 4845846046266677746, guid: a36d2d80162c6924f894f9768eb47ddf, type: 3}
       propertyPath: m_Size.x
@@ -37,7 +41,7 @@ PrefabInstance:
       objectReference: {fileID: -963206460, guid: 0d07f9d1e0f28764ca2d5c8106de3282, type: 3}
     - target: {fileID: 4995392702246523892, guid: a36d2d80162c6924f894f9768eb47ddf, type: 3}
       propertyPath: m_Radius
-      value: 0.464121
+      value: 0.45
       objectReference: {fileID: 0}
     - target: {fileID: 5630356629447895681, guid: a36d2d80162c6924f894f9768eb47ddf, type: 3}
       propertyPath: <SoldierType>k__BackingField

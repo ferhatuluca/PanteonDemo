@@ -41,7 +41,7 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: OtherArea
+  - name: OuterArea
     uniqueID: 1969807627
     locked: 0
   - name: GameArea
