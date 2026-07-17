@@ -1,5 +1,6 @@
 ﻿using Core.Enums;
 using Core.GameUnits.Soldiers;
+using Core.Managers;
 using Core.Scriptables;
 using Core.Utilities.Pool_Spawner.Spawner.SpawnerWithPool;
 using UI;
@@ -31,10 +32,10 @@ namespace Core.GameUnits.Buildings
 		{
 			SetSpawnType(soldierData.SoldierType);
 			
-			//It gets object from pool, if there is no object poolmanager spawns it, if there is then pops it
+			//It gets object from pool, if there is no object then poolmanager spawns it, if there is then pops it
 			Soldier newSoldier = GetObjectFromPool();
-			SoldierTypeData typeData = GeneralData.Instance.SoldierTeamData.GetSoldierTypeData(teamType, soldierData.SoldierType);
-			newSoldier.Init(soldierData, _building.TeamType, typeData);
+			SoldierTypeData typeData = GameManager.Instance.SoldierTeamData.GetSoldierTypeData(teamType, soldierData.SoldierType);
+			newSoldier.Init(soldierData, _building.GameUnit.TeamType, typeData);
 		}
 	}
 }

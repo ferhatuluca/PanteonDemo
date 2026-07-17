@@ -7,20 +7,27 @@ namespace Core.GameUnits.Soldiers
 {
 	[RequireComponent(typeof(AIPath))]
 	[RequireComponent(typeof(Collider2D))]
-	public class SoldierInteractionController : MultipleInteractable<IClickableGameUnit>
+	public class SoldierInteractionController : MultipleInteractable<GameUnit>
 	{
 		private Soldier _soldier;
 		private bool _isFighting;
-		
+
+		private Collider2D _collider2D;
 		private Transform _destination;
 		
 		public AIPath AiPath { private set; get; }
-		public IClickableGameUnit TargetUnit { private set; get; }
-		
+		public GameUnit TargetUnit { private set; get; }
+
+		private void Awake()
+		{
+			_collider2D = GetComponent<Collider2D>();
+			AiPath = GetComponent<AIPath>();
+		}
+
 		public void Init(Soldier soldier)
 		{
 			_soldier = soldier;
-			AiPath = GetComponent<AIPath>();
+			_collider2D.enabled = true;
 		}
 
 		private void Update()
@@ -28,13 +35,13 @@ namespace Core.GameUnits.Soldiers
 			CheckIfReachedDestination();
 		}
 
-		protected override bool ConditionAfterInteractionEnter(IClickableGameUnit actor)
+		protected override bool ConditionAfterInteractionEnter(GameUnit actor)
 		{
 			// if interact is in same team as we are then no need to interact
-			return actor.GetTeamType() != _soldier.GetTeamType();
+			return actor.TeamType != _soldier.GameUnit.TeamType;
 		}
 
-		protected override void OnTriggerInteract(IClickableGameUnit actor)
+		protected override void OnTriggerInteract(GameUnit actor)
 		{
 			if (_destination)
 			{
@@ -61,7 +68,7 @@ namespace Core.GameUnits.Soldiers
 				Debug.LogError($"self active : {component.gameObject.activeSelf} - active In Hierarchy : {component.gameObject.activeInHierarchy}");
 		}
 
-		protected override void OnTriggerInteractExit(IClickableGameUnit actor)
+		protected override void OnTriggerInteractExit(GameUnit actor)
 		{
 			if (!_destination)
 			{
@@ -95,6 +102,7 @@ namespace Core.GameUnits.Soldiers
 		public void ResetForPool()
 		{
 			ClearInteracts();
+			_collider2D.enabled = false;
 			_destination = null;
 			AiPath.canMove = false;
 			TargetUnit = null;
@@ -108,13 +116,13 @@ namespace Core.GameUnits.Soldiers
 			_soldier.SoldierAnimController.SetAnim(SoldierAnimState.Run);
 		}
 
-		public void SetTargetUnit(IClickableGameUnit gameUnit)
+		public void SetTargetUnit(GameUnit gameUnit)
 		{
 			if(TargetUnit == gameUnit)
 				return;
 			
 			TargetUnit = gameUnit;
-			SetDestination(TargetUnit.GetTransform());
+			SetDestination(TargetUnit.transform);
 			if (!Interacts.Contains(gameUnit))
 			{
 				_soldier.SoldierAnimController.SetAnim(SoldierAnimState.Run);

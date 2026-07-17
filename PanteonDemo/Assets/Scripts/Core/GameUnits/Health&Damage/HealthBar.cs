@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-namespace Core.GameUnits
+namespace Core.GameUnits.Health_Damage
 {
 	public class HealthBar : MonoBehaviour
 	{
@@ -16,6 +16,11 @@ namespace Core.GameUnits
 		public void SetHealth(int health)
 		{
 			_slider.value = health;
+		}
+
+		public void SetActivate(bool isActive)
+		{
+			_slider.gameObject.SetActive(isActive);
 		}
 	}
 }

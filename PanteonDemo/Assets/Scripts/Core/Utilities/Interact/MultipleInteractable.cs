@@ -21,6 +21,9 @@ namespace Core.Utilities.Interact
 
         protected sealed override void OnTriggerExitVirtual(T actor, Collider2D other)
         {
+            if(Interacts.Count == 0)
+                return;
+            
             if (!Interacts.Contains(actor))
                 return;
             

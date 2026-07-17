@@ -1,40 +1,42 @@
 ﻿using Core.Enums;
 using Core.Scriptables;
+using Core.Utilities.Pool_Spawner;
 using Core.Utilities.Pool_Spawner.Interfaces;
+using Core.Utilities.Pool_Spawner.Pools;
 using UnityEngine;
 
 namespace Core.GameUnits.Buildings
 {
-	public class Building : MonoBehaviour, IClickableGameUnit, IPoolMemberWithType<BuildingType>
+	public class Building : MonoBehaviour, IGameUnitObject, IPoolMemberWithType<BuildingType>
 	{
 		[SerializeField] private SpriteRenderer _modelSprite;
+
+		private SoldierSpawner _soldierSpawner;
 		
 		public BuildingType BuildingType { private set; get; }
-		public TeamType TeamType { private set; get; }
-		public Vector2 GridSize { private set; get; }
-		
-		public bool IsAlive() => true; // will be implemented
-		public BuildingType GetTypeForPool() => BuildingType;
-		public TeamType GetTeamType() => TeamType;
-		public Transform GetTransform() => transform;
-		
+		public GameUnit GameUnit { private set; get; }
+
+		private void Awake()
+		{
+			GameUnit = GetComponent<GameUnit>();
+			_soldierSpawner = GetComponent<SoldierSpawner>();
+		}
+
 		public void Init(BuildingData buildingData, TeamType teamType, BuildingTypeData typeData)
 		{
-			BuildingType = buildingData.BuildingType;
-			TeamType = teamType;
-			GridSize = buildingData.GridSize;
-
 			_modelSprite.sprite = typeData.Icon;
+			BuildingType = buildingData.BuildingType;
+			
+			GameUnit.Init(this, teamType, buildingData);
 
 			if (buildingData is UnitProducingBuildingData unitProducingBuildingData)
 			{
-				SoldierSpawner soldierSpawner = gameObject.GetComponent<SoldierSpawner>();
-				if (soldierSpawner == null)
+				if (_soldierSpawner == null)
 				{
 					Debug.LogError("Soldier spawner doesn't exist on this building", gameObject);
 					return;
 				}
-				soldierSpawner.Init(this, unitProducingBuildingData);
+				_soldierSpawner.Init(this, unitProducingBuildingData);
 			}
 		}
 		
@@ -53,9 +55,18 @@ namespace Core.GameUnits.Buildings
 			throw new System.NotImplementedException();
 		}
 
+		public void Death()
+		{
+			MonoBehaviorPool<Building> pool = PoolsManager.Instance.GetMyPoolTyped<Building, BuildingType>(BuildingType);
+			pool.Push(this);
+		}
+
 		public bool IsUnitProducingBuilding()
 		{
 			return BuildingType is BuildingType.Barrack;
 		}
+		
+		// interface short methods
+		public BuildingType GetTypeForPool() => BuildingType;
 	}
 }

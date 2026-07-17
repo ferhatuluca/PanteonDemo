@@ -13,7 +13,6 @@ namespace Core.GameUnits.Soldiers
 		private SpriteRenderer _spriteRenderer;
 			
 		private SoldierAnimState _currentSoldierAnimState = SoldierAnimState.Idle;
-		private bool _isRunning;
 		private float _directionSetTimer;
 		
 		private static readonly int Run = Animator.StringToHash("Run");
@@ -39,6 +38,14 @@ namespace Core.GameUnits.Soldiers
 			
 			_directionSetTimer -= _directionSetInterval;
 			SetSpriteDirection();
+		}
+		
+		public void ResetForPool()
+		{
+			SetAnim(SoldierAnimState.Idle);
+			SetSpriteDirection();
+
+			_directionSetTimer = 0f;
 		}
 
 		public void SetAnim(SoldierAnimState soldierAnimState)
@@ -79,11 +86,10 @@ namespace Core.GameUnits.Soldiers
 
 		private void SetSpriteDirection()
 		{
-			bool flipX = false;
-
+			bool flipX;
 			if (_currentSoldierAnimState is SoldierAnimState.Attack)
 			{
-				float targetWorldXPos = _soldier.SoldierInteractionController.TargetUnit.GetTransform().position.x;
+				float targetWorldXPos = _soldier.SoldierInteractionController.TargetUnit.transform.position.x;
 				float soldierWorldXPos = transform.position.x;
 
 				flipX = !(targetWorldXPos > soldierWorldXPos);
@@ -91,7 +97,6 @@ namespace Core.GameUnits.Soldiers
 			else
 			{
 				flipX = !(_soldier.SoldierInteractionController.AiPath.desiredVelocity.x > 0.01f);
-
 			}
 
 			_spriteRenderer.flipX = flipX;

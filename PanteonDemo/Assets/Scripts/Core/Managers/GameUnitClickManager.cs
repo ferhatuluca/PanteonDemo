@@ -53,14 +53,14 @@ namespace Core.Managers
 				return;
 			}
 			
-			IClickableGameUnit unit = hit.collider.GetComponent<IClickableGameUnit>();
+			GameUnit unit = hit.collider.GetComponent<GameUnit>();
 			if (unit == null)
 			{
 				OnGameUnitClicked?.Invoke(GameUnitClickType.Empty);
 				return;
 			}
 			
-			if (unit is Soldier soldier)
+			if (unit.GameUnitObject is Soldier soldier)
 				_clickedSoldier = soldier;
 				
 			unit.OnSelect();
@@ -77,14 +77,14 @@ namespace Core.Managers
 				return;
 			}
 
-			IClickableGameUnit gameUnit = hit.collider.GetComponent<IClickableGameUnit>();
+			GameUnit gameUnit = hit.collider.GetComponent<GameUnit>();
 			if (gameUnit == null)
 			{
 				MoveToEmpty(clickPosition);
 				return;
 			}
 			
-			if(gameUnit.GetTeamType() == _clickedSoldier.GetTeamType())
+			if(gameUnit.TeamType == _clickedSoldier.GameUnit.TeamType)
 				return;
 			
 			_clickedSoldier.SoldierInteractionController.SetTargetUnit(gameUnit);
