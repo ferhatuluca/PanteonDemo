@@ -34,7 +34,7 @@ namespace Core.Managers
         {
             if (_spawnedBuilding)
             {
-                BuildingSpawnerManager.Instance.SendBuildingToPool(_spawnedBuilding);
+                _spawnedBuilding.GoToPool();
             }
             
             _spawnedBuilding = building;

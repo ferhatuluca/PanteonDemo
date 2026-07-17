@@ -57,6 +57,12 @@ namespace Core.GameUnits.Buildings
 
 		public void Death()
 		{
+			// destruction effect
+			GoToPool();
+		}
+
+		public void GoToPool()
+		{
 			MonoBehaviorPool<Building> pool = PoolsManager.Instance.GetMyPoolTyped<Building, BuildingType>(BuildingType);
 			pool.Push(this);
 		}

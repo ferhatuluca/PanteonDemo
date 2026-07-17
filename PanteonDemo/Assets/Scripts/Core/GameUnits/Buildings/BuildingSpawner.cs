@@ -7,11 +7,6 @@ namespace Core.GameUnits.Buildings
 {
 	public class BuildingSpawner : SpawnerMonoWithPoolWithType<Building, BuildingType>
 	{
-		public void SendBuildingToPool(Building building)
-		{
-			GetPool(building.BuildingType).Push(building);	
-		}
-		
 		public Building SpawnBuilding(BuildingData buildingData, TeamType teamType)
 		{
 			SetSpawnType(buildingData.BuildingType);

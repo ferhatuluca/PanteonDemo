@@ -30,11 +30,6 @@ namespace Core.Managers
 			BuildingUI.OnBuildingUIClicked -= OnBuildingUIClicked;
 		}
 
-		public void SendBuildingToPool(Building building)
-		{
-			_buildingSpawner.SendBuildingToPool(building);
-		}
-
 		private void OnBuildingUIClicked(BuildingData buildingData, TeamType teamType)
 		{
 			Building newBuilding = _buildingSpawner.SpawnBuilding(buildingData, teamType);
