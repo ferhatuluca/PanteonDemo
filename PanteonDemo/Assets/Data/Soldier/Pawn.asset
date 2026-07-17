@@ -16,5 +16,4 @@ MonoBehaviour:
   <Health>k__BackingField: 10
   <GridSize>k__BackingField: {x: 1, y: 1}
   <SoldierType>k__BackingField: 0
-  <SoldierPrefab>k__BackingField: {fileID: 0}
-  <Damage>k__BackingField: 5
+  <Damage>k__BackingField: 2

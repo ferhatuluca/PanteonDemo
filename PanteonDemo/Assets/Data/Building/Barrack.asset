@@ -13,8 +13,7 @@ MonoBehaviour:
   m_Name: Barrack
   m_EditorClassIdentifier: 
   <Name>k__BackingField: Unit
-  <Health>k__BackingField: 10
+  <Health>k__BackingField: 100
   <GridSize>k__BackingField: {x: 1, y: 1}
   <BuildingType>k__BackingField: 0
-  <Sprite>k__BackingField: {fileID: 0}
   <UnitsToProduce>k__BackingField: []

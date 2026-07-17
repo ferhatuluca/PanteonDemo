@@ -13,7 +13,6 @@ MonoBehaviour:
   m_Name: Castle
   m_EditorClassIdentifier: 
   <Name>k__BackingField: Unit
-  <Health>k__BackingField: 10
+  <Health>k__BackingField: 150
   <GridSize>k__BackingField: {x: 1, y: 1}
   <BuildingType>k__BackingField: 1
-  <Sprite>k__BackingField: {fileID: 0}
