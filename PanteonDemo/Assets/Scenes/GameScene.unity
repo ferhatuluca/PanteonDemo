@@ -454,6 +454,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4363176338679968252, guid: a984dc525686ab24499f966fe7d38b21, type: 3}
+      propertyPath: m_CellSize.x
+      value: 0.32
+      objectReference: {fileID: 0}
+    - target: {fileID: 4363176338679968252, guid: a984dc525686ab24499f966fe7d38b21, type: 3}
+      propertyPath: m_CellSize.y
+      value: 0.32
+      objectReference: {fileID: 0}
     - target: {fileID: 4363176338679968253, guid: a984dc525686ab24499f966fe7d38b21, type: 3}
       propertyPath: m_Name
       value: Map
