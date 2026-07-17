@@ -9,20 +9,16 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 757176038175306867, guid: a36d2d80162c6924f894f9768eb47ddf, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0.9869
+      value: 0.7174
       objectReference: {fileID: 0}
     - target: {fileID: 757176038175306867, guid: a36d2d80162c6924f894f9768eb47ddf, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0.0833
+      value: -0.0515
       objectReference: {fileID: 0}
     - target: {fileID: 2931552222621328207, guid: a36d2d80162c6924f894f9768eb47ddf, type: 3}
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 22100000, guid: 3072fb3a0439e954ca89d88a4aa9f833, type: 2}
-    - target: {fileID: 4230772271797415357, guid: a36d2d80162c6924f894f9768eb47ddf, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0.007999957
-      objectReference: {fileID: 0}
     - target: {fileID: 4845846046266677746, guid: a36d2d80162c6924f894f9768eb47ddf, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -34,6 +30,14 @@ PrefabInstance:
     - target: {fileID: 5630356629447895681, guid: a36d2d80162c6924f894f9768eb47ddf, type: 3}
       propertyPath: <SoldierType>k__BackingField
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6511934082867867160, guid: a36d2d80162c6924f894f9768eb47ddf, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6511934082867867160, guid: a36d2d80162c6924f894f9768eb47ddf, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8436519815624168066, guid: a36d2d80162c6924f894f9768eb47ddf, type: 3}
       propertyPath: m_RootOrder

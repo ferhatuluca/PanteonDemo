@@ -9,11 +9,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 757176038175306867, guid: a36d2d80162c6924f894f9768eb47ddf, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0.865
+      value: 0.6515
       objectReference: {fileID: 0}
     - target: {fileID: 757176038175306867, guid: a36d2d80162c6924f894f9768eb47ddf, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0.0223
+      value: -0.0845
       objectReference: {fileID: 0}
     - target: {fileID: 2931552222621328207, guid: a36d2d80162c6924f894f9768eb47ddf, type: 3}
       propertyPath: m_Controller
@@ -38,6 +38,14 @@ PrefabInstance:
     - target: {fileID: 5630356629447895681, guid: a36d2d80162c6924f894f9768eb47ddf, type: 3}
       propertyPath: <SoldierType>k__BackingField
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6511934082867867160, guid: a36d2d80162c6924f894f9768eb47ddf, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6511934082867867160, guid: a36d2d80162c6924f894f9768eb47ddf, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8436519815624168066, guid: a36d2d80162c6924f894f9768eb47ddf, type: 3}
       propertyPath: m_RootOrder
