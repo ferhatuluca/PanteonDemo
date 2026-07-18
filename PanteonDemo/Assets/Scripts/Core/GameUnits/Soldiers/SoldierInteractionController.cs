@@ -140,6 +140,7 @@ namespace Core.GameUnits.Soldiers
 		{
 			_destination = target;
 			AiPath.destination = _destination.position;
+			AiPath.canMove = true;
 		}
 
 		private void ContinueChase()
