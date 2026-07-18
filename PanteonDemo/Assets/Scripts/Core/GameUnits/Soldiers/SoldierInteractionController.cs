@@ -35,7 +35,7 @@ namespace Core.GameUnits.Soldiers
 
 		private void Update()
 		{
-			CheckIfReachedDestination();
+			CheckIfDestinationReached();
 		}
 
 		protected override bool ConditionAfterInteractionEnter(GameUnit actor)
@@ -162,7 +162,7 @@ namespace Core.GameUnits.Soldiers
 			_soldier.SoldierAnimController.SetAnim(SoldierAnimState.Idle);
 		}
 		
-		private void CheckIfReachedDestination()
+		private void CheckIfDestinationReached()
 		{
 			if (_destination == null) 
 				return;
