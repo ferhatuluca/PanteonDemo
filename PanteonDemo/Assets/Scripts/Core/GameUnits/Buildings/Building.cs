@@ -71,6 +71,11 @@ namespace Core.GameUnits.Buildings
 		{
 			_myPool.Push(this);
 		}
+
+		public bool IsUnitProducingBuilding()
+		{
+			return BuildingType is BuildingType.Barrack;
+		}
 		
 		// interface short methods
 		public BuildingType GetTypeForPool() => BuildingType;

@@ -48,6 +48,12 @@ namespace Core.Managers
 				return;
 			}
 
+			if (!building.IsUnitProducingBuilding())
+			{
+				Debug.LogError($"Selected building is {building.BuildingType} but it can't not spawn soldier");
+				return;
+			}
+
 			if (building.GameUnit.TeamType != teamType)
 			{
 				Debug.LogError($"Clicked soldier's team is {teamType} but selected building is {building.GameUnit.TeamType}");

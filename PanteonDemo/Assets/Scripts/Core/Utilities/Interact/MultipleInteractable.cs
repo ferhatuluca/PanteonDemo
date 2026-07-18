@@ -5,7 +5,7 @@ namespace Core.Utilities.Interact
 {
     public abstract class MultipleInteractable<T> : InteractableBase<T>
     {
-        protected HashSet<T> Interacts;
+        protected HashSet<T> Interacts = new ();
         
         protected sealed override void OnTriggeredEnterVirtual(T actor, Collider2D other)
         {

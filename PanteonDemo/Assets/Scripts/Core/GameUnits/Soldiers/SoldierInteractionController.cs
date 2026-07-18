@@ -15,7 +15,9 @@ namespace Core.GameUnits.Soldiers
 
 		private Rigidbody2D _rigidbody2D;
 		private Collider2D _collider2D;
+		
 		private Transform _destination;
+		private Vector3 _prevDestPosition;
 		
 		public AIPath AiPath { private set; get; }
 		public GameUnit TargetUnit { private set; get; }
@@ -35,13 +37,13 @@ namespace Core.GameUnits.Soldiers
 
 		private void Update()
 		{
-			CheckIfDestinationReached();
+			CheckDestinationReachAndUpdateDestination();
 		}
 
 		protected override bool ConditionAfterInteractionEnter(GameUnit actor)
 		{
-			// if interact is in same team as we are then no need to interact
-			return actor.TeamType != _soldier.GameUnit.TeamType;
+			// if interact is available and in same team as we are then no need to interact
+			return actor.IsAvailableForInteract() && actor.TeamType != _soldier.GameUnit.TeamType;
 		}
 
 		protected override void OnTriggerInteract(GameUnit actor)
@@ -62,6 +64,7 @@ namespace Core.GameUnits.Soldiers
 			{
 				SetTargetUnit(actor);
 				TriggerFight();
+				return;
 			}
 			
 			// TargetUnit != null, not having dest, and having TargetUnit should not be possible
@@ -139,6 +142,7 @@ namespace Core.GameUnits.Soldiers
 		private void SetDestination(Transform target)
 		{
 			_destination = target;
+			_prevDestPosition = _destination.position;
 			AiPath.destination = _destination.position;
 			AiPath.canMove = true;
 		}
@@ -163,15 +167,20 @@ namespace Core.GameUnits.Soldiers
 			_soldier.SoldierAnimController.SetAnim(SoldierAnimState.Idle);
 		}
 		
-		private void CheckIfDestinationReached()
+		private void CheckDestinationReachAndUpdateDestination()
 		{
-			if (_destination == null) 
-				return;
-			
-			if (_isFighting)
+			if (_destination == null || _isFighting)
 				return;
 
-			if (Vector2.Distance(transform.position, _destination.position) >= AiPath.endReachedDistance)
+			// if dest moved more than 1 unit
+			float gap = Vector2.Distance(transform.position, _destination.position);
+			if (gap > 0.5f)
+			{
+				AiPath.destination = _destination.position;
+			}
+			
+			// did we reach the destination
+			if (gap >= AiPath.endReachedDistance)
 				return;
 			
 			_destination = null;
