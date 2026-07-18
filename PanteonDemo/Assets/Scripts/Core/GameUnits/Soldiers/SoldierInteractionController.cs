@@ -98,7 +98,7 @@ namespace Core.GameUnits.Soldiers
 			// If interacted target is destroyed then we look if there is another interact nearby
 			if (Interacts.Count <= 0)
 			{
-				StopFight();
+				TargetUnitDeadStopFight();
 				return;
 			}
 				
@@ -113,11 +113,11 @@ namespace Core.GameUnits.Soldiers
 			_rigidbody2D.angularVelocity = 0f;
 			_rigidbody2D.position = Vector2.zero;
 			
+			AiPath.canMove = false;
 			_collider2D.enabled = false;
 			_destination = null;
-			AiPath.canMove = false;
-			TargetUnit = null;
 			_isFighting = false;
+			TargetUnit = null;
 		}
 
 		public void SetDestinationEmptyArea(Transform target)
@@ -162,8 +162,9 @@ namespace Core.GameUnits.Soldiers
 			_soldier.SoldierAnimController.SetAnim(SoldierAnimState.Attack);
 		}
 
-		private void StopFight()
+		private void TargetUnitDeadStopFight()
 		{
+			TargetUnit = null;
 			_isFighting = false;
 			_soldier.SoldierAnimController.SetAnim(SoldierAnimState.Idle);
 		}
