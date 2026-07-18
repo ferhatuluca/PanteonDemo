@@ -1,4 +1,5 @@
 ﻿using Core.Enums;
+using Core.GameUnits.Health_Damage;
 using Core.Managers;
 using Core.Other;
 using Core.Scriptables;
@@ -12,6 +13,7 @@ namespace Core.GameUnits.Soldiers
 	[RequireComponent(typeof(Rigidbody2D))]
 	[RequireComponent(typeof(SoldierInteractionController))]
 	[RequireComponent(typeof(SoldierAnimController))]
+	[RequireComponent(typeof(DamageController))]
 	public class Soldier : MonoBehaviour, IGameUnitObject, IPoolMemberWithType<SoldierType>
 	{
 		[field: SerializeField] public SoldierType SoldierType { private set; get; }
@@ -21,12 +23,14 @@ namespace Core.GameUnits.Soldiers
 		public GameUnit GameUnit { private set; get; }
 		public SoldierAnimController SoldierAnimController { private set; get; }
 		public SoldierInteractionController SoldierInteractionController { private set; get; }
+		public DamageController DamageController { private set; get; }
 
 		private void Awake()
 		{
 			GameUnit = GetComponent<GameUnit>();
 			SoldierInteractionController = GetComponent<SoldierInteractionController>();
 			SoldierAnimController = GetComponentInChildren<SoldierAnimController>();
+			DamageController = GetComponent<DamageController>();
 		}
 
 		private void Start()
@@ -40,6 +44,7 @@ namespace Core.GameUnits.Soldiers
 			GameUnit.Init(this, teamType, soldierData);
 			SoldierInteractionController.Init(this);
 			SoldierAnimController.Init(this, soldierTypeData);
+			DamageController.Init(this, soldierData.Damage);
 		}
 
 		public void OnEnterPool()

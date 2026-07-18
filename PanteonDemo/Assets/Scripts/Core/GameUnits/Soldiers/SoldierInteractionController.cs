@@ -21,6 +21,7 @@ namespace Core.GameUnits.Soldiers
 		
 		public AIPath AiPath { private set; get; }
 		public GameUnit TargetUnit { private set; get; }
+		public bool IsFighting => _isFighting;
 
 		private void Awake()
 		{
