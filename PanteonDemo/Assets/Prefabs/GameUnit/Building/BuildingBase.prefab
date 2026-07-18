@@ -407,7 +407,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _layerMask:
     serializedVersion: 2
-    m_Bits: 257
+    m_Bits: 256
 --- !u!61 &2034503593763450337
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -571,7 +571,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _layerMask:
     serializedVersion: 2
-    m_Bits: 192
+    m_Bits: 193
 --- !u!61 &4853546264813622784
 BoxCollider2D:
   m_ObjectHideFlags: 0
