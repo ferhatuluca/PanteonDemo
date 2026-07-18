@@ -46553,6 +46553,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6f715e306674db7860c7e07e86ac0d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  testBuildingData: {fileID: 11400000, guid: 47cf5adb1605faa4eb3fcc117f7bab1f, type: 2}
+  testTeamType: 0
 --- !u!114 &1461770682
 MonoBehaviour:
   m_ObjectHideFlags: 0

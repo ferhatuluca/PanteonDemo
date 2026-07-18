@@ -7,18 +7,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4853546264813622784, guid: 1f2983320a98d42418c3401617e78bfa, type: 3}
-      propertyPath: m_Size.x
-      value: 1.8764018
-      objectReference: {fileID: 0}
-    - target: {fileID: 4853546264813622784, guid: 1f2983320a98d42418c3401617e78bfa, type: 3}
-      propertyPath: m_Size.y
-      value: 1.8338865
-      objectReference: {fileID: 0}
-    - target: {fileID: 4853546264813622784, guid: 1f2983320a98d42418c3401617e78bfa, type: 3}
-      propertyPath: m_Offset.y
-      value: -0.19200021
-      objectReference: {fileID: 0}
     - target: {fileID: 4853546264813622790, guid: 1f2983320a98d42418c3401617e78bfa, type: 3}
       propertyPath: m_Name
       value: Barrack
