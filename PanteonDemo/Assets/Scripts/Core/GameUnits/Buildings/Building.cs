@@ -38,7 +38,7 @@ namespace Core.GameUnits.Buildings
 			_modelSprite.sprite = typeData.Icon;
 			
 			GameUnit.Init(this, teamType, buildingData);
-			BuildingPlaceChecker.Init(GetComponent<Collider2D>());
+			BuildingPlaceChecker.Init();
 
 			if (buildingData is UnitProducingBuildingData)
 			{
