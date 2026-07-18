@@ -11,7 +11,6 @@ namespace Core.GameUnits.Buildings
 
 		private PlacementColliderCheck _placementColliderCheck;
 
-		private Collider2D _parentCollider2D;
 		private Collider2D _thisCollider2D;
 		private List<Collider2D> _hitColliders = new ();
 		private bool _canBePlaced = true;
@@ -25,9 +24,8 @@ namespace Core.GameUnits.Buildings
 			_placementColliderCheck = GetComponentInChildren<PlacementColliderCheck>();
 		}
 
-		public void Init(Collider2D parent)
+		public void Init()
 		{
-			_parentCollider2D = parent;
 			_thisCollider2D.enabled = true;
 			_canBePlaced = true;
 			IsPlaced = false;
@@ -57,7 +55,7 @@ namespace Core.GameUnits.Buildings
 			_hitColliders.Clear();
 			_thisCollider2D.enabled = false;
 			_placementColliderCheck.ResetForPool();
-			UpdateBuildingGraphs();
+			AstarPath.active.Scan();
 		}
 
 		public void Place()
@@ -65,10 +63,10 @@ namespace Core.GameUnits.Buildings
 			IsPlaced = true;
 			UpdateBuildingGraphs();
 		}
-
+		
 		private void UpdateBuildingGraphs()
 		{
-			Bounds bounds = _parentCollider2D.bounds;
+			Bounds bounds = _thisCollider2D.bounds;
 			AstarPath.active.UpdateGraphs(bounds);
 		}
 	}

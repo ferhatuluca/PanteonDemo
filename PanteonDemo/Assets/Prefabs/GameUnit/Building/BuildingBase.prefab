@@ -88,6 +88,7 @@ GameObject:
   - component: {fileID: 4399344112657843401}
   - component: {fileID: 2523452854163842292}
   - component: {fileID: 4853546264813622784}
+  - component: {fileID: 1711666123124911067}
   - component: {fileID: 8483921331997613477}
   m_Layer: 6
   m_Name: BuildingBase
@@ -168,6 +169,32 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 193
 --- !u!61 &4853546264813622784
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4853546264813622790}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.004252553, y: -0.12248564}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.0850503, y: 1.1547666}
+  m_EdgeRadius: 0
+--- !u!61 &1711666123124911067
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
