@@ -1,6 +1,7 @@
 ﻿using Core.GameUnits.Buildings;
 using Core.Utilities.Singleton;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.Tilemaps;
 
 namespace Core.Managers
@@ -24,6 +25,9 @@ namespace Core.Managers
         private void Update()
         {
             MouseMovement();
+            
+            if(EventSystem.current.IsPointerOverGameObject())
+                return;
             
             if (_spawnedBuilding && Input.GetMouseButtonDown(0))
             {
