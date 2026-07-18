@@ -14,15 +14,15 @@ namespace Core.GameUnits.Buildings
 		[field: SerializeField] public BuildingType BuildingType { private set; get; }
 		[SerializeField] private SpriteRenderer _modelSprite;
 
-		private SoldierSpawner _soldierSpawner;
 		private MonoBehaviorPool<Building> _myPool;
 		
+		public SoldierSpawner SoldierSpawner { private set; get; }
 		public GameUnit GameUnit { private set; get; }
 
 		private void Awake()
 		{
 			GameUnit = GetComponent<GameUnit>();
-			_soldierSpawner = GetComponent<SoldierSpawner>();
+			SoldierSpawner = GetComponent<SoldierSpawner>();
 		}
 
 		private void Start()
@@ -37,14 +37,14 @@ namespace Core.GameUnits.Buildings
 			
 			GameUnit.Init(this, teamType, buildingData);
 
-			if (buildingData is UnitProducingBuildingData unitProducingBuildingData)
+			if (buildingData is UnitProducingBuildingData)
 			{
-				if (_soldierSpawner == null)
+				if (SoldierSpawner == null)
 				{
 					Debug.LogError("Soldier spawner doesn't exist on this building", gameObject);
 					return;
 				}
-				_soldierSpawner.Init(this, unitProducingBuildingData);
+				SoldierSpawner.Init(this);
 			}
 		}
 		

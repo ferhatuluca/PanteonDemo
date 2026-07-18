@@ -1,7 +1,10 @@
 ﻿using System;
 using Core.Enums;
 using Core.GameUnits;
+using Core.GameUnits.Buildings;
 using Core.GameUnits.Soldiers;
+using Core.Scriptables;
+using UI;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -15,7 +18,7 @@ namespace Core.Managers
 		[SerializeField] private LayerMask _clickLayerMask;
 		
 		private Camera _mainCam;
-		private Soldier _clickedSoldier = null;
+		private GameUnit _selectedGameUnit;
 
 		private void Awake()
 		{
@@ -26,6 +29,32 @@ namespace Core.Managers
 		{
 			CheckClick();
 		}
+		
+		private void OnEnable()
+		{
+			SoldierUI.OnSoldierUIClicked += OnSoldierUIClicked;
+		}
+
+		private void OnDisable()
+		{
+			SoldierUI.OnSoldierUIClicked -= OnSoldierUIClicked;
+		}
+
+		private void OnSoldierUIClicked(SoldierData data, TeamType teamType)
+		{
+			if (_selectedGameUnit.GameUnitObject is not Building building)
+			{
+				Debug.LogError("No building is selected but information panel open and soldier clicked");
+				return;
+			}
+
+			if (building.GameUnit.TeamType != teamType)
+			{
+				Debug.LogError($"Clicked soldier's team is {teamType} but selected building is {building.GameUnit.TeamType}");
+			}
+			
+			building.SoldierSpawner.SpawnSoldier(data);
+		}
 
 		private void CheckClick()
 		{
@@ -33,9 +62,9 @@ namespace Core.Managers
 				return;
 			
 			if (Input.GetMouseButtonDown(0))
-				LeftClick();				
-			else if (_clickedSoldier && Input.GetMouseButtonDown(1))
-				RightClick();
+				LeftClick();
+			else if (_selectedGameUnit.GameUnitObject is Soldier soldier && Input.GetMouseButtonDown(1))
+				SoldierSelectedAndRightClick(soldier);
 		}
 
 		private void LeftClick()
@@ -49,49 +78,51 @@ namespace Core.Managers
 
 			if (hit.collider == null)
 			{
+				_selectedGameUnit = null;
 				OnGameUnitClicked?.Invoke(GameUnitClickType.Empty);
 				return;
 			}
 			
-			GameUnit unit = hit.collider.GetComponent<GameUnit>();
-			if (unit == null)
+			_selectedGameUnit = hit.collider.GetComponent<GameUnit>();
+			if (_selectedGameUnit == null)
 			{
 				OnGameUnitClicked?.Invoke(GameUnitClickType.Empty);
 				return;
 			}
 			
-			if (unit.GameUnitObject is Soldier soldier)
-				_clickedSoldier = soldier;
+			OnGameUnitClicked?.Invoke(_selectedGameUnit.GameUnitObject is Soldier 
+				? GameUnitClickType.Soldier : GameUnitClickType.Building);
 		}
 
-		private void RightClick()
+		private void SoldierSelectedAndRightClick(Soldier soldier)
 		{
 			Vector2 clickPosition = PlacementManager.Instance.CurrentHoveredGridCellWorldPos;
 			RaycastHit2D hit = Physics2D.Raycast(clickPosition, Vector2.zero, Mathf.Infinity, _clickLayerMask);
 
 			if (hit.collider == null)
 			{
-				MoveToEmpty(clickPosition);
+				MoveToEmpty(soldier, clickPosition);
 				return;
 			}
 
 			GameUnit gameUnit = hit.collider.GetComponent<GameUnit>();
 			if (gameUnit == null)
 			{
-				MoveToEmpty(clickPosition);
+				MoveToEmpty(soldier, clickPosition);
 				return;
 			}
 			
-			if(gameUnit.TeamType == _clickedSoldier.GameUnit.TeamType)
+			// if we right click to ally soldier then no need to do anything
+			if(gameUnit.TeamType == soldier.GameUnit.TeamType)
 				return;
 			
-			_clickedSoldier.SoldierInteractionController.SetTargetUnit(gameUnit);
+			soldier.SoldierInteractionController.SetTargetUnit(gameUnit);
 		}
 
-		private void MoveToEmpty(Vector2 clickPos)
+		private void MoveToEmpty(Soldier soldier, Vector2 clickPos)
 		{
 			_nonTargetDestination.transform.position = clickPos;
-			_clickedSoldier.SoldierInteractionController.SetDestinationEmptyArea(_nonTargetDestination);
+			soldier.SoldierInteractionController.SetDestinationEmptyArea(_nonTargetDestination);
 		}
 	}
 }
