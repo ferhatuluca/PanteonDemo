@@ -9,7 +9,7 @@ namespace Core.GameUnits.Buildings
 		[SerializeField] private LayerMask _layerMask;
 		
 		private Collider2D _collider2D;
-		private HashSet<Collider2D> _hitColliders = new ();
+		private List<Collider2D> _hitColliders = new ();
 		
 		public bool CanBePlaced { private set; get; } = true;
 		

@@ -78,7 +78,7 @@ namespace Core.Managers
 
         private void TryPlaceSpawnedBuilding()
         {
-            if(!_spawnedBuilding.BuildingPlaceChecker.CanBePlaced)
+            if(!_spawnedBuilding.BuildingPlaceChecker.CanBePlaced())
                 return;
             
             _spawnedBuilding.BuildingPlaceChecker.Place();
