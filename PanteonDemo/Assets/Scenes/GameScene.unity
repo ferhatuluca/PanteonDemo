@@ -1084,7 +1084,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3852871369686343246, guid: 1c9668afc82397d4fbf5da8336694555, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.223
+      value: -1.4551166
       objectReference: {fileID: 0}
     - target: {fileID: 3852871369686343246, guid: 1c9668afc82397d4fbf5da8336694555, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1124,15 +1124,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3852871369686343247, guid: 1c9668afc82397d4fbf5da8336694555, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4443190092947975873, guid: 1c9668afc82397d4fbf5da8336694555, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4443190092947975873, guid: 1c9668afc82397d4fbf5da8336694555, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1c9668afc82397d4fbf5da8336694555, type: 3}
@@ -5107,7 +5107,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &758515119
 Transform:
   m_ObjectHideFlags: 0
@@ -5249,9 +5249,9 @@ CompositeCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_GeometryType: 0
+  m_GeometryType: 1
   m_GenerationType: 0
-  m_EdgeRadius: 0
+  m_EdgeRadius: 0.18
   m_ColliderPaths:
   - m_Collider: {fileID: 831392519}
     m_ColliderPaths:
@@ -45039,11 +45039,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5536645596066796672, guid: 6ef7e824f826a154ea1d36a5c8f062f9, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5536645596066796672, guid: 6ef7e824f826a154ea1d36a5c8f062f9, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7178067434581092378, guid: 6ef7e824f826a154ea1d36a5c8f062f9, type: 3}
       propertyPath: m_RootOrder
@@ -45095,7 +45095,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7178067434581092379, guid: 6ef7e824f826a154ea1d36a5c8f062f9, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6ef7e824f826a154ea1d36a5c8f062f9, type: 3}
