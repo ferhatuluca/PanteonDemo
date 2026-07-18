@@ -24,12 +24,20 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4853546264813622784, guid: 1f2983320a98d42418c3401617e78bfa, type: 3}
+      propertyPath: m_Size.x
+      value: 0.55653286
+      objectReference: {fileID: 0}
+    - target: {fileID: 4853546264813622784, guid: 1f2983320a98d42418c3401617e78bfa, type: 3}
       propertyPath: m_Size.y
-      value: 1.2382256
+      value: 0.90442514
+      objectReference: {fileID: 0}
+    - target: {fileID: 4853546264813622784, guid: 1f2983320a98d42418c3401617e78bfa, type: 3}
+      propertyPath: m_Offset.x
+      value: -0.0017085075
       objectReference: {fileID: 0}
     - target: {fileID: 4853546264813622784, guid: 1f2983320a98d42418c3401617e78bfa, type: 3}
       propertyPath: m_Offset.y
-      value: -0.061166048
+      value: -0.009506524
       objectReference: {fileID: 0}
     - target: {fileID: 4853546264813622786, guid: 1f2983320a98d42418c3401617e78bfa, type: 3}
       propertyPath: <BuildingType>k__BackingField
