@@ -17,7 +17,7 @@ namespace Core.GameUnits.Health_Damage
 		public void DealDamage()
 		{
 			GameUnit targetUnit = _soldier.SoldierInteractionController.TargetUnit;
-			if (targetUnit == null || targetUnit.IsDead() )
+			if (targetUnit == null || targetUnit.IsDead())
 				return;
 			
 			targetUnit.TakeDamage(_damage);
