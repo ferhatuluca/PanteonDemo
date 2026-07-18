@@ -2,13 +2,11 @@
 using Core.Managers;
 using Core.Scriptables;
 using Core.Utilities.Pool_Spawner.Spawner.SpawnerWithPool;
-using Sirenix.OdinInspector;
 
 namespace Core.GameUnits.Buildings
 {
 	public class BuildingSpawner : SpawnerMonoWithPoolWithType<Building, BuildingType>
 	{
-		[Button]
 		public Building SpawnBuilding(BuildingData buildingData, TeamType teamType)
 		{
 			SetSpawnType(buildingData.BuildingType);

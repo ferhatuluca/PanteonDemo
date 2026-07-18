@@ -63,7 +63,7 @@ namespace Core.Managers
 			
 			if (Input.GetMouseButtonDown(0))
 				LeftClick();
-			else if (_selectedGameUnit.GameUnitObject is Soldier soldier && Input.GetMouseButtonDown(1))
+			else if (Input.GetMouseButtonDown(1) && _selectedGameUnit && _selectedGameUnit.GameUnitObject is Soldier soldier)
 				SoldierSelectedAndRightClick(soldier);
 		}
 
