@@ -13,7 +13,7 @@ namespace Core.GameUnits.Soldiers
 	[RequireComponent(typeof(Rigidbody2D))]
 	[RequireComponent(typeof(SoldierInteractionController))]
 	[RequireComponent(typeof(SoldierAnimController))]
-	[RequireComponent(typeof(DamageController))]
+	[RequireComponent(typeof(SoldierDamageController))]
 	public class Soldier : MonoBehaviour, IGameUnitObject, IPoolMemberWithType<SoldierType>
 	{
 		[field: SerializeField] public SoldierType SoldierType { private set; get; }
@@ -23,14 +23,14 @@ namespace Core.GameUnits.Soldiers
 		public GameUnit GameUnit { private set; get; }
 		public SoldierAnimController SoldierAnimController { private set; get; }
 		public SoldierInteractionController SoldierInteractionController { private set; get; }
-		public DamageController DamageController { private set; get; }
+		public SoldierDamageController SoldierDamageController { private set; get; }
 
 		private void Awake()
 		{
 			GameUnit = GetComponent<GameUnit>();
 			SoldierInteractionController = GetComponent<SoldierInteractionController>();
 			SoldierAnimController = GetComponentInChildren<SoldierAnimController>();
-			DamageController = GetComponent<DamageController>();
+			SoldierDamageController = GetComponent<SoldierDamageController>();
 		}
 
 		private void Start()
@@ -44,7 +44,7 @@ namespace Core.GameUnits.Soldiers
 			GameUnit.Init(this, teamType, soldierData);
 			SoldierInteractionController.Init(this);
 			SoldierAnimController.Init(this, soldierTypeData);
-			DamageController.Init(this, soldierData.Damage);
+			SoldierDamageController.Init(this, soldierData.Damage);
 		}
 
 		public void OnEnterPool()
@@ -66,6 +66,7 @@ namespace Core.GameUnits.Soldiers
 
 		//interface short methods
 		public SoldierType GetTypeForPool() => SoldierType;
+		// this is used for checking OnTriggerEnter2D, if false then Unit will not register to Interacts in controller
 		public bool IsAvailableForInteract() => true; // there is no availability check for soldier yet
 	}
 }

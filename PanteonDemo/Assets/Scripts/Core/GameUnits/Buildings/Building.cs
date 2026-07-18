@@ -79,6 +79,7 @@ namespace Core.GameUnits.Buildings
 		
 		// interface short methods
 		public BuildingType GetTypeForPool() => BuildingType;
+		// this is used for checking OnTriggerEnter2D, if false then Unit will not register to Interacts in controller
 		public bool IsAvailableForInteract() => BuildingPlaceChecker.IsPlaced;
 	}
 }
