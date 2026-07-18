@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Core.Utilities.Extensions;
+using Pathfinding;
 using UnityEngine;
 
 namespace Core.GameUnits.Buildings
@@ -9,8 +10,9 @@ namespace Core.GameUnits.Buildings
 		[SerializeField] private LayerMask _layerMask;
 
 		private PlacementColliderCheck _placementColliderCheck;
-		
-		private Collider2D _collider2D;
+
+		private Collider2D _parentCollider2D;
+		private Collider2D _thisCollider2D;
 		private List<Collider2D> _hitColliders = new ();
 		private bool _canBePlaced = true;
 
@@ -19,28 +21,17 @@ namespace Core.GameUnits.Buildings
 		
 		private void Awake()
 		{
-			_collider2D = GetComponent<Collider2D>();
+			_thisCollider2D = GetComponent<Collider2D>();
 			_placementColliderCheck = GetComponentInChildren<PlacementColliderCheck>();
 		}
 
-		public void Init()
+		public void Init(Collider2D parent)
 		{
-			_collider2D.enabled = true;
+			_parentCollider2D = parent;
+			_thisCollider2D.enabled = true;
 			_canBePlaced = true;
 			IsPlaced = false;
 			_placementColliderCheck.Init();
-		}
-
-		public void ResetForPool()
-		{
-			_hitColliders.Clear();
-			_collider2D.enabled = false;
-			_placementColliderCheck.ResetForPool();
-		}
-
-		public void Place()
-		{
-			IsPlaced = true;
 		}
 		
 		private void OnTriggerEnter2D(Collider2D other)
@@ -59,6 +50,26 @@ namespace Core.GameUnits.Buildings
 			
 			_hitColliders.Remove(other);
 			_canBePlaced = _hitColliders.Count == 0;
+		}
+		
+		public void ResetForPool()
+		{
+			_hitColliders.Clear();
+			_thisCollider2D.enabled = false;
+			_placementColliderCheck.ResetForPool();
+			UpdateBuildingGraphs();
+		}
+
+		public void Place()
+		{
+			IsPlaced = true;
+			UpdateBuildingGraphs();
+		}
+
+		private void UpdateBuildingGraphs()
+		{
+			Bounds bounds = _parentCollider2D.bounds;
+			AstarPath.active.UpdateGraphs(bounds);
 		}
 	}
 }
