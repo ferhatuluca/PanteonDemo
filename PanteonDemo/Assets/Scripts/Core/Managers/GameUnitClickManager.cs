@@ -96,7 +96,7 @@ namespace Core.Managers
 
 		private void SoldierSelectedAndRightClick(Soldier soldier)
 		{
-			Vector2 clickPosition = PlacementManager.Instance.CurrentHoveredGridCellWorldPos;
+			Vector2 clickPosition = PlacementManager.Instance.CurrentHoveredGridCell;
 			RaycastHit2D hit = Physics2D.Raycast(clickPosition, Vector2.zero, Mathf.Infinity, _clickLayerMask);
 
 			if (hit.collider == null)

@@ -9,12 +9,18 @@ namespace Core.Managers
 	{
         [SerializeField] private Tilemap _clickableAreaTilemap;
         [SerializeField] private GameObject _placementCursorObject;
-        
+
+        private Camera _cam;
         private Building _spawnedBuilding = null;
         private Vector3 _tileBottomLeft;
         
-        public Vector3 CurrentHoveredGridCellWorldPos { private set; get; }
-        
+        public Vector3 CurrentHoveredGridCell { private set; get; }
+
+        protected override void InternalAwake()
+        {
+            _cam = Camera.main;
+        }
+
         private void Update()
         {
             MouseMovement();
@@ -42,12 +48,13 @@ namespace Core.Managers
 
         private void MouseMovement()
         {
-            Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Vector3 mouseWorldPos = _cam.ScreenToWorldPoint(Input.mousePosition);
             Vector3Int gridCellPos = _clickableAreaTilemap.WorldToCell(mouseWorldPos);
 
-            CurrentHoveredGridCellWorldPos = _clickableAreaTilemap.GetCellCenterWorld(gridCellPos);
+            CurrentHoveredGridCell = _clickableAreaTilemap.GetCellCenterWorld(gridCellPos);
+            CurrentHoveredGridCell = new Vector3(CurrentHoveredGridCell.x, CurrentHoveredGridCell.y, 0f);
             
-            MoveCursorOrBuilding(CurrentHoveredGridCellWorldPos);
+            MoveCursorOrBuilding(CurrentHoveredGridCell);
 
             if (_spawnedBuilding && Input.GetMouseButtonDown(0))
             {
