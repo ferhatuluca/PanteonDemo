@@ -10,7 +10,6 @@ namespace Core.Utilities.Pool_Spawner.Pools
 
         public void SetMaxNumberOfObjectsCount(int maxNumberOfObjects) 
             => _poolLogicSimple.SetMaxNumberOfObjectsCount(maxNumberOfObjects);
-        public void ClearPool() => _poolLogicSimple.ClearPool();
         
         public MonoBehaviorPool(T spawnObject, Transform objectParent, int maxNumberOfObjects, int spawnCount) : base(objectParent)
         {
