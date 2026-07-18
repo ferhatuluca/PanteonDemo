@@ -36,6 +36,11 @@ namespace Core.GameUnits
 			HealthController.TakeDamage(damage);	
 		}
 		
+		public bool IsAvailableForInteract()
+		{
+			return !HealthController.IsDead && GameUnitObject.IsAvailableForInteract();
+		}
+		
 		public bool IsDead()
 		{
 			return HealthController.IsDead;

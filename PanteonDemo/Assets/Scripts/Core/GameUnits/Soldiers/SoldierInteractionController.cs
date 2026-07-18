@@ -1,4 +1,5 @@
-﻿using Core.Enums;
+﻿using System.Linq;
+using Core.Enums;
 using Core.Utilities.Interact;
 using Pathfinding;
 using UnityEngine;
@@ -97,7 +98,7 @@ namespace Core.GameUnits.Soldiers
 				return;
 			}
 				
-			SetTargetUnit(Interacts[0]);
+			SetTargetUnit(Interacts.First());
 			TriggerFight();
 		}
 		

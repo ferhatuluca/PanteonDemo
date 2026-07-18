@@ -24,6 +24,11 @@ namespace Core.Managers
         private void Update()
         {
             MouseMovement();
+            
+            if (_spawnedBuilding && Input.GetMouseButtonDown(0))
+            {
+                TryPlaceSpawnedBuilding();
+            }
         }
         
         private void OnEnable()
@@ -55,11 +60,6 @@ namespace Core.Managers
             CurrentHoveredGridCell = new Vector3(CurrentHoveredGridCell.x, CurrentHoveredGridCell.y, 0f);
             
             MoveCursorOrBuilding(CurrentHoveredGridCell);
-
-            if (_spawnedBuilding && Input.GetMouseButtonDown(0))
-            {
-                PlaceSpawnedBuilding();
-            }
         }
 
         private void MoveCursorOrBuilding(Vector3 gridCellWorldPos)
@@ -76,9 +76,13 @@ namespace Core.Managers
             }
         }
 
-        private void PlaceSpawnedBuilding()
+        private void TryPlaceSpawnedBuilding()
         {
+            if(!_spawnedBuilding.BuildingPlaceChecker.CanBePlaced)
+                return;
             
+            _spawnedBuilding.BuildingPlaceChecker.Place();
+            _spawnedBuilding = null;
         }
 	}
 }

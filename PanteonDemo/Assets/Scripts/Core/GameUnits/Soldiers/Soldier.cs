@@ -61,5 +61,6 @@ namespace Core.GameUnits.Soldiers
 
 		//interface short methods
 		public SoldierType GetTypeForPool() => SoldierType;
+		public bool IsAvailableForInteract() => true; // there is no availability check for soldier yet
 	}
 }

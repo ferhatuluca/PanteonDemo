@@ -5,17 +5,16 @@ namespace Core.Utilities.Interact
 {
     public abstract class MultipleInteractable<T> : InteractableBase<T>
     {
-        protected List<T> Interacts = new List<T>();
+        protected HashSet<T> Interacts;
         
         protected sealed override void OnTriggeredEnterVirtual(T actor, Collider2D other)
         {
             if (Interacts == null)
-                Interacts = new List<T>();
+                Interacts = new HashSet<T>();
             
-            if (Interacts.Contains(actor))
+            if (!Interacts.Add(actor))
                 return;
             
-            Interacts.Add(actor);
             OnTriggerInteract(actor);
         }
 
@@ -24,10 +23,9 @@ namespace Core.Utilities.Interact
             if(Interacts.Count == 0)
                 return;
             
-            if (!Interacts.Contains(actor))
+            if (!Interacts.Remove(actor))
                 return;
             
-            Interacts.Remove(actor);
             OnTriggerInteractExit(actor);
         }
         

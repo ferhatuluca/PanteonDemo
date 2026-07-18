@@ -16,6 +16,7 @@ namespace Core.GameUnits.Buildings
 
 		private MonoBehaviorPool<Building> _myPool;
 		
+		public BuildingPlaceChecker BuildingPlaceChecker { private set; get; }
 		public SoldierSpawner SoldierSpawner { private set; get; }
 		public GameUnit GameUnit { private set; get; }
 
@@ -23,6 +24,7 @@ namespace Core.GameUnits.Buildings
 		{
 			GameUnit = GetComponent<GameUnit>();
 			SoldierSpawner = GetComponent<SoldierSpawner>();
+			BuildingPlaceChecker = GetComponent<BuildingPlaceChecker>();
 		}
 
 		private void Start()
@@ -36,6 +38,7 @@ namespace Core.GameUnits.Buildings
 			_modelSprite.sprite = typeData.Icon;
 			
 			GameUnit.Init(this, teamType, buildingData);
+			BuildingPlaceChecker.Init();
 
 			if (buildingData is UnitProducingBuildingData)
 			{
@@ -50,6 +53,7 @@ namespace Core.GameUnits.Buildings
 		
 		public void OnEnterPool()
 		{
+			BuildingPlaceChecker.ResetForPool();
 		}
 
 		public void OnExitPool()
@@ -67,13 +71,9 @@ namespace Core.GameUnits.Buildings
 		{
 			_myPool.Push(this);
 		}
-
-		public bool IsUnitProducingBuilding()
-		{
-			return BuildingType is BuildingType.Barrack;
-		}
 		
 		// interface short methods
 		public BuildingType GetTypeForPool() => BuildingType;
+		public bool IsAvailableForInteract() => BuildingPlaceChecker.IsPlaced;
 	}
 }
