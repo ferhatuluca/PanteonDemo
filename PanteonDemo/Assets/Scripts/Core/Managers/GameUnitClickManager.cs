@@ -98,9 +98,17 @@ namespace Core.Managers
 				OnGameUnitClicked?.Invoke(GameUnitClickType.Empty);
 				return;
 			}
-			
+
+			GameUnitSelected();
+		}
+
+		private void GameUnitSelected()
+		{
 			OnGameUnitClicked?.Invoke(_selectedGameUnit.GameUnitObject is Soldier 
 				? GameUnitClickType.Soldier : GameUnitClickType.Building);
+			
+			// After OnDead called, OnDead events become null so unsubscribe is not necessary
+			_selectedGameUnit.OnDead += () => { _selectedGameUnit = null;};
 		}
 
 		private void SoldierSelectedAndRightClick(Soldier soldier)

@@ -1,4 +1,5 @@
-﻿using Core.Enums;
+﻿using System;
+using Core.Enums;
 using Core.GameUnits.Health_Damage;
 using Core.Scriptables;
 using Sirenix.OdinInspector;
@@ -10,6 +11,8 @@ namespace Core.GameUnits
 	// inheritance, such these cases composition is better
 	public class GameUnit : MonoBehaviour
 	{
+		public event Action OnDead;
+		
 		public IGameUnitObject GameUnitObject { private set; get; }
 		public TeamType TeamType { private set; get; }
 		public Vector2 GridSize { private set; get; }
@@ -29,6 +32,8 @@ namespace Core.GameUnits
 		public void Death()
 		{
 			GameUnitObject.Death();
+			OnDead?.Invoke();
+			OnDead = null;
 		}
 
 		public void TakeDamage(int damage)
