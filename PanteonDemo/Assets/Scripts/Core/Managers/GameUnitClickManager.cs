@@ -14,7 +14,6 @@ namespace Core.Managers
 	{
 		public static event Action<GameUnit> OnGameUnitClicked;
 		
-		[SerializeField] private Transform _nonTargetDestination;
 		[SerializeField] private LayerMask _clickLayerMask;
 		
 		private Camera _mainCam;
@@ -143,8 +142,7 @@ namespace Core.Managers
 
 		private void MoveToEmpty(Soldier soldier, Vector2 clickPos)
 		{
-			_nonTargetDestination.transform.position = clickPos;
-			soldier.SoldierInteractionController.SetDestinationEmptyArea(_nonTargetDestination);
+			soldier.SoldierInteractionController.SetDestinationEmptyArea(clickPos);
 		}
 	}
 }

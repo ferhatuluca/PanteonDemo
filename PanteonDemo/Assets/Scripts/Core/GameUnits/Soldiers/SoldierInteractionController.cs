@@ -17,6 +17,7 @@ namespace Core.GameUnits.Soldiers
 		private Collider2D _collider2D;
 		
 		private Transform _destination;
+		private Transform _nonTargetDestination;
 		
 		public AIPath AiPath { private set; get; }
 		public GameUnit TargetUnit { private set; get; }
@@ -26,6 +27,8 @@ namespace Core.GameUnits.Soldiers
 			_rigidbody2D = GetComponent<Rigidbody2D>();
 			_collider2D = GetComponent<Collider2D>();
 			AiPath = GetComponent<AIPath>();
+			
+			_nonTargetDestination = new GameObject($"{name}'s NonTargetDestination").transform;
 		}
 
 		public void Init(Soldier soldier)
@@ -118,10 +121,11 @@ namespace Core.GameUnits.Soldiers
 			TargetUnit = null;
 		}
 
-		public void SetDestinationEmptyArea(Transform target)
+		public void SetDestinationEmptyArea(Vector2 position)
 		{
 			TargetUnit = null;
-			SetDestination(target);
+			_nonTargetDestination.position = position;
+			SetDestination(_nonTargetDestination);
 			_soldier.SoldierAnimController.SetAnim(SoldierAnimState.Run);
 		}
 
