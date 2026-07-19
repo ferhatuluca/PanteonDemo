@@ -8,8 +8,8 @@ namespace Core.Managers
 {
 	public class PlacementManager : SingletonMonoBehaviour<PlacementManager>
 	{
-        [SerializeField] private Tilemap _clickableAreaTilemap;
         [SerializeField] private GameObject _placementCursorObject;
+        [field: SerializeField] public Tilemap GameAreaTileMap { private set; get; }
 
         private Camera _cam;
         private Building _spawnedBuilding = null;
@@ -58,9 +58,9 @@ namespace Core.Managers
         private void MouseMovement()
         {
             Vector3 mouseWorldPos = _cam.ScreenToWorldPoint(Input.mousePosition);
-            Vector3Int gridCellPos = _clickableAreaTilemap.WorldToCell(mouseWorldPos);
+            Vector3Int gridCellPos = GameAreaTileMap.WorldToCell(mouseWorldPos);
 
-            CurrentHoveredGridCell = _clickableAreaTilemap.GetCellCenterWorld(gridCellPos);
+            CurrentHoveredGridCell = GameAreaTileMap.GetCellCenterWorld(gridCellPos);
             CurrentHoveredGridCell = new Vector3(CurrentHoveredGridCell.x, CurrentHoveredGridCell.y, 0f);
             
             MoveCursorOrBuilding(CurrentHoveredGridCell);

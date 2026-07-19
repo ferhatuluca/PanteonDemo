@@ -5,6 +5,8 @@ using Core.Scriptables;
 using Core.Utilities.Pool_Spawner.Spawner;
 using Core.Utilities.Pool_Spawner.Spawner.SpawnerWithPool;
 using Sirenix.OdinInspector;
+using UnityEngine;
+using UnityEngine.Tilemaps;
 
 namespace Core.GameUnits.Buildings
 {
@@ -19,7 +21,10 @@ namespace Core.GameUnits.Buildings
 
 		protected override bool CheckSpawnPointAvailability(SpawnPoint spawnPoint)
 		{
-			
+			Tilemap gameAreaTileMap = PlacementManager.Instance.GameAreaTileMap;
+			Vector3 position = spawnPoint.transform.position;
+			Vector3Int cellPosition = gameAreaTileMap.WorldToCell(position);
+			return gameAreaTileMap.HasTile(cellPosition);
 		}
 
 		[Button]
