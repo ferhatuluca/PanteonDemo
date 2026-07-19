@@ -22,7 +22,7 @@ namespace Core.GameUnits
 		{
 			GameUnitObject = gameUnitObject;
 			TeamType = teamType;
-			GridSize = gameUnitData.GridSize;
+			GridSize = gameUnitData.GridCellSize;
 			
 			HealthController = GetComponent<HealthController>();
 			HealthController.Init(this, gameUnitData.Health);

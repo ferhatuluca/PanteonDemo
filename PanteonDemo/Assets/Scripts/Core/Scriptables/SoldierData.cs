@@ -10,14 +10,14 @@ namespace Core.Scriptables
 	{
 		[field: SerializeField] public SoldierType SoldierType { private set; get; }
 		[field: SerializeField] public int Damage { private set; get; } = 5;
-		[SerializeField] private List<SoldierTeamTypeData> _teamData;
+		[SerializeField] private List<SoldierTeamData> _teamData;
 		
-		public SoldierTeamTypeData GetSoldierTeamData(TeamType teamType) => 
+		public SoldierTeamData GetSoldierTeamData(TeamType teamType) => 
 			_teamData.FirstOrDefault(t => t.TeamType == teamType);
 	}
 
 	[System.Serializable]
-	public class SoldierTeamTypeData
+	public class SoldierTeamData
 	{
 		[field: SerializeField] public TeamType TeamType { private set; get; }
 		[field: SerializeField] public Sprite Icon { private set; get; }

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Name>k__BackingField: Pawn
   <Health>k__BackingField: 10
-  <GridSize>k__BackingField: {x: 1, y: 1}
+  <GridCellSize>k__BackingField: {x: 1, y: 1}
   <SoldierType>k__BackingField: 0
   <Damage>k__BackingField: 2
   _teamData:

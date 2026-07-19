@@ -11,14 +11,14 @@ namespace Core.Scriptables
 	{
 		[field: SerializeField] public BuildingType BuildingType { private set; get; }
 		[field: SerializeField] public BuildingUI BuildingUIPrefab { private set; get; }
-		[SerializeField] private List<BuildingTeamTypeData> _teamData;
+		[SerializeField] private List<BuildingTeamData> _teamData;
 		
-		public BuildingTeamTypeData GetBuildingTeamData(TeamType teamType) =>
+		public BuildingTeamData GetBuildingTeamData(TeamType teamType) =>
 			_teamData.FirstOrDefault(t => t.TeamType == teamType);
 	}
 
 	[System.Serializable]
-	public class BuildingTeamTypeData
+	public class BuildingTeamData
 	{
 		[field: SerializeField] public TeamType TeamType { private set; get; }
 		[field: SerializeField] public Sprite Icon { private set; get; }

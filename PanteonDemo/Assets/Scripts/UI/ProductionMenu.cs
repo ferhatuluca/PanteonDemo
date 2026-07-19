@@ -1,4 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using Core.Enums;
+using Core.Managers;
+using Core.Scriptables;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,44 +10,27 @@ namespace UI
 	public class ProductionMenu : MonoBehaviour
 	{
 		[SerializeField] private ScrollRect _scrollRect;
+		[SerializeField] private RectTransform _viewPortTransform;
+		[SerializeField] private RectTransform _contentPanelTransform;
 		[SerializeField] private VerticalLayoutGroup _verticalLayoutGroup;
 
-		private BuildingUI[] _buildingUIs;
-		private List<RectTransform> _items = new();
-		private float _itemOffset;
-		private float _scrollMargin;
-		private int _itemCount;
-
-		private void Awake()
+		private RectTransform[] _buildingUIRects;
+		
+		private void Start()
 		{
-			_buildingUIs = GetComponentsInChildren<BuildingUI>();
-			foreach (BuildingUI buildingUI in _buildingUIs)
-				_items.Add(buildingUI.GetComponent<RectTransform>());
+			TeamType[] teamTypes = (TeamType[])Enum.GetValues(typeof(TeamType));
+			BuildingData[] buildingData = GameManager.Instance.GeneralData.BuildingData;
+			
+			_buildingUIRects = new RectTransform[buildingData.Length * teamTypes.Length];
 
-			_itemCount = _items.Count;
-			_itemOffset = _items[0].anchoredPosition.y - _items[1].anchoredPosition.y;
-			_scrollMargin = _itemOffset * _itemCount / 2;
-
-			_verticalLayoutGroup.enabled = false;
-			_scrollRect.movementType = ScrollRect.MovementType.Unrestricted;
-			_scrollRect.onValueChanged.AddListener(OnScroll);
-		}
-
-		private void OnScroll(Vector2 position)
-		{
-			for (int i = 0; i < _itemCount; i++)
+			int count = 0;
+			foreach (BuildingData data in buildingData)
 			{
-				float itemY = _scrollRect.transform.InverseTransformPoint(_items[i].position).y;
-
-				if (itemY < -_scrollMargin)
+				BuildingUI ui = Instantiate(data.BuildingUIPrefab, _contentPanelTransform);
+				foreach (TeamType teamType in teamTypes)
 				{
-					_items[i].anchoredPosition += Vector2.up * _itemCount * _itemOffset;
-					_scrollRect.content.GetChild(_itemCount - 1).SetAsFirstSibling();
-				}
-				else if (itemY > _scrollMargin + 100f)
-				{
-					_items[i].anchoredPosition -= Vector2.up * _itemCount * _itemOffset;
-					_scrollRect.content.GetChild(0).SetAsLastSibling();
+					ui.Init(data, teamType);
+					_buildingUIRects[count++] = ui.GetComponent<RectTransform>();
 				}
 			}
 		}

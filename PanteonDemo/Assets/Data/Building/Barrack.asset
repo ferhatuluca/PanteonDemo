@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Name>k__BackingField: Unit
   <Health>k__BackingField: 100
-  <GridSize>k__BackingField: {x: 4, y: 4}
+  <GridCellSize>k__BackingField: {x: 4, y: 4}
   <BuildingType>k__BackingField: 0
-  <BuildingUI>k__BackingField: {fileID: 0}
+  <BuildingUIPrefab>k__BackingField: {fileID: 323728792266236347, guid: 4d4ad82ff68858f429c4f0307102a0cf, type: 3}
   _teamData:
   - <TeamType>k__BackingField: 0
     <Icon>k__BackingField: {fileID: 21300000, guid: 849b4b03d95c40d45a2bcce48cc4fe7e, type: 3}
