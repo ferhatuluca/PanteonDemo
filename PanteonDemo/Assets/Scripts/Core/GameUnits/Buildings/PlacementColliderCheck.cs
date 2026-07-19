@@ -5,6 +5,7 @@ using UnityEngine;
 
 namespace Core.GameUnits.Buildings
 {
+	// It scripts for checking placement for building, whetever it is on gamearea or colliderarea
 	public class PlacementColliderCheck : MonoBehaviour
 	{
 		public event Action<bool> OnPlaceabilityChanged;

@@ -12,22 +12,15 @@ namespace Core.GameUnits.Buildings
 {
 	public class SoldierSpawner : SpawnerMonoWithPoolWithType<Soldier, SoldierType>
 	{
+		[SerializeField] private LayerMask _nonAvailableMask;
+		
 		private Building _building;
 		
 		public void Init(Building building)
 		{
 			_building = building;
 		}
-
-		protected override bool CheckSpawnPointAvailability(SpawnPoint spawnPoint)
-		{
-			Tilemap gameAreaTileMap = PlacementManager.Instance.GameAreaTileMap;
-			Vector3 position = spawnPoint.transform.position;
-			Vector3Int cellPosition = gameAreaTileMap.WorldToCell(position);
-			bool isAvailable = gameAreaTileMap.HasTile(cellPosition);
-			return isAvailable;
-		}
-
+		
 		[Button]
 		public void SpawnSoldier(SoldierData soldierData)
 		{
@@ -40,6 +33,33 @@ namespace Core.GameUnits.Buildings
 					GetSoldierTypeData(_building.GameUnit.TeamType, soldierData.SoldierType);
 				newSoldier.Init(soldierData, _building.GameUnit.TeamType, typeData);
 			});
+		}
+
+		protected override bool CheckSpawnPointAvailability(SpawnPoint spawnPoint)
+		{
+			Vector3 position = spawnPoint.transform.position;
+			return CheckGameArea(position) && CheckPhysics(position);
+		}
+
+		// if spawn point on unavailable are like water or other tilemaps
+		private bool CheckGameArea(Vector3 spawnPosition)
+		{
+			Tilemap gameAreaTileMap = PlacementManager.Instance.GameAreaTileMap;
+			Vector3Int cellPosition = gameAreaTileMap.WorldToCell(spawnPosition);
+			return gameAreaTileMap.HasTile(cellPosition);
+		}
+
+		// If there is an object on spawn point
+		private bool CheckPhysics(Vector3 spawnPosition)
+		{
+			Collider2D[] overlapColliders = Physics2D.OverlapPointAll(spawnPosition, _nonAvailableMask);
+			foreach (Collider2D overlapCollider in overlapColliders)
+			{
+				Building overLap = overlapCollider.GetComponent<Building>();
+				if (overLap != null && overLap != _building)
+					return false;
+			}
+			return true;
 		}
 	}
 }
