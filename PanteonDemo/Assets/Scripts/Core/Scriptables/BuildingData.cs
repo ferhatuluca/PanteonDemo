@@ -1,4 +1,5 @@
 ﻿using Core.Enums;
+using UI;
 using UnityEngine;
 
 namespace Core.Scriptables
@@ -7,5 +8,6 @@ namespace Core.Scriptables
 	public class BuildingData : GameUnitData
 	{
 		[field: SerializeField] public BuildingType BuildingType { private set; get; }
+		[field: SerializeField] public BuildingUI BuildingUI { private set; get; }
 	}
 }
