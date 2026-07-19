@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Core.Enums;
 using UnityEngine;
 
@@ -9,9 +10,10 @@ namespace Core.Scriptables
 	{
 		[field: SerializeField] public SoldierType SoldierType { private set; get; }
 		[field: SerializeField] public int Damage { private set; get; } = 5;
+		[SerializeField] private List<SoldierTeamTypeData> _teamData;
 		
-		[field: SerializeField] public List<SoldierTeamTypeData> TeamTypeData { private set; get; }
-		
+		public SoldierTeamTypeData GetSoldierTeamData(TeamType teamType) => 
+			_teamData.FirstOrDefault(t => t.TeamType == teamType);
 	}
 
 	[System.Serializable]

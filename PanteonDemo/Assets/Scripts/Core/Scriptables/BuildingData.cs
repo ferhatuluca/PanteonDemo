@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Core.Enums;
 using UI;
 using UnityEngine;
@@ -10,7 +11,10 @@ namespace Core.Scriptables
 	{
 		[field: SerializeField] public BuildingType BuildingType { private set; get; }
 		[field: SerializeField] public BuildingUI BuildingUI { private set; get; }
-		[field: SerializeField] public List<BuildingTeamTypeData> TeamTypeData { private set; get; }
+		[SerializeField] public List<BuildingTeamTypeData> _teamData;
+		
+		public BuildingTeamTypeData GetBuildingTeamData(TeamType teamType) =>
+			_teamData.FirstOrDefault(t => t.TeamType == teamType);
 	}
 
 	[System.Serializable]

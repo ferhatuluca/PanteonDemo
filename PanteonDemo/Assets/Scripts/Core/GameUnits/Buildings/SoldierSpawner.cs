@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using Core.Enums;
+﻿using Core.Enums;
 using Core.GameUnits.Soldiers;
 using Core.Managers;
 using Core.Scriptables;
@@ -30,7 +29,7 @@ namespace Core.GameUnits.Buildings
 			Spawn(newSoldier =>
 			{
 				//It gets object from pool, if there is no object then poolmanager spawns it, if there is then pops it
-				SoldierTeamTypeData teamTypeData = soldierData.TeamTypeData.Find(t => t.TeamType == _building.GameUnit.TeamType);
+				SoldierTeamTypeData teamTypeData = soldierData.GetSoldierTeamData(_building.GameUnit.TeamType);
 				newSoldier.Init(soldierData, _building.GameUnit.TeamType, teamTypeData);
 			});
 		}
