@@ -161,6 +161,11 @@ namespace Core.GameUnits.Soldiers
 
 		private void TargetUnitDeadStopFight()
 		{
+			if (TargetUnit.transform == _destination)
+			{
+				_destination = null;
+			}
+			
 			TargetUnit = null;
 			_isFighting = false;
 			_soldier.SoldierAnimController.SetAnim(SoldierAnimState.Idle);
