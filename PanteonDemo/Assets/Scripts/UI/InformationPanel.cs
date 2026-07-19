@@ -4,6 +4,7 @@ using Core.GameUnits;
 using Core.GameUnits.Buildings;
 using Core.Managers;
 using Core.Scriptables;
+using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -17,11 +18,22 @@ namespace UI
 		[SerializeField] private TextMeshProUGUI _buildingHP;
 		[SerializeField] private TextMeshProUGUI _buildingGridCellSize;
 		[SerializeField] private RectTransform _contentPanelTransform;
+		
+		[Header("Tween")]
+		[SerializeField] private float _tweenDuration = 0.3f;
+		[SerializeField] private Ease _ease = Ease.OutQuad;
 
 		private SoldierUI[] _soldierUis;
+		private float _startPosX;
 		
+		private RectTransform _rectTransform;
+		private Tweener _currentTween;
+
 		private void Start()
 		{
+			_rectTransform = GetComponent<RectTransform>();
+			_startPosX = _rectTransform.localPosition.x;
+
 			SoldierType[] soldierTypes = (SoldierType[])Enum.GetValues(typeof(SoldierType));
 			_soldierUis = new SoldierUI[soldierTypes.Length];
 			
@@ -57,30 +69,41 @@ namespace UI
 
 		private void OpenPanel(Building building)
 		{
+			CancelCurrentTween();
 			SetUIs(building);
+			_currentTween = _rectTransform.DOLocalMoveX(0f, _tweenDuration).SetEase(_ease);
 		}
 
 		private void ClosePanel()
 		{
-			
+			CancelCurrentTween();
+			_currentTween = _rectTransform.DOLocalMoveX(_startPosX, _tweenDuration).SetEase(_ease);
+		}
+
+		private void CancelCurrentTween()
+		{
+			if (_currentTween != null && _currentTween.IsActive() && !_currentTween.IsComplete())
+			{
+				_currentTween.Kill();
+			}
 		}
 
 		private void SetUIs(Building building)
 		{
-			BuildingData buildingDataBase = GameManager.Instance.GeneralData.GetBuildingData(building.BuildingType);
-			UnitProducingBuildingData buildingData = buildingDataBase as UnitProducingBuildingData;
+			TeamType teamType = building.GameUnit.TeamType;
+			BuildingData buildingData = GameManager.Instance.GeneralData.GetBuildingData(building.BuildingType);
 			_buildingName.text = buildingData.Name;
 			_buildingHP.text = $"HP: {buildingData.Health}";
 			_buildingGridCellSize.text = $"Grid: {buildingData.GridCellSize.x}x{buildingData.GridCellSize.y}";
 				
-			BuildingTeamData buildingTeamData = buildingData.GetBuildingTeamData(building.GameUnit.TeamType);
+			BuildingTeamData buildingTeamData = buildingData.GetBuildingTeamData(teamType);
 			_buildingIcon.sprite = buildingTeamData.Icon;
 			
 			SoldierData[] soldierData = GameManager.Instance.GeneralData.SoldierData;
 
 			for (int i = 0; i < soldierData.Length; i++)
 			{
-				_soldierUis[i].Init(soldierData[i], building.GameUnit.TeamType);
+				_soldierUis[i].Init(soldierData[i], teamType);
 			}
 		}
 	}
