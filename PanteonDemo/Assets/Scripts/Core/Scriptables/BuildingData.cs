@@ -10,8 +10,8 @@ namespace Core.Scriptables
 	public class BuildingData : GameUnitData
 	{
 		[field: SerializeField] public BuildingType BuildingType { private set; get; }
-		[field: SerializeField] public BuildingUI BuildingUI { private set; get; }
-		[SerializeField] public List<BuildingTeamTypeData> _teamData;
+		[field: SerializeField] public BuildingUI BuildingUIPrefab { private set; get; }
+		[SerializeField] private List<BuildingTeamTypeData> _teamData;
 		
 		public BuildingTeamTypeData GetBuildingTeamData(TeamType teamType) =>
 			_teamData.FirstOrDefault(t => t.TeamType == teamType);

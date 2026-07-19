@@ -7,8 +7,6 @@ namespace UI
 	public class ProductionMenu : MonoBehaviour
 	{
 		[SerializeField] private ScrollRect _scrollRect;
-		[SerializeField] private RectTransform _viewPort;
-		[SerializeField] private RectTransform _contentPanelTransform;
 		[SerializeField] private VerticalLayoutGroup _verticalLayoutGroup;
 
 		private BuildingUI[] _buildingUIs;
@@ -20,13 +18,13 @@ namespace UI
 		private bool _hasDisabledLayout;
 		private Vector2 _newAnchoredPosition;
 
-		private void Start()
+		private void Awake()
 		{
+			_buildingUIs = GetComponentsInChildren<BuildingUI>();
 			foreach (var buildingUI in _buildingUIs)
 				_items.Add(buildingUI.GetComponent<RectTransform>());
 
 			_itemCount = _items.Count;
-			_scrollRect.movementType = ScrollRect.MovementType.Unrestricted;
 			_scrollRect.onValueChanged.AddListener(OnScroll);
 		}
 
