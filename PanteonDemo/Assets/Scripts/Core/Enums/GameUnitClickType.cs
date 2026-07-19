@@ -2,7 +2,6 @@
 {
 	public enum GameUnitClickType
 	{
-		Empty,
 		Building,
 		Soldier
 	}

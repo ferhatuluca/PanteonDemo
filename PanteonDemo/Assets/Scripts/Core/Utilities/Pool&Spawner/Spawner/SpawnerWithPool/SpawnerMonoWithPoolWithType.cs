@@ -20,11 +20,6 @@ namespace Core.Utilities.Pool_Spawner.Spawner.SpawnerWithPool
             _monoBehaviorPoolWithType = PoolsManager.Instance.GetMyPoolsOfTyped<T, TLogic>();
         }
 
-        protected sealed override void Start()
-        {
-            base.Start();
-        }
-
         protected void SetSpawnType(TLogic type)
         {
             _currentSpawnType = type;

@@ -1,13 +1,14 @@
 ﻿using System;
 using Core.Enums;
 using Core.Scriptables;
+using Core.Utilities.Pool_Spawner.Interfaces;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace UI
 {
-	public class SoldierUI : MonoBehaviour, ISold
+	public class SoldierUI : MonoBehaviour
 	{
 		public static event Action<SoldierData, TeamType> OnSoldierUIClicked;
 

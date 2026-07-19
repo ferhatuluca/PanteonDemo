@@ -13,11 +13,6 @@ namespace Core.Utilities.Pool_Spawner.Spawner.SpawnerWithPool
             base.Awake();
             MonoBehaviorPool = PoolsManager.Instance.GetMyPoolSimple<T>();
         }
-        
-        protected sealed override void Start()
-        {
-            base.Start();
-        }
 
         protected override T GetObjectFromPool()
         {

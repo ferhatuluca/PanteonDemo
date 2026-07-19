@@ -12,7 +12,7 @@ namespace Core.Managers
 {
 	public class GameUnitClickManager : MonoBehaviour
 	{
-		public static event Action<GameUnitClickType> OnGameUnitClicked;
+		public static event Action<GameUnit> OnGameUnitClicked;
 		
 		[SerializeField] private Transform _nonTargetDestination;
 		[SerializeField] private LayerMask _clickLayerMask;
@@ -88,14 +88,12 @@ namespace Core.Managers
 			if (hit.collider == null)
 			{
 				_selectedGameUnit = null;
-				OnGameUnitClicked?.Invoke(GameUnitClickType.Empty);
 				return;
 			}
 			
 			_selectedGameUnit = hit.collider.GetComponent<GameUnit>();
 			if (_selectedGameUnit == null)
 			{
-				OnGameUnitClicked?.Invoke(GameUnitClickType.Empty);
 				return;
 			}
 
@@ -104,8 +102,7 @@ namespace Core.Managers
 
 		private void GameUnitSelected()
 		{
-			OnGameUnitClicked?.Invoke(_selectedGameUnit.GameUnitObject is Soldier 
-				? GameUnitClickType.Soldier : GameUnitClickType.Building);
+			OnGameUnitClicked?.Invoke(_selectedGameUnit);
 			
 			// After OnDead called, OnDead events become null so unsubscribe is not necessary
 			_selectedGameUnit.OnDead += () => { _selectedGameUnit = null;};

@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Core.Enums;
+using UI;
 using UnityEngine;
 
 namespace Core.Scriptables
@@ -10,6 +11,7 @@ namespace Core.Scriptables
 	{
 		[field: SerializeField] public SoldierType SoldierType { private set; get; }
 		[field: SerializeField] public int Damage { private set; get; } = 5;
+		[field: SerializeField] public SoldierUI SoldierUIPrefab { private set; get; }
 		[SerializeField] private List<SoldierTeamData> _teamData;
 		
 		public SoldierTeamData GetSoldierTeamData(TeamType teamType) => 

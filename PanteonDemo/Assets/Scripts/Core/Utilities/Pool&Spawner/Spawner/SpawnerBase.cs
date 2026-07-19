@@ -27,7 +27,7 @@ namespace Core.Utilities.Pool_Spawner.Spawner
             InternalAwake();
         }
         
-        protected virtual void Start()
+        private void Start()
         {
             InternalStart();
         }
