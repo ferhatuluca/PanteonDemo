@@ -74,15 +74,17 @@ namespace Core.Utilities.Pool_Spawner.Spawner
             if (_spawnPoints.Length <= 0)
                 return null;
             
-            for (int i = 0; i < _spawnPoints.Length; i++)
+            SpawnPoint availableSpawnPoint = null;
+            int count = 0;
+            while (count < _spawnPoints.Length)
             {
-                SpawnPoint spawnPoint = _spawnPoints[_spawnPointIndex];
-                if (CheckSpawnPointAvailability(spawnPoint))
-                    return spawnPoint;
-                
-                IncreaseIndex();
+                availableSpawnPoint = _spawnPoints[_spawnPointIndex];
+                if (!CheckSpawnPointAvailability(availableSpawnPoint))
+                {
+                    IncreaseIndex();
+                }
             }
-            return null;
+            return availableSpawnPoint;
         }
         
         private void IncreaseIndex()
