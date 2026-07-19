@@ -88,11 +88,19 @@ namespace Core.Managers
 			if (hit.collider == null)
 			{
 				_selectedGameUnit = null;
+				OnGameUnitClicked?.Invoke(null);
 				return;
 			}
 			
 			_selectedGameUnit = hit.collider.GetComponent<GameUnit>();
 			if (_selectedGameUnit == null)
+			{
+				OnGameUnitClicked?.Invoke(null);
+				return;
+			}
+
+			// Haven't placed yet
+			if (_selectedGameUnit.GameUnitObject is Building building && !building.BuildingPlaceChecker.IsPlaced)
 			{
 				return;
 			}
