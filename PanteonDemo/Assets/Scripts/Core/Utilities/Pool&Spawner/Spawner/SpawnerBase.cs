@@ -63,7 +63,7 @@ namespace Core.Utilities.Pool_Spawner.Spawner
             if (spawnPoint != null)
             {
                 spawnPoint.spawnObject = gameObjectOfSpawn;
-                gameObjectOfSpawn.transform.position = _spawnPoints[_spawnPointIndex].transform.position;
+                gameObjectOfSpawn.transform.position = spawnPoint.transform.position;
             }
             
             onSpawnDone?.Invoke(spawnedObject);
@@ -80,10 +80,14 @@ namespace Core.Utilities.Pool_Spawner.Spawner
             {
                 count++;
                 availableSpawnPoint = _spawnPoints[_spawnPointIndex];
-                IncreaseIndex();
-                
+
                 if (CheckSpawnPointAvailability(availableSpawnPoint))
+                {
+                    IncreaseIndex();
                     break;
+                }
+                
+                IncreaseIndex();
             }
             return availableSpawnPoint;
         }
