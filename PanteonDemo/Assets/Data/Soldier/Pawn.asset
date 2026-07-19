@@ -17,6 +17,7 @@ MonoBehaviour:
   <GridCellSize>k__BackingField: {x: 1, y: 1}
   <SoldierType>k__BackingField: 0
   <Damage>k__BackingField: 2
+  <SoldierUIPrefab>k__BackingField: {fileID: 2955587609850942955, guid: 2dafcfae3fc54d14fab709c722f0dbbc, type: 3}
   _teamData:
   - <TeamType>k__BackingField: 0
     <Icon>k__BackingField: {fileID: -1267550136445687439, guid: 15b1670a1147e1e489060fcf141181d1, type: 3}
