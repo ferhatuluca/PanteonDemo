@@ -13,5 +13,11 @@ MonoBehaviour:
   m_Name: GeneralData
   m_EditorClassIdentifier: 
   <Cursor>k__BackingField: {fileID: 2800000, guid: d09d01fc4dcd0304188914782565071f, type: 3}
-  <SoldierTeamData>k__BackingField: {fileID: 11400000, guid: dc2e93eaea27943469173e8ad0d2066b, type: 2}
-  <BuildingTeamData>k__BackingField: {fileID: 11400000, guid: bdc1360082297f44fb667f1822cfaa8b, type: 2}
+  <SoldierData>k__BackingField:
+  - {fileID: 11400000, guid: 2b85e559316fb4e489f5b2bf33a89830, type: 2}
+  - {fileID: 11400000, guid: ab770a36615079a47a1dc04a07aaa1b6, type: 2}
+  - {fileID: 11400000, guid: 750b5fea53c6ba544a4ab99e499e4c16, type: 2}
+  <BuildingData>k__BackingField:
+  - {fileID: 11400000, guid: 47cf5adb1605faa4eb3fcc117f7bab1f, type: 2}
+  - {fileID: 11400000, guid: e167e1bc7fd97414a89711082d2d5e93, type: 2}
+  - {fileID: 11400000, guid: 56e8a4ee9247c914c892d8c2242b2866, type: 2}

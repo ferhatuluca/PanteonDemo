@@ -18,6 +18,21 @@ namespace UI
 		
 		private void Start()
 		{
+			SpawnBuildingUIs();
+
+			float xCalculate = -(_buildingUIRects[0].rect.width + _verticalLayoutGroup.spacing) * _buildingUIRects.Length;
+			_contentPanelTransform.localPosition = new Vector3(xCalculate, 
+				_contentPanelTransform.localPosition.y, 
+				_contentPanelTransform.localPosition.z);
+		}
+
+		private void Update()
+		{
+			throw new NotImplementedException();
+		}
+
+		private void SpawnBuildingUIs()
+		{
 			TeamType[] teamTypes = (TeamType[])Enum.GetValues(typeof(TeamType));
 			BuildingData[] buildingData = GameManager.Instance.GeneralData.BuildingData;
 			
