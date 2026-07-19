@@ -83,6 +83,7 @@ namespace Core.Utilities.Pool_Spawner.Spawner
                 {
                     IncreaseIndex();
                 }
+                count++;
             }
             return availableSpawnPoint;
         }
