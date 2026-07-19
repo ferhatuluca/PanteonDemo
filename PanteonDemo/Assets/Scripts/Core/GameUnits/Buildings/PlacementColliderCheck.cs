@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Core.Utilities.Extensions;
 using UnityEngine;
 
@@ -6,12 +7,12 @@ namespace Core.GameUnits.Buildings
 {
 	public class PlacementColliderCheck : MonoBehaviour
 	{
+		public event Action<bool> OnPlaceabilityChanged;
+		
 		[SerializeField] private LayerMask _layerMask;
 		
 		private Collider2D _collider2D;
 		private List<Collider2D> _hitColliders = new ();
-		
-		public bool CanBePlaced { private set; get; } = true;
 		
 		private void Awake()
 		{
@@ -21,13 +22,13 @@ namespace Core.GameUnits.Buildings
 		public void Init()
 		{
 			_collider2D.enabled = true;
-			CanBePlaced = true;
 		}
-
+		
 		public void ResetForPool()
 		{
 			_hitColliders.Clear();
 			_collider2D.enabled = false;
+			OnPlaceabilityChanged = null;
 		}
 		
 		private void OnTriggerEnter2D(Collider2D other)
@@ -36,7 +37,7 @@ namespace Core.GameUnits.Buildings
 				return;
 
 			_hitColliders.Add(other);
-			CanBePlaced = false;
+			OnPlaceabilityChanged?.Invoke(false);
 		}
 
 		private void OnTriggerExit2D(Collider2D other)
@@ -45,7 +46,7 @@ namespace Core.GameUnits.Buildings
 				return;
 			
 			_hitColliders.Remove(other);
-			CanBePlaced = _hitColliders.Count == 0;
+			OnPlaceabilityChanged?.Invoke(_hitColliders.Count == 0);
 		}
 	}
 }

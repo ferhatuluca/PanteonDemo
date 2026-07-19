@@ -168,6 +168,7 @@ MonoBehaviour:
   _layerMask:
     serializedVersion: 2
     m_Bits: 193
+  _cantPlaceColor: {r: 0.9529412, g: 0.5882353, b: 0.5882353, a: 0.78431374}
 --- !u!61 &4853546264813622784
 BoxCollider2D:
   m_ObjectHideFlags: 0
