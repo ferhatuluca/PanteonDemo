@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Name>k__BackingField: Unit
   <Health>k__BackingField: 100
-  <GridSize>k__BackingField: {x: 1, y: 1}
+  <GridSize>k__BackingField: {x: 4, y: 4}
   <BuildingType>k__BackingField: 0
   <UnitsToProduce>k__BackingField:
   - {fileID: 11400000, guid: 2b85e559316fb4e489f5b2bf33a89830, type: 2}

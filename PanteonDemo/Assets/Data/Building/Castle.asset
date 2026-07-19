@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Name>k__BackingField: Unit
   <Health>k__BackingField: 150
-  <GridSize>k__BackingField: {x: 1, y: 1}
+  <GridSize>k__BackingField: {x: 6, y: 4}
   <BuildingType>k__BackingField: 1
