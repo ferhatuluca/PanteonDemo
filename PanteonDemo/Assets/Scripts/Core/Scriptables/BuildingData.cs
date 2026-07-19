@@ -1,4 +1,5 @@
-﻿using Core.Enums;
+﻿using System.Collections.Generic;
+using Core.Enums;
 using UI;
 using UnityEngine;
 
@@ -9,5 +10,13 @@ namespace Core.Scriptables
 	{
 		[field: SerializeField] public BuildingType BuildingType { private set; get; }
 		[field: SerializeField] public BuildingUI BuildingUI { private set; get; }
+		[field: SerializeField] public List<BuildingTeamTypeData> TeamTypeData { private set; get; }
+	}
+
+	[System.Serializable]
+	public class BuildingTeamTypeData
+	{
+		[field: SerializeField] public TeamType TeamType { private set; get; }
+		[field: SerializeField] public Sprite Icon { private set; get; }
 	}
 }

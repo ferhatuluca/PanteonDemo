@@ -39,11 +39,11 @@ namespace Core.GameUnits.Soldiers
 			_myPool = PoolsManager.Instance.GetMyPoolTyped<Soldier, SoldierType>(SoldierType);
 		}
 
-		public void Init(SoldierData soldierData, TeamType teamType, SoldierTypeData soldierTypeData)
+		public void Init(SoldierData soldierData, TeamType teamType, SoldierTeamTypeData soldierTeamTypeData)
 		{
 			GameUnit.Init(this, teamType, soldierData);
 			SoldierInteractionController.Init(this);
-			SoldierAnimController.Init(this, soldierTypeData);
+			SoldierAnimController.Init(this, soldierTeamTypeData);
 			SoldierDamageController.Init(this, soldierData.Damage);
 		}
 

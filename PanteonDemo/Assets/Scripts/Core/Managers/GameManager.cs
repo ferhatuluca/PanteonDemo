@@ -8,8 +8,6 @@ namespace Core.Managers
 	public class GameManager : SingletonMonoBehaviour<GameManager>
 	{
 		[field: SerializeField] public GeneralData GeneralData { private set; get; }
-		[field: SerializeField] public SoldierTeamData SoldierTeamData { private set; get; }
-		[field: SerializeField] public BuildingTeamData BuildingTeamData { private set; get; }
 		
 		protected override void InternalAwake()
 		{

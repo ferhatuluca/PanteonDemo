@@ -16,5 +16,14 @@ MonoBehaviour:
   <Health>k__BackingField: 10
   <GridSize>k__BackingField: {x: 1, y: 1}
   <SoldierType>k__BackingField: 2
-  <SoldierPrefab>k__BackingField: {fileID: 0}
   <Damage>k__BackingField: 5
+  <TeamTypeData>k__BackingField:
+  - <TeamType>k__BackingField: 0
+    <Icon>k__BackingField: {fileID: -963206460, guid: 0d07f9d1e0f28764ca2d5c8106de3282, type: 3}
+    <Controller>k__BackingField: {fileID: 22100000, guid: f2a6896a8f818c14bacf18e0550594ee, type: 2}
+  - <TeamType>k__BackingField: 1
+    <Icon>k__BackingField: {fileID: -504170105, guid: 56dfe2ff432b1d441b02d5acf1c8eb17, type: 3}
+    <Controller>k__BackingField: {fileID: 22100000, guid: 6cd7eb8a08e5ea449bacca6abe5c266a, type: 2}
+  - <TeamType>k__BackingField: 2
+    <Icon>k__BackingField: {fileID: 202901547, guid: 685a5038d82d6294ba8316b56930f4c0, type: 3}
+    <Controller>k__BackingField: {fileID: 22100000, guid: 636e8eb8dd85d8846909e8088f3363c2, type: 2}

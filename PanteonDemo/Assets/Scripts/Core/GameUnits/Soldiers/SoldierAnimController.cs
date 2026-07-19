@@ -27,10 +27,10 @@ namespace Core.GameUnits.Soldiers
 			_spriteRenderer = _animator.GetComponent<SpriteRenderer>();
 		}
 
-		public void Init(Soldier soldier, SoldierTypeData soldierTypeData)
+		public void Init(Soldier soldier, SoldierTeamTypeData soldierTeamTypeData)
 		{
 			_soldier = soldier;
-			_animator.runtimeAnimatorController = soldierTypeData.Controller;
+			_animator.runtimeAnimatorController = soldierTeamTypeData.Controller;
 		}
 
 		private void Update()

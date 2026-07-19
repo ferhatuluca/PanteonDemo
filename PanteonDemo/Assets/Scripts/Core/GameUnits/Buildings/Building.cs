@@ -33,9 +33,9 @@ namespace Core.GameUnits.Buildings
 			_myPool = PoolsManager.Instance.GetMyPoolTyped<Building, BuildingType>(BuildingType);
 		}
 
-		public void Init(BuildingData buildingData, TeamType teamType, BuildingTypeData typeData)
+		public void Init(BuildingData buildingData, TeamType teamType, BuildingTeamTypeData typeDataOld)
 		{
-			_modelSprite.sprite = typeData.Icon;
+			_modelSprite.sprite = typeDataOld.Icon;
 			
 			GameUnit.Init(this, teamType, buildingData);
 			BuildingPlaceChecker.Init(_modelSprite);

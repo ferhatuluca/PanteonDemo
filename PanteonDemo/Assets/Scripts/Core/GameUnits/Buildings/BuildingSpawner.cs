@@ -1,5 +1,4 @@
 ﻿using Core.Enums;
-using Core.Managers;
 using Core.Scriptables;
 using Core.Utilities.Pool_Spawner.Spawner.SpawnerWithPool;
 
@@ -13,10 +12,10 @@ namespace Core.GameUnits.Buildings
 
 			Building newBuilding = null;
 			Spawn(b => { newBuilding = b;});
-			
+
 			//It gets object from pool, if there is no object then poolmanager spawns it, if there is then pops it
-			BuildingTypeData typeData = GameManager.Instance.BuildingTeamData.GetBuildingTypeData(teamType, buildingData.BuildingType);
-			newBuilding.Init(buildingData, teamType, typeData);
+			BuildingTeamTypeData typeDataOld = buildingData.TeamTypeData.Find(t => t.TeamType == teamType);
+			newBuilding.Init(buildingData, teamType, typeDataOld);
 			return newBuilding;
 		}
 	}

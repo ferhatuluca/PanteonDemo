@@ -17,3 +17,13 @@ MonoBehaviour:
   <GridSize>k__BackingField: {x: 1, y: 1}
   <SoldierType>k__BackingField: 0
   <Damage>k__BackingField: 2
+  <TeamTypeData>k__BackingField:
+  - <TeamType>k__BackingField: 0
+    <Icon>k__BackingField: {fileID: -1267550136445687439, guid: 15b1670a1147e1e489060fcf141181d1, type: 3}
+    <Controller>k__BackingField: {fileID: 22100000, guid: a1b201d18ba246848bc306c004fb0fc5, type: 2}
+  - <TeamType>k__BackingField: 1
+    <Icon>k__BackingField: {fileID: -1267550136445687439, guid: 0bedcf3ade69b9b4d94f9bf05f4aa26e, type: 3}
+    <Controller>k__BackingField: {fileID: 22100000, guid: 8c2378631f7f3234daca1c4eb5a71ec0, type: 2}
+  - <TeamType>k__BackingField: 2
+    <Icon>k__BackingField: {fileID: -1267550136445687439, guid: 5824f26ed989d4743be1235a9ac100aa, type: 3}
+    <Controller>k__BackingField: {fileID: 22100000, guid: d0bbae15961ded24a98744f10b0c86d3, type: 2}
