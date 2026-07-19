@@ -1040,6 +1040,7 @@ MonoBehaviour:
   _buildingName: {fileID: 7450719357430148152}
   _buildingHP: {fileID: 7450719357175166485}
   _buildingGridCellSize: {fileID: 7450719357303330368}
+  _unitsPanel: {fileID: 7450719358220954544}
   _contentPanelTransform: {fileID: 7450719356957708643}
   _tweenDuration: 0.3
   _ease: 6
