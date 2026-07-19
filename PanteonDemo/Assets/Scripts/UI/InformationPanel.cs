@@ -32,7 +32,7 @@ namespace UI
 		private void Start()
 		{
 			_rectTransform = GetComponent<RectTransform>();
-			_startPosX = _rectTransform.localPosition.x;
+			_startPosX = _rectTransform.anchoredPosition.x;
 
 			SoldierType[] soldierTypes = (SoldierType[])Enum.GetValues(typeof(SoldierType));
 			_soldierUis = new SoldierUI[soldierTypes.Length];
@@ -71,20 +71,20 @@ namespace UI
 		{
 			CancelCurrentTween();
 			SetUIs(building);
-			_currentTween = _rectTransform.DOLocalMoveX(0f, _tweenDuration).SetEase(_ease);
+			_currentTween = _rectTransform.DOAnchorPosX(0f, _tweenDuration).SetEase(_ease);
 		}
 
 		private void ClosePanel()
 		{
 			CancelCurrentTween();
-			_currentTween = _rectTransform.DOLocalMoveX(_startPosX, _tweenDuration).SetEase(_ease);
+			_currentTween = _rectTransform.DOAnchorPosX(_startPosX, _tweenDuration).SetEase(_ease);
 		}
 
 		private void CancelCurrentTween()
 		{
 			if (_currentTween != null && _currentTween.IsActive() && !_currentTween.IsComplete())
 			{
-				_currentTween.Kill(false);
+				_currentTween.Kill();
 				_currentTween = null;
 			}
 		}
