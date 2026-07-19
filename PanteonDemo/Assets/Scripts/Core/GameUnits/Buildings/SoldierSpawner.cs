@@ -2,6 +2,7 @@
 using Core.GameUnits.Soldiers;
 using Core.Managers;
 using Core.Scriptables;
+using Core.Utilities.Pool_Spawner.Spawner;
 using Core.Utilities.Pool_Spawner.Spawner.SpawnerWithPool;
 using Sirenix.OdinInspector;
 
@@ -14,6 +15,11 @@ namespace Core.GameUnits.Buildings
 		public void Init(Building building)
 		{
 			_building = building;
+		}
+
+		protected override bool CheckSpawnPointAvailability(SpawnPoint spawnPoint)
+		{
+			
 		}
 
 		[Button]
