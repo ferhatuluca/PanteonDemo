@@ -127408,8 +127408,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <GeneralData>k__BackingField: {fileID: 11400000, guid: 7b3010e2e15499b4c8df305b596ababb, type: 2}
-  <SoldierTeamData>k__BackingField: {fileID: 11400000, guid: dc2e93eaea27943469173e8ad0d2066b, type: 2}
-  <BuildingTeamData>k__BackingField: {fileID: 11400000, guid: bdc1360082297f44fb667f1822cfaa8b, type: 2}
 --- !u!1 &1290063964
 GameObject:
   m_ObjectHideFlags: 0
