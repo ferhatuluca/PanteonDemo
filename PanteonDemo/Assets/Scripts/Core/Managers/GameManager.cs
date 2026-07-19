@@ -8,10 +8,5 @@ namespace Core.Managers
 	public class GameManager : SingletonMonoBehaviour<GameManager>
 	{
 		[field: SerializeField] public GeneralData GeneralData { private set; get; }
-		
-		protected override void InternalAwake()
-		{
-			Cursor.SetCursor(GeneralData.Cursor, Vector2.zero, CursorMode.ForceSoftware);
-		}
 	}
 }

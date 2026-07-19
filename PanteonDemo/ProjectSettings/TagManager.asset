@@ -62,3 +62,6 @@ TagManager:
   - name: Effect
     uniqueID: 3696907815
     locked: 0
+  - name: Cursor
+    uniqueID: 4032223263
+    locked: 0

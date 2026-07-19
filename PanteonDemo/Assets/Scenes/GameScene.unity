@@ -127281,7 +127281,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f167cffbcf2145ec8474b0ee25d9e2cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _nonTargetDestination: {fileID: 2486188013565409574}
   _clickLayerMask:
     serializedVersion: 2
     m_Bits: 192
@@ -130524,11 +130523,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f249acb1ac1ddf146b0fdfe783702683, type: 3}
---- !u!4 &2486188013565409574 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 461044558128502696, guid: f249acb1ac1ddf146b0fdfe783702683, type: 3}
-  m_PrefabInstance: {fileID: 2486188013565409573}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &5063534263224498876
 MonoBehaviour:
   m_ObjectHideFlags: 0
