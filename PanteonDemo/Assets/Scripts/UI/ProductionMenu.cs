@@ -11,53 +11,39 @@ namespace UI
 
 		private BuildingUI[] _buildingUIs;
 		private List<RectTransform> _items = new();
-		private float _disableMarginY;
-		private float _recordOffsetY;
-		private float _threshold = 100f;
+		private float _itemOffset;
+		private float _scrollMargin;
 		private int _itemCount;
-		private bool _hasDisabledLayout;
-		private Vector2 _newAnchoredPosition;
 
 		private void Awake()
 		{
 			_buildingUIs = GetComponentsInChildren<BuildingUI>();
-			foreach (var buildingUI in _buildingUIs)
+			foreach (BuildingUI buildingUI in _buildingUIs)
 				_items.Add(buildingUI.GetComponent<RectTransform>());
 
 			_itemCount = _items.Count;
+			_itemOffset = _items[0].anchoredPosition.y - _items[1].anchoredPosition.y;
+			_scrollMargin = _itemOffset * _itemCount / 2;
+
+			_verticalLayoutGroup.enabled = false;
+			_scrollRect.movementType = ScrollRect.MovementType.Unrestricted;
 			_scrollRect.onValueChanged.AddListener(OnScroll);
-		}
-
-		private void DisableLayoutComponents()
-		{
-			_recordOffsetY = _items[0].anchoredPosition.y - _items[1].anchoredPosition.y;
-			_disableMarginY = _recordOffsetY * _itemCount / 2;
-
-			if (_verticalLayoutGroup != null)
-				_verticalLayoutGroup.enabled = false;
-
-			_hasDisabledLayout = true;
 		}
 
 		private void OnScroll(Vector2 position)
 		{
-			if (!_hasDisabledLayout)
-				DisableLayoutComponents();
-
-			for (int i = 0; i < _items.Count; i++)
+			for (int i = 0; i < _itemCount; i++)
 			{
-				if (_scrollRect.transform.InverseTransformPoint(_items[i].position).y < -_disableMarginY)
+				float itemY = _scrollRect.transform.InverseTransformPoint(_items[i].position).y;
+
+				if (itemY < -_scrollMargin)
 				{
-					_newAnchoredPosition = _items[i].anchoredPosition;
-					_newAnchoredPosition.y += _itemCount * _recordOffsetY;
-					_items[i].anchoredPosition = _newAnchoredPosition;
+					_items[i].anchoredPosition += Vector2.up * _itemCount * _itemOffset;
 					_scrollRect.content.GetChild(_itemCount - 1).SetAsFirstSibling();
 				}
-				else if (_scrollRect.transform.InverseTransformPoint(_items[i].position).y > _disableMarginY + _threshold)
+				else if (itemY > _scrollMargin + 100f)
 				{
-					_newAnchoredPosition = _items[i].anchoredPosition;
-					_newAnchoredPosition.y -= _itemCount * _recordOffsetY;
-					_items[i].anchoredPosition = _newAnchoredPosition;
+					_items[i].anchoredPosition -= Vector2.up * _itemCount * _itemOffset;
 					_scrollRect.content.GetChild(0).SetAsLastSibling();
 				}
 			}
