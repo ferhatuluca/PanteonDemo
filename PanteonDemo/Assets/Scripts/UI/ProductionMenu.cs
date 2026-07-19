@@ -19,16 +19,6 @@ namespace UI
 		private void Start()
 		{
 			SpawnBuildingUIs();
-
-			float xCalculate = -(_buildingUIRects[0].rect.width + _verticalLayoutGroup.spacing) * _buildingUIRects.Length;
-			_contentPanelTransform.localPosition = new Vector3(xCalculate, 
-				_contentPanelTransform.localPosition.y, 
-				_contentPanelTransform.localPosition.z);
-		}
-
-		private void Update()
-		{
-			throw new NotImplementedException();
 		}
 
 		private void SpawnBuildingUIs()
@@ -39,11 +29,11 @@ namespace UI
 			_buildingUIRects = new RectTransform[buildingData.Length * teamTypes.Length];
 
 			int count = 0;
-			foreach (BuildingData data in buildingData)
+			foreach (TeamType teamType in teamTypes)
 			{
-				BuildingUI ui = Instantiate(data.BuildingUIPrefab, _contentPanelTransform);
-				foreach (TeamType teamType in teamTypes)
+				foreach (BuildingData data in buildingData)
 				{
+					BuildingUI ui = Instantiate(data.BuildingUIPrefab, _contentPanelTransform);
 					ui.Init(data, teamType);
 					_buildingUIRects[count++] = ui.GetComponent<RectTransform>();
 				}

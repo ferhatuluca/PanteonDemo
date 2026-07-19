@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a1ba2e64f0a432ba3a0d515a5d8f29d, type: 3}
   m_Name: House
   m_EditorClassIdentifier: 
-  <Name>k__BackingField: Unit
+  <Name>k__BackingField: House
   <Health>k__BackingField: 50
   <GridCellSize>k__BackingField: {x: 2, y: 3}
   <BuildingType>k__BackingField: 2

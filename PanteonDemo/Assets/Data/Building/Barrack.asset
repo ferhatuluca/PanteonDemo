@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb36861f42f143d7817e1138ad8886e5, type: 3}
   m_Name: Barrack
   m_EditorClassIdentifier: 
-  <Name>k__BackingField: Unit
+  <Name>k__BackingField: Barrack
   <Health>k__BackingField: 100
   <GridCellSize>k__BackingField: {x: 4, y: 4}
   <BuildingType>k__BackingField: 0
