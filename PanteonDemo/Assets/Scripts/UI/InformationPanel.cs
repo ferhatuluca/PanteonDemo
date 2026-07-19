@@ -57,7 +57,7 @@ namespace UI
 		
 		private void OnGameUnitClicked(GameUnit gameUnit)
 		{
-			if (gameUnit.GameUnitObject is Building building && building.IsUnitProducingBuilding())
+			if (gameUnit != null && gameUnit.GameUnitObject is Building building && building.IsUnitProducingBuilding())
 			{
 				OpenPanel(building);
 			}
@@ -84,7 +84,8 @@ namespace UI
 		{
 			if (_currentTween != null && _currentTween.IsActive() && !_currentTween.IsComplete())
 			{
-				_currentTween.Kill();
+				_currentTween.Kill(false);
+				_currentTween = null;
 			}
 		}
 
