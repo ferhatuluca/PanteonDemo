@@ -80,10 +80,10 @@ namespace Core.Utilities.Pool_Spawner.Spawner
             {
                 count++;
                 availableSpawnPoint = _spawnPoints[_spawnPointIndex];
-                if (!CheckSpawnPointAvailability(availableSpawnPoint))
-                {
-                    IncreaseIndex();
-                }
+                IncreaseIndex();
+                
+                if (CheckSpawnPointAvailability(availableSpawnPoint))
+                    break;
             }
             return availableSpawnPoint;
         }
