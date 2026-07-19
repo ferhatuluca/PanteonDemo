@@ -13,7 +13,7 @@ namespace Core.GameUnits.Buildings
 		[SerializeField] private LayerMask _layerMask;
 		
 		private Collider2D _collider2D;
-		private List<Collider2D> _hitColliders = new ();
+		private HashSet<Collider2D> _hitColliders = new ();
 		
 		private void Awake()
 		{
@@ -38,7 +38,9 @@ namespace Core.GameUnits.Buildings
 			if (!other.gameObject.layer.LayerMaskLayerCompare(_layerMask))
 				return;
 
-			_hitColliders.Add(other);
+			if(!_hitColliders.Add(other))
+				return;
+			
 			OnPlaceabilityChanged?.Invoke(false);
 		}
 
@@ -47,7 +49,9 @@ namespace Core.GameUnits.Buildings
 			if (!other.gameObject.layer.LayerMaskLayerCompare(_layerMask))
 				return;
 			
-			_hitColliders.Remove(other);
+			if(!_hitColliders.Remove(other))
+				return;
+			
 			OnPlaceabilityChanged?.Invoke(_hitColliders.Count == 0);
 		}
 	}

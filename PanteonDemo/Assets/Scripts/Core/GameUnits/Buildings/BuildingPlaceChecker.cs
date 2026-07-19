@@ -20,7 +20,7 @@ namespace Core.GameUnits.Buildings
 		
 		// we have 2 collider, one is trigger for place checking, other is non trigger for Aster path finder
 		private Collider2D[] _colliders;
-		private List<Collider2D> _hitColliders = new ();
+		private HashSet<Collider2D> _hitColliders = new ();
 		
 		private bool _thisPlaceability = true;
 		private bool _placementColliderPlaceability = true;
@@ -69,7 +69,9 @@ namespace Core.GameUnits.Buildings
 			if (!other.gameObject.layer.LayerMaskLayerCompare(_layerMask))
 				return;
 
-			_hitColliders.Add(other);
+			if (!_hitColliders.Add(other))
+				return;
+			
 			ChangeThisPlaceability(false);
 		}
 
@@ -83,7 +85,9 @@ namespace Core.GameUnits.Buildings
 			if (!other.gameObject.layer.LayerMaskLayerCompare(_layerMask))
 				return;
 			
-			_hitColliders.Remove(other);
+			if (!_hitColliders.Remove(other))
+				return;
+			
 			ChangeThisPlaceability(_hitColliders.Count == 0);
 		}
 

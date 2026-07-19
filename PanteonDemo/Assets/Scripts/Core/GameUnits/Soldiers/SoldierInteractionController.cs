@@ -17,11 +17,9 @@ namespace Core.GameUnits.Soldiers
 		private Collider2D _collider2D;
 		
 		private Transform _destination;
-		private Vector3 _prevDestPosition;
 		
 		public AIPath AiPath { private set; get; }
 		public GameUnit TargetUnit { private set; get; }
-		public bool IsFighting => _isFighting;
 
 		private void Awake()
 		{
@@ -143,7 +141,6 @@ namespace Core.GameUnits.Soldiers
 		private void SetDestination(Transform target)
 		{
 			_destination = target;
-			_prevDestPosition = _destination.position;
 			AiPath.destination = _destination.position;
 			AiPath.canMove = true;
 		}

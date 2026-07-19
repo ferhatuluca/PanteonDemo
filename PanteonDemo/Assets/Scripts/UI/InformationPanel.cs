@@ -57,7 +57,7 @@ namespace UI
 		
 		private void OnGameUnitClicked(GameUnit gameUnit)
 		{
-			if (gameUnit != null && gameUnit.GameUnitObject is Building building && building.IsUnitProducingBuilding())
+			if (gameUnit != null && gameUnit.GameUnitObject is Building building)
 			{
 				OpenPanel(building);
 			}
@@ -100,8 +100,10 @@ namespace UI
 			BuildingTeamData buildingTeamData = buildingData.GetBuildingTeamData(teamType);
 			_buildingIcon.sprite = buildingTeamData.Icon;
 			
+			if(!building.IsUnitProducingBuilding())
+				return;
+			
 			SoldierData[] soldierData = GameManager.Instance.GeneralData.SoldierData;
-
 			for (int i = 0; i < soldierData.Length; i++)
 			{
 				_soldierUis[i].Init(soldierData[i], teamType);
