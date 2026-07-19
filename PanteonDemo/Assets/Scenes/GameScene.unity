@@ -127629,8 +127629,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a91ed29f1f7a4a799419c7fdde070a12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _clickableAreaTilemap: {fileID: 706294629}
   _placementCursorObject: {fileID: 1853550215263731462}
+  <GameAreaTileMap>k__BackingField: {fileID: 706294629}
 --- !u!1001 &1481238667
 PrefabInstance:
   m_ObjectHideFlags: 0
