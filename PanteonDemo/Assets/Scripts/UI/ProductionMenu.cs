@@ -71,7 +71,7 @@ namespace UI
 			{
 				Canvas.ForceUpdateCanvases();
 				_oldVelocity = _scrollRect.velocity;
-				_contentPanelTransform.localPosition += new Vector3(0f, _totalRepeatedItemHeight * _totalRepeatedItemHeight, 0f);
+				_contentPanelTransform.localPosition += new Vector3(0f, _totalRepeatedItemHeight, 0f);
 				_isUpdated = true;
 			}
 		}
