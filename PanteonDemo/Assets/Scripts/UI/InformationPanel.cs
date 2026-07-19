@@ -17,6 +17,8 @@ namespace UI
 		[SerializeField] private TextMeshProUGUI _buildingName;
 		[SerializeField] private TextMeshProUGUI _buildingHP;
 		[SerializeField] private TextMeshProUGUI _buildingGridCellSize;
+		[Header("Panel")] 
+		[SerializeField] private RectTransform _unitsPanel;
 		[SerializeField] private RectTransform _contentPanelTransform;
 		
 		[Header("Tween")]
@@ -99,10 +101,14 @@ namespace UI
 				
 			BuildingTeamData buildingTeamData = buildingData.GetBuildingTeamData(teamType);
 			_buildingIcon.sprite = buildingTeamData.Icon;
-			
-			if(!building.IsUnitProducingBuilding())
+
+			if (!building.IsUnitProducingBuilding())
+			{
+				_unitsPanel.gameObject.SetActive(false);
 				return;
+			}
 			
+			_unitsPanel.gameObject.SetActive(true);
 			SoldierData[] soldierData = GameManager.Instance.GeneralData.SoldierData;
 			for (int i = 0; i < soldierData.Length; i++)
 			{
