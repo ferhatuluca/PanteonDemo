@@ -24,7 +24,8 @@ namespace Core.GameUnits.Buildings
 			Tilemap gameAreaTileMap = PlacementManager.Instance.GameAreaTileMap;
 			Vector3 position = spawnPoint.transform.position;
 			Vector3Int cellPosition = gameAreaTileMap.WorldToCell(position);
-			return gameAreaTileMap.HasTile(cellPosition);
+			bool isAvailable = gameAreaTileMap.HasTile(cellPosition);
+			return isAvailable;
 		}
 
 		[Button]
