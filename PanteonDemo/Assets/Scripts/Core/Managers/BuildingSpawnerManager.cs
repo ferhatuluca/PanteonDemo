@@ -16,24 +16,10 @@ namespace Core.Managers
 
 		private BuildingSpawner _buildingSpawner;
 
-#if UNITY_EDITOR
-		[Header("Test")]
-		public BuildingData testBuildingData;
-		public TeamType testTeamType;
-#endif
-
 		protected override void InternalAwake()
 		{
 			_buildingSpawner = GetComponent<BuildingSpawner>();
 		}
-
-#if UNITY_EDITOR
-		private void Update()
-		{
-			if (Input.GetKeyDown(KeyCode.Space))
-				OnBuildingUIClicked(testBuildingData, testTeamType);
-		}
-#endif
 
 		private void OnEnable()
 		{
