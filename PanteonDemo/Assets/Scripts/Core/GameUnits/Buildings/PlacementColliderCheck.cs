@@ -26,6 +26,7 @@ namespace Core.GameUnits.Buildings
 		
 		public void ResetForPool()
 		{
+			// This is only for placement so no need to let collider enabled
 			_hitColliders.Clear();
 			_collider2D.enabled = false;
 			OnPlaceabilityChanged = null;

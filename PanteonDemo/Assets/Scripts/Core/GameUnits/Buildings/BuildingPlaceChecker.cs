@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using Core.Utilities.Extensions;
 using UnityEngine;
 
@@ -17,7 +18,8 @@ namespace Core.GameUnits.Buildings
 		private SpriteRenderer _buildingSprite;
 		private Color _startColorOfBuildingSprite;
 		
-		private Collider2D _thisCollider2D;
+		// we have 2 collider, one is trigger for place checking, other is non trigger for Aster path finder
+		private Collider2D[] _colliders;
 		private List<Collider2D> _hitColliders = new ();
 		
 		private bool _thisPlaceability = true;
@@ -28,16 +30,18 @@ namespace Core.GameUnits.Buildings
 		
 		private void Awake()
 		{
-			_thisCollider2D = GetComponent<Collider2D>();
+			_colliders = GetComponents<Collider2D>();
 			_placementColliderCheck = GetComponentInChildren<PlacementColliderCheck>();
 		}
 
 		public void Init(SpriteRenderer spriteRenderer)
 		{
-			_thisCollider2D.enabled = true;
 			_thisPlaceability = true;
 			_placementColliderPlaceability = true;
 			IsPlaced = false;
+			
+			foreach (Collider2D c in _colliders)
+				c.enabled = true;
 			
 			_buildingSprite = spriteRenderer;
 			_startColorOfBuildingSprite = _buildingSprite.color;
@@ -48,14 +52,20 @@ namespace Core.GameUnits.Buildings
 
 		public void ResetForPool()
 		{
-			_hitColliders.Clear();
-			_thisCollider2D.enabled = false;
-			_placementColliderCheck.ResetForPool();
+			// we need to disable it now because after that we scan path, for that it is necessary
+			foreach (Collider2D c in _colliders)
+				c.enabled = false;
+			
 			AstarPath.active.Scan();
 		}
 		
 		private void OnTriggerEnter2D(Collider2D other)
 		{
+			// We could have disabled the _colliders instead of checking IsPlaced, but in that case new spawned
+			// building will not interact with this, and It will be able to place on this
+			if(IsPlaced)
+				return;
+			
 			if (!other.gameObject.layer.LayerMaskLayerCompare(_layerMask))
 				return;
 
@@ -65,6 +75,11 @@ namespace Core.GameUnits.Buildings
 
 		private void OnTriggerExit2D(Collider2D other)
 		{
+			// We could have disabled the _colliders instead of checking IsPlaced, but in that case new spawned
+			// building will not interact with this and It will be able to place on this
+			if(IsPlaced)
+				return;
+			
 			if (!other.gameObject.layer.LayerMaskLayerCompare(_layerMask))
 				return;
 			
@@ -75,7 +90,19 @@ namespace Core.GameUnits.Buildings
 		public void Place()
 		{
 			IsPlaced = true;
-			UpdateBuildingGraphs();
+			// both colliders have same bounds
+			Bounds bounds = _colliders[0].bounds;
+			AstarPath.active.UpdateGraphs(bounds);
+
+			StartCoroutine(OneFrame());
+		}
+
+		private IEnumerator OneFrame()
+		{
+			yield return null;
+			_hitColliders.Clear();
+			_placementColliderCheck.ResetForPool();
+			_placementColliderCheck.OnPlaceabilityChanged -= OnPlaceabilityChanged;
 		}
 		
 		private void ChangeThisPlaceability(bool canPlace)
@@ -100,12 +127,6 @@ namespace Core.GameUnits.Buildings
 			{
 				_buildingSprite.color = _cantPlaceColor;
 			}
-		}
-		
-		private void UpdateBuildingGraphs()
-		{
-			Bounds bounds = _thisCollider2D.bounds;
-			AstarPath.active.UpdateGraphs(bounds);
 		}
 	}
 }
