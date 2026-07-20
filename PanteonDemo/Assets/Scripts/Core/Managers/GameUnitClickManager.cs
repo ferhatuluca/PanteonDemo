@@ -102,7 +102,7 @@ namespace Core.Managers
 			}
 
 			// Haven't placed the building yet
-			if (_selectedGameUnit.GameUnitObject is Building building && !building.BuildingPlaceChecker.IsPlaced)
+			if (hitGameUnit.GameUnitObject is Building building && !building.BuildingPlaceChecker.IsPlaced)
 			{
 				return;
 			}
