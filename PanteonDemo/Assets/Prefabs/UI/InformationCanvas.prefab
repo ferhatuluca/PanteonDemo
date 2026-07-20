@@ -178,7 +178,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 0374dbb2731f2ab48b6c29c1631412ff, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -452,7 +452,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 0374dbb2731f2ab48b6c29c1631412ff, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -935,7 +935,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 0374dbb2731f2ab48b6c29c1631412ff, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -956,7 +956,6 @@ GameObject:
   - component: {fileID: 7450719358234544781}
   - component: {fileID: 7450719358234544783}
   - component: {fileID: 7450719358234544782}
-  - component: {fileID: 5155500090381628851}
   m_Layer: 0
   m_Name: Panel
   m_TagString: Untagged
@@ -1014,7 +1013,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 0374dbb2731f2ab48b6c29c1631412ff, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1024,26 +1023,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &5155500090381628851
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7450719358234544780}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 153c198ea9a94d1fa1e774ea248ced54, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _buildingIcon: {fileID: 7450719357280034580}
-  _buildingName: {fileID: 7450719357430148152}
-  _buildingHP: {fileID: 7450719357175166485}
-  _buildingGridCellSize: {fileID: 7450719357303330368}
-  _unitsPanel: {fileID: 7450719358220954544}
-  _contentPanelTransform: {fileID: 7450719356957708643}
-  _tweenDuration: 0.3
-  _ease: 6
 --- !u!1 &7450719358250297308
 GameObject:
   m_ObjectHideFlags: 0
@@ -1111,7 +1090,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 0374dbb2731f2ab48b6c29c1631412ff, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1188,7 +1167,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 0374dbb2731f2ab48b6c29c1631412ff, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1210,6 +1189,7 @@ GameObject:
   - component: {fileID: 7450719358385824388}
   - component: {fileID: 7450719358385824387}
   - component: {fileID: 7450719358385824386}
+  - component: {fileID: 7651261378450791851}
   m_Layer: 0
   m_Name: InformationCanvas
   m_TagString: Untagged
@@ -1300,6 +1280,27 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 1015
+--- !u!114 &7651261378450791851
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7450719358385824384}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 153c198ea9a94d1fa1e774ea248ced54, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _buildingIcon: {fileID: 7450719357280034580}
+  _buildingName: {fileID: 7450719357430148152}
+  _buildingHP: {fileID: 7450719357175166485}
+  _buildingGridCellSize: {fileID: 7450719357303330368}
+  _panel: {fileID: 7450719358234544781}
+  _unitsPanel: {fileID: 7450719358220954544}
+  _contentPanelTransform: {fileID: 7450719356957708643}
+  _tweenDuration: 0.3
+  _ease: 6
 --- !u!1 &7450719358480828006
 GameObject:
   m_ObjectHideFlags: 0

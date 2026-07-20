@@ -18,6 +18,7 @@ namespace UI
 		[SerializeField] private TextMeshProUGUI _buildingHP;
 		[SerializeField] private TextMeshProUGUI _buildingGridCellSize;
 		[Header("Panel")] 
+		[SerializeField] private RectTransform _panel;
 		[SerializeField] private RectTransform _unitsPanel;
 		[SerializeField] private RectTransform _contentPanelTransform;
 		
@@ -28,15 +29,14 @@ namespace UI
 		private SoldierUI[] _soldierUis;
 		private float _startPosX;
 		
-		private RectTransform _rectTransform;
 		private Tweener _currentTween;
 
 		private bool _isPanelOpen;
 
 		private void Start()
 		{
-			_rectTransform = GetComponent<RectTransform>();
-			_startPosX = _rectTransform.anchoredPosition.x;
+			_panel.gameObject.SetActive(false);
+			_startPosX = _panel.anchoredPosition.x;
 
 			SoldierType[] soldierTypes = (SoldierType[])Enum.GetValues(typeof(SoldierType));
 			_soldierUis = new SoldierUI[soldierTypes.Length];
@@ -80,7 +80,9 @@ namespace UI
 
 			_isPanelOpen = true;
 			CancelCurrentTween();
-			_currentTween = _rectTransform.DOAnchorPosX(0f, _tweenDuration).SetEase(_ease);
+			_panel.gameObject.SetActive(true);
+			_currentTween = _panel.DOAnchorPosX(0f, _tweenDuration)
+				.SetEase(_ease);
 		}
 
 		private void ClosePanel()
@@ -90,7 +92,9 @@ namespace UI
 
 			_isPanelOpen = false;
 			CancelCurrentTween();
-			_currentTween = _rectTransform.DOAnchorPosX(_startPosX, _tweenDuration).SetEase(_ease);
+			_currentTween = _panel.DOAnchorPosX(_startPosX, _tweenDuration)
+				.SetEase(_ease)
+				.OnComplete(() => { _panel.gameObject.SetActive(false); });
 		}
 
 		private void CancelCurrentTween()
