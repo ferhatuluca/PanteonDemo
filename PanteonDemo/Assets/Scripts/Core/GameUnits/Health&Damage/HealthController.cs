@@ -46,5 +46,13 @@ namespace Core.GameUnits.Health_Damage
 
 			_healthBar.SetHealth(_currentHealth);
 		}
+
+#if UNITY_EDITOR
+		[Button]
+		private void TakeMaxDamage()
+		{
+			TakeDamage(_maxHp);
+		}
+#endif
 	}
 }

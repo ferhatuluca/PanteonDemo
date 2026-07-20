@@ -28,7 +28,6 @@ namespace Core.GameUnits
 			HealthController.Init(this, gameUnitData.Health);
 		}
 		
-		[Button]
 		public void Death()
 		{
 			GameUnitObject.Death();
