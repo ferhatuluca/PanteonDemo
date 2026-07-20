@@ -31,6 +31,8 @@ namespace UI
 		private RectTransform _rectTransform;
 		private Tweener _currentTween;
 
+		private bool _isPanelOpen;
+
 		private void Start()
 		{
 			_rectTransform = GetComponent<RectTransform>();
@@ -71,6 +73,10 @@ namespace UI
 
 		private void OpenPanel(Building building)
 		{
+			if (_isPanelOpen)
+				return;
+
+			_isPanelOpen = true;
 			CancelCurrentTween();
 			SetUIs(building);
 			_currentTween = _rectTransform.DOAnchorPosX(0f, _tweenDuration).SetEase(_ease);
@@ -78,6 +84,10 @@ namespace UI
 
 		private void ClosePanel()
 		{
+			if(!_isPanelOpen)
+				return;
+
+			_isPanelOpen = false;
 			CancelCurrentTween();
 			_currentTween = _rectTransform.DOAnchorPosX(_startPosX, _tweenDuration).SetEase(_ease);
 		}

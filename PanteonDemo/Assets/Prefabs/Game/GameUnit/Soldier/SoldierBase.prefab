@@ -283,7 +283,7 @@ MonoBehaviour:
   radius: 0.25
   height: 0.01
   canMove: 1
-  maxSpeed: 1
+  maxSpeed: 1.2
   gravity: {x: 0, y: 0, z: 0}
   groundMask:
     serializedVersion: 2
@@ -306,7 +306,7 @@ MonoBehaviour:
     sensitivity: 10
     maximumPeriod: 0.5
     visualizeSensitivity: 0
-  maxAcceleration: -2.5
+  maxAcceleration: 100
   rotationSpeed: 360
   slowdownDistance: 0.4
   pickNextWaypointDist: 0.3
