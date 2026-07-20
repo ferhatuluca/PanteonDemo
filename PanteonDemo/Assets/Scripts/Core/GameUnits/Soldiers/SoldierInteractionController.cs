@@ -102,15 +102,17 @@ namespace Core.GameUnits.Soldiers
 				return;
 			}
 			
-			// If interacted target is destroyed then we look if there is another interact nearby
-			if (Interacts.Count <= 0)
+			// Target is destroyed and there is no target nearby
+			// There is a another target nearby
+			if (Interacts.Count > 0)
 			{
-				TargetUnitDeadStopFight();
+				SetTargetUnit(Interacts.First());
+				TriggerFight();
 				return;
 			}
-				
-			SetTargetUnit(Interacts.First());
-			TriggerFight();
+			
+			// There is no another target nearby
+			// This will be check in OnTargetUnitDead
 		}
 		
 		public void ResetForPool()
@@ -122,15 +124,15 @@ namespace Core.GameUnits.Soldiers
 			
 			AiPath.canMove = false;
 			_collider2D.enabled = false;
-			_destination = null;
 			_isFighting = false;
-			TargetUnit = null;
+			SetDestination(null);
+			SetTargetUnitNull();
 		}
 
 		public void SetDestinationEmptyArea(Vector2 position)
 		{
-			TargetUnit = null;
 			_nonTargetDestination.position = position;
+			SetTargetUnitNull();
 			SetDestination(_nonTargetDestination);
 			_soldier.SoldierAnimController.SetAnim(SoldierAnimState.Run);
 		}
@@ -139,8 +141,10 @@ namespace Core.GameUnits.Soldiers
 		{
 			if(TargetUnit == gameUnit)
 				return;
-			
+
+			SetTargetUnitNull();
 			TargetUnit = gameUnit;
+			TargetUnit.OnDead += OnTargetUnitDead;
 			SetDestination(TargetUnit.transform);
 			if (!Interacts.Contains(gameUnit))
 			{
@@ -148,11 +152,48 @@ namespace Core.GameUnits.Soldiers
 			}
 		}
 		
+		private void SetTargetUnitNull()
+		{
+			if(TargetUnit == null)
+				return;
+			
+			TargetUnit.OnDead -= OnTargetUnitDead;
+			TargetUnit = null;
+		}
+
+		private void OnTargetUnitDead()
+		{
+			if (TargetUnit == null)
+			{
+				Debug.LogError("This should not happen, we must unsubscribe to OnDead event if we change TargetUnit");
+			}
+			
+			if (_destination != TargetUnit.transform)
+			{
+				Debug.LogError("This should not happen, if we have target unit then destination must be target unit");
+			}
+			
+			if(Interacts.Count > 0)
+				return;
+
+			SetTargetUnitNull();
+			SetDestination(null);
+			_isFighting = false;
+			_soldier.SoldierAnimController.SetAnim(SoldierAnimState.Idle);
+		}
+
 		private void SetDestination(Transform target)
 		{
 			_destination = target;
-			AiPath.destination = _destination.position;
-			AiPath.canMove = true;
+			if (_destination)
+			{
+				AiPath.destination = _destination.position;
+				AiPath.canMove = true;
+			}
+			else
+			{
+				AiPath.canMove = false;
+			}
 		}
 
 		private void ContinueChase()
@@ -167,18 +208,6 @@ namespace Core.GameUnits.Soldiers
 			_isFighting = true;
 			AiPath.canMove = false;
 			_soldier.SoldierAnimController.SetAnim(SoldierAnimState.Attack);
-		}
-
-		private void TargetUnitDeadStopFight()
-		{
-			if (TargetUnit.transform == _destination)
-			{
-				_destination = null;
-			}
-			
-			TargetUnit = null;
-			_isFighting = false;
-			_soldier.SoldierAnimController.SetAnim(SoldierAnimState.Idle);
 		}
 		
 		private void CheckDestinationReachAndUpdateDestination()
@@ -197,8 +226,7 @@ namespace Core.GameUnits.Soldiers
 			if (gap >= AiPath.endReachedDistance)
 				return;
 			
-			_destination = null;
-			AiPath.canMove = false;
+			SetDestination(null);
 			_soldier.SoldierAnimController.SetAnim(SoldierAnimState.Idle);
 		}
 	}

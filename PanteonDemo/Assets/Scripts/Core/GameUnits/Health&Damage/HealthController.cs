@@ -32,6 +32,9 @@ namespace Core.GameUnits.Health_Damage
 		[Button]
 		public void TakeDamage(int damage)
 		{
+			if(IsDead)
+				return;
+			
 			_currentHealth -= damage;
 			if (_currentHealth <= 0)
 			{

@@ -44,6 +44,12 @@ namespace Core.Managers
 
 		private void OnSoldierUIClicked(SoldierData data, TeamType teamType)
 		{
+			if (_selectedGameUnit == null)
+			{
+				Debug.LogError("Information panel is open but there is no selected game unit");
+				return;
+			}
+			
 			if (_selectedGameUnit.GameUnitObject is not Building building)
 			{
 				Debug.LogError("No building is selected but information panel open and soldier clicked");
