@@ -123,7 +123,8 @@ namespace Core.Managers
 			}
 			else
 			{
-				_selectedGameUnit.OnDead -= OnSoldierDead;
+				if (_selectedGameUnit)
+					_selectedGameUnit.OnDead -= OnSoldierDead;
 				_selectedGameUnit = null;
 			}
 		}
