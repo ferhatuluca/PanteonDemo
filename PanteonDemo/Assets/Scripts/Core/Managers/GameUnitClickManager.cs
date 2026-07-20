@@ -72,9 +72,6 @@ namespace Core.Managers
 
 		private void CheckClick()
 		{
-			if (EventSystem.current.IsPointerOverGameObject()) 
-				return;
-			
 			if (Input.GetMouseButtonDown(0))
 				LeftClick();
 			else if (Input.GetMouseButtonDown(1) && _selectedGameUnit && _selectedGameUnit.GameUnitObject is Soldier soldier)
@@ -97,28 +94,43 @@ namespace Core.Managers
 				return;
 			}
 			
-			_selectedGameUnit = hit.collider.GetComponent<GameUnit>();
-			if (_selectedGameUnit == null)
+			GameUnit hitGameUnit = hit.collider.GetComponent<GameUnit>();
+			if (hitGameUnit == null)
 			{
-				OnGameUnitClicked?.Invoke(null);
+				SetSelectedGameUnit(null);
 				return;
 			}
 
-			// Haven't placed yet
+			// Haven't placed the building yet
 			if (_selectedGameUnit.GameUnitObject is Building building && !building.BuildingPlaceChecker.IsPlaced)
 			{
 				return;
 			}
 
-			GameUnitSelected();
+			SetSelectedGameUnit(hitGameUnit);
 		}
 
-		private void GameUnitSelected()
+		private void SetSelectedGameUnit(GameUnit gameUnit)
 		{
-			OnGameUnitClicked?.Invoke(_selectedGameUnit);
-			
-			// After OnDead called, OnDead events become null so unsubscribe is not necessary
-			_selectedGameUnit.OnDead += () => { _selectedGameUnit = null;};
+			if (gameUnit)
+			{
+				if(gameUnit == _selectedGameUnit)
+					return;
+
+				_selectedGameUnit = gameUnit;
+				OnGameUnitClicked?.Invoke(_selectedGameUnit);
+				_selectedGameUnit.OnDead += OnSoldierDead;
+			}
+			else
+			{
+				_selectedGameUnit.OnDead -= OnSoldierDead;
+				_selectedGameUnit = null;
+			}
+		}
+
+		private void OnSoldierDead()
+		{
+			SetSelectedGameUnit(null);
 		}
 
 		private void SoldierSelectedAndRightClick(Soldier soldier)

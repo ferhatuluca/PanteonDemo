@@ -40,7 +40,7 @@ namespace Core.GameUnits.Buildings
 			GameUnit.Init(this, teamType, buildingData);
 			BuildingPlaceChecker.Init(_modelSprite);
 
-			if (buildingData is UnitProducingBuildingData)
+			if (IsUnitProducingBuilding())
 			{
 				if (SoldierSpawner == null)
 				{
