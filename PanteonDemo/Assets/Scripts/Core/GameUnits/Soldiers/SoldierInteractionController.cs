@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using Core.Enums;
 using Core.Managers;
 using Core.Utilities.Interact;
@@ -84,6 +83,11 @@ namespace Core.GameUnits.Soldiers
 
 		protected override void OnTriggerInteractExit(GameUnit actor)
 		{
+			// we disable collider _collider2D.enabled = false, in same frame it triggers OnTriggerExit
+			// so we should check if we are dead
+			if(_soldier.GameUnit.IsDead())
+				return;
+			
 			if (!_destination)
 			{
 				// We don't have dest then we should not interact so Exit shouldn't have been possible
