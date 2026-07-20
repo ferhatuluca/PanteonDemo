@@ -1,5 +1,7 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using Core.Enums;
+using Core.Managers;
 using Core.Utilities.Interact;
 using Pathfinding;
 using UnityEngine;
@@ -27,8 +29,12 @@ namespace Core.GameUnits.Soldiers
 			_rigidbody2D = GetComponent<Rigidbody2D>();
 			_collider2D = GetComponent<Collider2D>();
 			AiPath = GetComponent<AIPath>();
-			
+		}
+
+		private void Start()
+		{
 			_nonTargetDestination = new GameObject($"{name}'s NonTargetDestination").transform;
+			_nonTargetDestination.parent = GameManager.Instance.NonTargetDestinationsParent;
 		}
 
 		public void Init(Soldier soldier)

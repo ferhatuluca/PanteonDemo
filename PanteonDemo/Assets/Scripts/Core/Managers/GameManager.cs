@@ -8,5 +8,6 @@ namespace Core.Managers
 	public class GameManager : SingletonMonoBehaviour<GameManager>
 	{
 		[field: SerializeField] public GeneralData GeneralData { private set; get; }
+		[field: SerializeField] public Transform NonTargetDestinationsParent { private set; get; }
 	}
 }
