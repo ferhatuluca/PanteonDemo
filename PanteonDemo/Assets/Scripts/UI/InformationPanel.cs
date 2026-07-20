@@ -73,12 +73,13 @@ namespace UI
 
 		private void OpenPanel(Building building)
 		{
+			SetUIs(building);
+			
 			if (_isPanelOpen)
 				return;
 
 			_isPanelOpen = true;
 			CancelCurrentTween();
-			SetUIs(building);
 			_currentTween = _rectTransform.DOAnchorPosX(0f, _tweenDuration).SetEase(_ease);
 		}
 
