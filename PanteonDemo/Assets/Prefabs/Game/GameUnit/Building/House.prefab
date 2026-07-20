@@ -9,11 +9,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1711666123124911067, guid: 1f2983320a98d42418c3401617e78bfa, type: 3}
       propertyPath: m_Size.x
-      value: 0.55653286
+      value: 0.86330694
       objectReference: {fileID: 0}
     - target: {fileID: 1711666123124911067, guid: 1f2983320a98d42418c3401617e78bfa, type: 3}
       propertyPath: m_Size.y
-      value: 0.99216366
+      value: 1.2242696
       objectReference: {fileID: 0}
     - target: {fileID: 1711666123124911067, guid: 1f2983320a98d42418c3401617e78bfa, type: 3}
       propertyPath: m_Offset.x

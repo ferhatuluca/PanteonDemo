@@ -2,7 +2,6 @@
 using Core.Enums;
 using Core.GameUnits.Health_Damage;
 using Core.Scriptables;
-using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Core.GameUnits

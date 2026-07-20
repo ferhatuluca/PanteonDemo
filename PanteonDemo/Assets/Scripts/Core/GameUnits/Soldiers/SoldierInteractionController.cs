@@ -187,8 +187,8 @@ namespace Core.GameUnits.Soldiers
 			_destination = target;
 			if (_destination)
 			{
-				AiPath.destination = _destination.position;
 				AiPath.canMove = true;
+				AiPath.destination = _destination.position;
 			}
 			else
 			{
