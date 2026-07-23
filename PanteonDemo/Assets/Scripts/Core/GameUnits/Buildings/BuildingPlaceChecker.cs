@@ -94,7 +94,6 @@ namespace Core.GameUnits.Buildings
 		public void Place()
 		{
 			IsPlaced = true;
-			// both colliders have same bounds
 			foreach (Collider2D coll in _colliders)
 			{
 				if(coll.isTrigger)
