@@ -95,9 +95,15 @@ namespace Core.GameUnits.Buildings
 		{
 			IsPlaced = true;
 			// both colliders have same bounds
-			Bounds bounds = _colliders[0].bounds;
-			AstarPath.active.UpdateGraphs(bounds);
-
+			foreach (Collider2D coll in _colliders)
+			{
+				if(coll.isTrigger)
+					continue;
+				
+				Bounds bounds = coll.bounds;
+				AstarPath.active.UpdateGraphs(bounds);
+			}
+			
 			StartCoroutine(OneFrame());
 		}
 
